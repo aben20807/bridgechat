@@ -5,7 +5,7 @@ import java.util.Vector;
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.chat.Chatroom;
 
-public class Member {
+public abstract class Member {
 
 	private String name;
 	private Vector<Card> cardsInHand;// = new Vector<>();

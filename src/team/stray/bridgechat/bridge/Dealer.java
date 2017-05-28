@@ -1,5 +1,8 @@
 package team.stray.bridgechat.bridge;
 
+import java.util.Collections;
+import java.util.Vector;
+
 public class Dealer {
 
 	public static Dealer instance = null;
@@ -17,11 +20,13 @@ public class Dealer {
 		return instance;
 	}
 	
-	public void shuffle(){
-		
+	public Vector<Card> shuffle(Vector<Card> cards){
+		Collections.shuffle(cards);
+		return cards;
 	}
 	
-	public void deal(){
+	public Vector<Card> deal(Vector<Card> cards){
 		
+		return cards;
 	}
 }
