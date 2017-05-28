@@ -3,11 +3,13 @@ package team.stray.bridgechat.bridge;
 import java.util.Collections;
 import java.util.Vector;
 
+import team.stray.bridgechat.online.Member;
+
 public class Dealer {
 
 	public static Dealer instance = null;
 	
-	private Dealer(){};
+	private Dealer(){}
 	
 	public static Dealer getInstnce(){
 		if(instance == null){
@@ -31,21 +33,21 @@ public class Dealer {
 	}
 	
 	public void deal(Vector<Card> cards, 
-			Vector<Card> player1cards, Vector<Card> player2cards, 
-			Vector<Card> player3cards, Vector<Card> player4cards){
+			Member player1, Member player2, 
+			Member player3, Member player4){
 		for(int i = 0; i < 52; i++){
 			switch (i/13+1) {
 			case 1:
-				player1cards.add(cards.get(i));
+				player1.addCardIntoHand(cards.get(i));
 				break;
 			case 2:
-				player2cards.add(cards.get(i));
+				player2.addCardIntoHand(cards.get(i));
 				break;
 			case 3:
-				player3cards.add(cards.get(i));
+				player3.addCardIntoHand(cards.get(i));
 				break;
 			case 4:
-				player4cards.add(cards.get(i));
+				player4.addCardIntoHand(cards.get(i));
 				break;
 			default:
 				break;

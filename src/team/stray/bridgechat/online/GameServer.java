@@ -26,13 +26,14 @@ public class GameServer extends Member{
 		dealer = Dealer.getInstnce();
 		dealer.shuffle(cards);
 //		printCards();
-		dealer.deal(cards, this.getCardsInHand(), 
-				players.get(0).getCardsInHand(), 
-				players.get(1).getCardsInHand(), 
-				players.get(2).getCardsInHand());
+		dealer.deal(cards, this, 
+				players.get(0), 
+				players.get(1), 
+				players.get(2));
 		
 		this.sortCardsInHand();
 		this.printCardsInHand();
+		
 		System.out.println("\n");
 		
 		players.get(0).sortCardsInHand();
