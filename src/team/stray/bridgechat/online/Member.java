@@ -1,5 +1,6 @@
 package team.stray.bridgechat.online;
 
+import java.util.Collections;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -21,6 +22,10 @@ public abstract class Member {
 		for(int i = 0; i < 13; i++){
 			cardsInHand.get(i).printInfo();
 		}
+	}
+	
+	public void sortCardsInHand(){
+		Collections.sort(cardsInHand);
 	}
 	
 	public String getName() {

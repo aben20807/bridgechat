@@ -1,21 +1,26 @@
 package team.stray.bridgechat.bridge;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
 	private int value;	//can compare among 52 cards
 	private char number;//card point (2~9,T,J,Q,K,A)
 	private int suit;	//card suit  (1~4, defined in ISuit)
 	
 	public Card(int value, char number, int suit) {
-		
 		setValue(value);
 		setNumber(number);
 		setSuit(suit);
 	}
 	
 	public void printInfo(){
-		
 		System.out.println(getValue()+ "\t"+getNumber()+getSuit());
+	}
+	
+
+	@Override
+	public int compareTo(Card o) {
+		int compareValue = o.getValue();
+		return this.getValue() - compareValue;
 	}
 	
 	public int getValue() {
@@ -42,4 +47,5 @@ public class Card {
 			this.suit = suit;
 		}
 	}
+
 }

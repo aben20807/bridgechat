@@ -21,7 +21,12 @@ public class Dealer {
 	}
 	
 	public Vector<Card> shuffle(Vector<Card> cards){
-		Collections.shuffle(cards);
+		
+		try {
+			Collections.shuffle(cards);
+		} catch (UnsupportedOperationException e) {
+			e.printStackTrace();
+		}
 		return cards;
 	}
 	

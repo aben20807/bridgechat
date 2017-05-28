@@ -30,12 +30,20 @@ public class GameServer extends Member{
 				players.get(0).getCardsInHand(), 
 				players.get(1).getCardsInHand(), 
 				players.get(2).getCardsInHand());
+		
+		this.sortCardsInHand();
 		this.printCardsInHand();
 		System.out.println("\n");
+		
+		players.get(0).sortCardsInHand();
 		players.get(0).printCardsInHand();
 		System.out.println("\n");
+		
+		players.get(1).sortCardsInHand();
 		players.get(1).printCardsInHand();
 		System.out.println("\n");
+		
+		players.get(2).sortCardsInHand();
 		players.get(2).printCardsInHand();
 	}
 
