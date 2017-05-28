@@ -8,13 +8,19 @@ import team.stray.bridgechat.chat.Chatroom;
 public abstract class Member {
 
 	private String name;
-	private Vector<Card> cardsInHand;// = new Vector<>();
+	private Vector<Card> cardsInHand;
 	private Chatroom chatroom;
 	
 	public Member(String name, Chatroom chatroom) {
 		setName(name);
 		setChatroom(chatroom);
 		setCardsInHand(new Vector<>());
+	}
+	
+	public void printCardsInHand(){
+		for(int i = 0; i < 13; i++){
+			cardsInHand.get(i).printInfo();
+		}
 	}
 	
 	public String getName() {
