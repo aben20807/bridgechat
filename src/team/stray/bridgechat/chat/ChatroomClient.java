@@ -36,6 +36,7 @@ public class ChatroomClient implements IChatroom {
 			Thread incomingreader = new Thread(new IncomingReader());
 			incomingreader.start();
 			break;
+			
 		case SUBMIT:
 			if((ip != null) && (this.message != "")){
 				try {
@@ -53,9 +54,10 @@ public class ChatroomClient implements IChatroom {
 
 	private class IncomingReader implements Runnable {
 		public void run(){
+			String messageFromOthers;
 			try {
-				while(setMessage(reader.readLine()) == true){
-					System.out.println(message);
+				while((messageFromOthers = reader.readLine()) != null){
+					System.out.println(messageFromOthers);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

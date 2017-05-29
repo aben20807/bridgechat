@@ -35,6 +35,7 @@ public class Game {
 	private static void open() {
 		// GameServer gameserver = new GameServer("test", new Chatroom());
 		chatroom = new ChatroomServer();
+		System.out.println(((ChatroomServer)chatroom).getIP());
 	}
 
 	private static void connect() {
