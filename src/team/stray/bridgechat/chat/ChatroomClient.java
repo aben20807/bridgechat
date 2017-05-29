@@ -7,15 +7,15 @@ import java.net.Socket;
 
 public class ChatroomClient implements IChatroom {
 
-	private String name;
-	private String ip;
+	private final String name;
+	private final String ip;
 	private String message;
 	private BufferedReader reader;
 	private PrintStream writer;
 
 	public ChatroomClient(String name, String ip) {
-		setName(name);
-		setIp(ip);
+		this.ip = ip;
+		this.name = name;
 	}
 
 	private void linkStart() {
@@ -53,9 +53,8 @@ public class ChatroomClient implements IChatroom {
 
 	private class IncomingReader implements Runnable {
 		public void run(){
-			String message;
 			try {
-				while((message = reader.readLine()) != null){
+				while(setMessage(reader.readLine()) == true){
 					System.out.println(message);
 				}
 			} catch (Exception e) {
@@ -68,23 +67,18 @@ public class ChatroomClient implements IChatroom {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getIp() {
 		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 
 	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public boolean setMessage(String message) {//TODO Limit the number of words
+		if((this.message = message)!=null)
+			return true;
+		else
+			return false;
 	}
 }
