@@ -5,7 +5,7 @@ import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.Dealer;
-import team.stray.bridgechat.chat.Chatroom;
+import team.stray.bridgechat.chat.IChatroom;
 
 public class GameServer extends Member{
 
@@ -14,7 +14,7 @@ public class GameServer extends Member{
 	private Dealer dealer;
 	private ArrayList<GameClient> players = new ArrayList<>();
 	
-	public GameServer(String name, Chatroom chatroom) {
+	public GameServer(String name, IChatroom chatroom) {
 		super(name, chatroom);
 		
 		players.add(new GameClient("t", chatroom));//0
