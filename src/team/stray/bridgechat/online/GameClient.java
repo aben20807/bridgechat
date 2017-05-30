@@ -1,11 +1,10 @@
 package team.stray.bridgechat.online;
 
-import team.stray.bridgechat.chat.IChatroom;
 
-public class GameClient extends Member{
+public class GameClient extends Player{
 
-	public GameClient(String name, IChatroom chatroom) {
-		super(name, chatroom);
+	public GameClient(String name) {
+		super(name);
 	}
 
 }

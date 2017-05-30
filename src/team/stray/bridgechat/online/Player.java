@@ -6,18 +6,16 @@ import java.util.Vector;
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.chat.IChatroom;
 
-public abstract class Member {
+public abstract class Player {
 
 	private String name;
 	private Vector<Card> cardsInHand;
-	private IChatroom chatroom;
 	private int points; //used to cut
 	private int seat;
 	
 
-	public Member(String name, IChatroom chatroom) {
+	public Player(String name) {
 		setName(name);
-		setChatroom(chatroom);
 		setCardsInHand(new Vector<>());
 		setPoints(0);
 	}
@@ -63,12 +61,6 @@ public abstract class Member {
 			this.setPoints(this.getPoints() + 1);
 		}
 		this.cardsInHand.add(card);
-	}
-	public IChatroom getChatroom() {
-		return chatroom;
-	}
-	public void setChatroom(IChatroom chatroom) {
-		this.chatroom = chatroom;
 	}
 	public int getPoints() {
 		return points;

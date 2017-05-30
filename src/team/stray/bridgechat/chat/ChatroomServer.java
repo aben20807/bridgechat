@@ -11,22 +11,26 @@ import java.util.Vector;
 
 public class ChatroomServer implements IChatroom{
 
-	private Vector<PrintStream> memberList;
+	protected Vector<PrintStream> memberList;
+	protected ServerSocket serverSocket;
 	
 	public ChatroomServer(){
 		memberList = new Vector<>();
-		
 		try {
-			ServerSocket serverSocket = new ServerSocket(8000);
-			System.out.println("Server started....");
-			System.out.println(getIP());
-			while(true){
-				Socket socket = serverSocket.accept();
-				PrintStream writer = new PrintStream(socket.getOutputStream());
-				memberList.add(writer);
-				
-				Thread chatThread = new Thread(new Chat(socket, memberList));
-				chatThread.start();
+			try {
+				serverSocket = new ServerSocket(8000);
+				System.out.println("Server started....");
+				System.out.println(getIP());
+				while(true){
+					Socket socket = serverSocket.accept();
+					PrintStream writer = new PrintStream(socket.getOutputStream());
+					memberList.add(writer);
+					
+					Thread chatThread = new Thread(new Chat(socket, memberList));
+					chatThread.start();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

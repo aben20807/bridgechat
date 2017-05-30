@@ -1,25 +1,23 @@
 package team.stray.bridgechat.online;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.Dealer;
 import team.stray.bridgechat.chat.IChatroom;
 
-public class GameServer extends Member{
+public class GameServer extends Player{
 
 	public static Vector<Card> cards;
 	
 	private Dealer dealer;
-	private ArrayList<GameClient> players = new ArrayList<>();
+	private Vector<GameClient> players = new Vector<>();
 	
-	public GameServer(String name, IChatroom chatroom) {
-		super(name, chatroom);
-		
-		players.add(new GameClient("t", chatroom));//0
-		players.add(new GameClient("t", chatroom));//1
-		players.add(new GameClient("t", chatroom));//2
+	public GameServer(String name) {
+		super(name);
+		players.add(new GameClient("t"));//0
+		players.add(new GameClient("t"));//1
+		players.add(new GameClient("t"));//2
 		
 		createCards();
 //		printCards();

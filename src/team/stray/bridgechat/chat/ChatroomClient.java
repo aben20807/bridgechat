@@ -6,19 +6,19 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 public class ChatroomClient implements IChatroom {
-
-	private final String name;
-	private final String ip;
-	private String message;
-	private BufferedReader reader;
-	private PrintStream writer;
+	
+	protected final String name;
+	protected final String ip;
+	protected String message;
+	protected BufferedReader reader;
+	protected PrintStream writer;
 
 	public ChatroomClient(String name, String ip) {
 		this.ip = ip;
 		this.name = name;
 	}
-
-	private void linkStart() {
+	
+	protected void linkStart() {
 		try {
 			Socket socket = new Socket(ip, 8000);
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -28,7 +28,7 @@ public class ChatroomClient implements IChatroom {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void doFunction(int command){
 		switch (command) {
 		case CONNECT:

@@ -3,7 +3,7 @@ package team.stray.bridgechat.bridge;
 import java.util.Collections;
 import java.util.Vector;
 
-import team.stray.bridgechat.online.Member;
+import team.stray.bridgechat.online.Player;
 
 public class Dealer {
 
@@ -33,8 +33,8 @@ public class Dealer {
 	}
 	
 	public void deal(Vector<Card> cards, 
-			Member player1, Member player2, 
-			Member player3, Member player4){
+			Player player1, Player player2, 
+			Player player3, Player player4){
 		for(int i = 0; i < 52; i++){
 			switch (i/13+1) {
 			case 1:
