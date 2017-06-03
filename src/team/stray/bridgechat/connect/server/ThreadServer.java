@@ -1,4 +1,4 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect.server;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Vector;
 
 import team.stray.bridgechat.chat.TransmissibleString;
+import team.stray.bridgechat.connect.Transmissible;
 
 public class ThreadServer implements Runnable {
 

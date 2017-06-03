@@ -1,10 +1,8 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.bridge;
 
 import java.util.Vector;
 
-import team.stray.bridgechat.bridge.Card;
-import team.stray.bridgechat.bridge.Dealer;
-import team.stray.bridgechat.chat.IChatroom;
+import team.stray.bridgechat.connect.Player;
 
 public class GameServer extends Player{
 

@@ -1,8 +1,9 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect.client;
 
 import java.io.ObjectInputStream;
 
 import team.stray.bridgechat.chat.TransmissibleString;
+import team.stray.bridgechat.connect.Transmissible;
 
 public class ThreadClient implements Runnable {
 

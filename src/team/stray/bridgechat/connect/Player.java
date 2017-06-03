@@ -1,10 +1,9 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect;
 
 import java.util.Collections;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
-import team.stray.bridgechat.chat.IChatroom;
 
 public abstract class Player {
 

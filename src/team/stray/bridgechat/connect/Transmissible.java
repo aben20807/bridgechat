@@ -1,4 +1,4 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect;
 
 public interface Transmissible {
 

@@ -1,4 +1,4 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect.server;
 
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Vector;
+
+import team.stray.bridgechat.connect.Connection;
 
 public class ConnectionServer extends Connection {
 

@@ -2,7 +2,7 @@ package team.stray.bridgechat.chat;
 
 import java.io.Serializable;
 
-import team.stray.bridgechat.online.Transmissible;
+import team.stray.bridgechat.connect.Transmissible;
 
 public class TransmissibleString implements Transmissible, Serializable{
 

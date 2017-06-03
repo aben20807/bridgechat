@@ -1,5 +1,6 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect.client;
 
+import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.chat.ChatroomClient;
 
 public class Client{

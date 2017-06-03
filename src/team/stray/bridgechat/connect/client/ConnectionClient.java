@@ -1,4 +1,4 @@
-package team.stray.bridgechat.online;
+package team.stray.bridgechat.connect.client;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -7,6 +7,8 @@ import java.net.Socket;
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.TransmissibleCard;
 import team.stray.bridgechat.chat.TransmissibleString;
+import team.stray.bridgechat.connect.Connection;
+import team.stray.bridgechat.connect.Transmissible;
 
 
 public class ConnectionClient extends Connection{
