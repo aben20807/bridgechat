@@ -56,7 +56,7 @@ public class Card implements Comparable<Card>, Serializable, Transmissible{
 		return suit;
 	}
 	public void setSuit(int suit) {
-		if(suit >= ISuit.clubs && suit <= ISuit.spades){
+		if(suit >= Suit.clubs && suit <= Suit.spades){
 			this.suit = suit;
 		}
 	}

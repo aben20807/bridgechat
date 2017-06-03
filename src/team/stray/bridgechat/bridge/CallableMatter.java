@@ -1,6 +1,6 @@
 package team.stray.bridgechat.bridge;
 
-public interface ICallSuit {
+public interface CallableMatter {
 
 	public static int notrump	= 5;
 	public static int spade  	= 4;

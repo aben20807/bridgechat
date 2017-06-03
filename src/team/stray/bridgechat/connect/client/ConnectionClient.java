@@ -5,10 +5,10 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import team.stray.bridgechat.bridge.Card;
-import team.stray.bridgechat.bridge.TransmissibleCard;
-import team.stray.bridgechat.chat.TransmissibleString;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
+import team.stray.bridgechat.connect.TransmissibleCard;
+import team.stray.bridgechat.connect.TransmissibleString;
 
 
 public class ConnectionClient extends Connection{

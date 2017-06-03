@@ -1,6 +1,6 @@
 package team.stray.bridgechat.bridge;
 
-public interface ISuit {
+public interface Suit {
 
 	public static int spades 	= 4;
 	public static int hearts 	= 3;
