@@ -7,8 +7,9 @@ import java.util.Vector;
 
 public class ThreadServer implements Runnable{
 	
-	private Socket socket;
-	Vector<ObjectOutputStream> memberList;
+	private final Socket socket;
+	private Vector<ObjectOutputStream> memberList;
+	
 	public ThreadServer(Socket socket, Vector<ObjectOutputStream> memberList){
 		this.socket = socket;
 		this.memberList = memberList;

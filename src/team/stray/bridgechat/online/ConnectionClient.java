@@ -7,25 +7,21 @@ import java.net.Socket;
 
 public class ConnectionClient extends Connection{
 
-	protected final String name;
-	protected final String ip;
-	protected String message;
+	private final String name;
+	private final String ip;
+	private String message;
 
 	public ConnectionClient(String name, String ip) {
 		this.ip = ip;
 		this.name = name;
 	}
 	
-	public String getPhysicalClientMessage(String message){
-		return message;
-	}
-	
 	protected void linkStart() {
 		try {
+			@SuppressWarnings("resource")
 			Socket socket = new Socket(ip, 8000);
 			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
-			
 		} catch (Exception e) {
 			System.out.println("cannot connect ip "+ ip);
 			e.printStackTrace();

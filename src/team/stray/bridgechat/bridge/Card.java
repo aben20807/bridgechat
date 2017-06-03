@@ -7,7 +7,7 @@ public class Card implements Comparable<Card>, Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 1L;
 	private int value;	//2~14
 	private char number;//card point (2~9,T,J,Q,K,A)
 	private int suit;	//card suit  (1~4, defined in ISuit)
