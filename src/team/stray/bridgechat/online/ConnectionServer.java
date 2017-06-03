@@ -23,8 +23,8 @@ public class ConnectionServer extends Connection {
 				out = new ObjectOutputStream(socket.getOutputStream());
 				memberList.add(out);
 
-				Thread chatThread = new Thread(new ThreadServer(socket, memberList));
-				chatThread.start();
+				Thread threadServer = new Thread(new ThreadServer(socket, memberList));
+				threadServer.start();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

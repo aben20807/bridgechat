@@ -2,7 +2,9 @@ package team.stray.bridgechat.bridge;
 
 import java.io.Serializable;
 
-public class Card implements Comparable<Card>, Serializable{
+import team.stray.bridgechat.online.Transmissible;
+
+public class Card implements Comparable<Card>, Serializable, Transmissible{
 
 	/**
 	 * 
@@ -58,5 +60,4 @@ public class Card implements Comparable<Card>, Serializable{
 			this.suit = suit;
 		}
 	}
-
 }

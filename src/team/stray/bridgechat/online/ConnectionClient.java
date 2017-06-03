@@ -4,12 +4,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.bridge.TransmissibleCard;
+import team.stray.bridgechat.chat.TransmissibleString;
+
 
 public class ConnectionClient extends Connection{
 
 	private final String name;
 	private final String ip;
-	private String message;
+	private Transmissible message;
 
 	public ConnectionClient(String name, String ip) {
 		this.ip = ip;
@@ -32,12 +36,12 @@ public class ConnectionClient extends Connection{
 		switch (command) {
 		case CONNECT:
 			linkStart();
-			Thread incomingreader = new Thread(new ThreadClient(in));
-			incomingreader.start();
+			Thread threadClient = new Thread(new ThreadClient(in));
+			threadClient.start();
 			break;
 			
 		case SUBMIT:
-			if((ip != null) && (this.message != "")){
+			if((ip != null) && ((this.message) != null)){
 				try {
 					out.writeObject(message);
 					out.flush();
@@ -59,14 +63,13 @@ public class ConnectionClient extends Connection{
 		return ip;
 	}
 
-	public String getMessage() {
-		return message;
+	public void setMessage(String message) {//TODO Limit the size
+		this.message = new TransmissibleString();
+		((TransmissibleString)this.message).setTransmissibleString(message);
 	}
-
-	public boolean setMessage(String message) {//TODO Limit the number of words
-		if((this.message = message)!=null)
-			return true;
-		else
-			return false;
+	
+	public void setMessage(Card card) {//TODO Limit the size
+		this.message = new TransmissibleCard();
+		((TransmissibleCard)this.message).setTransmissibleCard(card);
 	}
 }
