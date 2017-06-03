@@ -36,7 +36,7 @@ public class Dealer {
 			Player player1, Player player2, 
 			Player player3, Player player4){
 		for(int i = 0; i < 52; i++){
-			switch (i/13+1) {
+			switch (i%4+1) {
 			case 1:
 				player1.addCardIntoHand(cards.get(i));
 				break;

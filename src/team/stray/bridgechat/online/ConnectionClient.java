@@ -1,19 +1,17 @@
-package team.stray.bridgechat.chat;
+package team.stray.bridgechat.online;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ChatroomClient implements IChatroom {
-	
+
+public class ConnectionClient extends Connection{
+
 	protected final String name;
 	protected final String ip;
 	protected String message;
-	protected BufferedReader reader;
-	protected PrintStream writer;
 
-	public ChatroomClient(String name, String ip) {
+	public ConnectionClient(String name, String ip) {
 		this.ip = ip;
 		this.name = name;
 	}
@@ -25,8 +23,9 @@ public class ChatroomClient implements IChatroom {
 	protected void linkStart() {
 		try {
 			Socket socket = new Socket(ip, 8000);
-			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			writer = new PrintStream(socket.getOutputStream());
+			in = new ObjectInputStream(socket.getInputStream());
+			out = new ObjectOutputStream(socket.getOutputStream());
+			
 		} catch (Exception e) {
 			System.out.println("cannot connect ip "+ ip);
 			e.printStackTrace();
@@ -37,15 +36,15 @@ public class ChatroomClient implements IChatroom {
 		switch (command) {
 		case CONNECT:
 			linkStart();
-			Thread incomingreader = new Thread(new IncomingReader());
+			Thread incomingreader = new Thread(new ThreadClient(in));
 			incomingreader.start();
 			break;
 			
 		case SUBMIT:
 			if((ip != null) && (this.message != "")){
 				try {
-					writer.println(name+":"+this.message);
-					writer.flush();
+					out.writeObject(message);
+					out.flush();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,19 +55,6 @@ public class ChatroomClient implements IChatroom {
 		}
 	}
 
-	private class IncomingReader implements Runnable {
-		public void run(){
-			String messageFromOthers;
-			try {
-				while((messageFromOthers = reader.readLine()) != null){
-					System.out.println(messageFromOthers);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	public String getName() {
 		return name;
 	}

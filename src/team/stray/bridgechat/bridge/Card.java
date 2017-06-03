@@ -1,8 +1,14 @@
 package team.stray.bridgechat.bridge;
 
-public class Card implements Comparable<Card>{
+import java.io.Serializable;
 
-	private int value;	//can compare among 52 cards
+public class Card implements Comparable<Card>, Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2L;
+	private int value;	//2~14
 	private char number;//card point (2~9,T,J,Q,K,A)
 	private int suit;	//card suit  (1~4, defined in ISuit)
 	
@@ -19,8 +25,13 @@ public class Card implements Comparable<Card>{
 
 	@Override
 	public int compareTo(Card o) {//sort from small to large by value
+		int compareSuit = o.getSuit();
 		int compareValue = o.getValue();
-		return this.getValue() - compareValue;
+		int tmp = this.getSuit() - compareSuit;
+		if(tmp != 0)
+			return tmp;
+		else
+			return this.getValue() - compareValue;
 	}
 	
 	public int getValue() {

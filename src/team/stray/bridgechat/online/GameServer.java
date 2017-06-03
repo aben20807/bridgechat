@@ -54,22 +54,22 @@ public class GameServer extends Player{
 			int cardValueInEachSuit = (i-1)%13+2; //2~14
 			
 			if(cardValueInEachSuit <= 9){
-				cards.add(new Card(i, (char)((i%13+1)+'0'), (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, (char)((i%13+1)+'0'), (i-1)/13+1));
 			}
 			else if(cardValueInEachSuit == 10){
-				cards.add(new Card(i, 'T', (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, 'T', (i-1)/13+1));
 			}
 			else if(cardValueInEachSuit == 11){
-				cards.add(new Card(i, 'J', (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, 'J', (i-1)/13+1));
 			}
 			else if(cardValueInEachSuit == 12){
-				cards.add(new Card(i, 'Q', (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, 'Q', (i-1)/13+1));
 			}
 			else if(cardValueInEachSuit == 13){
-				cards.add(new Card(i, 'K', (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, 'K', (i-1)/13+1));
 			}
 			else if(cardValueInEachSuit == 14){
-				cards.add(new Card(i, 'A', (i-1)/13+1));
+				cards.add(new Card(cardValueInEachSuit, 'A', (i-1)/13+1));
 			}
 		}
 	}
