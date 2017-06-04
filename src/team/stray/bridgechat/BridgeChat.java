@@ -3,6 +3,7 @@ package team.stray.bridgechat;
 import java.util.Scanner;
 
 import team.stray.bridgechat.connect.Connection;
+import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.client.ConnectionClient;
 import team.stray.bridgechat.connect.server.ConnectionServer;
 import team.stray.bridgechat.bridge.GameServer;
@@ -15,6 +16,7 @@ public class BridgeChat {
 
 //	private static Connection chatroom;
 	private static Connection connection;
+	private static Client client;
 	public static void main(String[] args) {
 
 		while(true){//chat test
@@ -28,7 +30,11 @@ public class BridgeChat {
 			connect();
 			break;
 		case 3:
-			submit();
+			submitString();
+			break;
+		case 4:
+			printString();
+			break;
 		default:
 			break;
 		}}
@@ -45,15 +51,26 @@ public class BridgeChat {
 
 	private static void connect() {
 
-		connection = new ConnectionClient("test", "127.0.0.1");
-		((ConnectionClient) connection).doFunction(Connection.CONNECT);
+//		connection = new ConnectionClient("test", "127.0.0.1");
+//		((ConnectionClient) connection).doFunction(Connection.CONNECT);
+		client = new Client("test", "127.0.0.1");
+		client.connect();
+		
 	}
 
-	private static void submit() {
-		String message = scanner.nextLine();
-
-		((ConnectionClient) connection).setMessage(message);
-		((ConnectionClient) connection).doFunction(Connection.SUBMIT);
+	private static void submitString() {
+//		String message = scanner.nextLine();
+//
+//		((ConnectionClient) connection).setMessage(message);
+//		((ConnectionClient) connection).doFunction(Connection.SUBMIT);
+		client.submitString();
 	}
 
+	private static void printString() {
+//		String message = scanner.nextLine();
+//
+//		((ConnectionClient) connection).setMessage(message);
+//		((ConnectionClient) connection).doFunction(Connection.SUBMIT);
+		client.printReceiveString();
+	}
 }

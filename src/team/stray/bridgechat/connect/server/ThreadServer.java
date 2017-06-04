@@ -3,10 +3,12 @@ package team.stray.bridgechat.connect.server;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Vector;
 
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.TransmissibleString;
+import team.stray.bridgechat.connect.TransmitTimestamp;
 
 public class ThreadServer implements Runnable {
 
@@ -22,14 +24,14 @@ public class ThreadServer implements Runnable {
 		try {
 			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 			while (true) {
-				// String clientText = (String) in.readObject();
 				Transmissible receiveMessage = (Transmissible) in.readObject();
 				if (receiveMessage instanceof TransmissibleString) {
 					String clientText = ((TransmissibleString)receiveMessage).getTransmissibleString();
-					System.out.println(clientText);
-					broadCast(receiveMessage, memberList);
-					if (clientText.equals("bye"))
+					//System.out.println(clientText);
+					broadcast(receiveMessage, memberList);
+					if (clientText.equals("bye")){
 						break;
+					}
 				}
 			}
 			socket.close();
@@ -38,8 +40,12 @@ public class ThreadServer implements Runnable {
 		}
 	}
 
-	public void broadCast(Transmissible message, Vector<ObjectOutputStream> memberList) {
-
+	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
+		/*Set Time stamp*/
+		Date date = new Date();
+		((TransmitTimestamp)message).setSendTimestamp(date.toString());
+		
+		/*Broadcast*/
 		for (ObjectOutputStream i : memberList) {
 			try {
 				ObjectOutputStream out = i;

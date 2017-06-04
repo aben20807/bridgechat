@@ -8,20 +8,27 @@ import team.stray.bridgechat.connect.TransmissibleString;
 public class ThreadClient implements Runnable {
 
 	private final ObjectInputStream in;
+	private final ConnectionClient connectionClient;
 
-	public ThreadClient(ObjectInputStream in) {
+	public ThreadClient(ObjectInputStream in, ConnectionClient connectionClient) {
 		this.in = in;
+		this.connectionClient = connectionClient;
 	}
 
 	public void run() {
-		String messageFromOthers;
+		String messageFromBroadCast;
 		try {
 			Transmissible receiveMessage;
 			while ((receiveMessage = (Transmissible) in.readObject()) != null) {
 
 				if ((receiveMessage instanceof TransmissibleString)
-						&& (messageFromOthers = ((TransmissibleString) receiveMessage).getTransmissibleString()) != null)
-					System.out.println(messageFromOthers);
+						&& (messageFromBroadCast = ((TransmissibleString) receiveMessage)
+								.getTransmissibleString()) != null){
+					System.out.println(messageFromBroadCast);
+					
+					/*Let parent know the receiveMessage from server*/
+					connectionClient.setReceiveMessage(receiveMessage);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

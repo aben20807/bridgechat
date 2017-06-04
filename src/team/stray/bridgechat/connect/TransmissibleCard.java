@@ -2,7 +2,7 @@ package team.stray.bridgechat.connect;
 
 import team.stray.bridgechat.bridge.Card;
 
-public class TransmissibleCard implements Transmissible{
+public class TransmissibleCard extends TransmitTimestamp implements Transmissible{
 
 	/**
 	 * 
@@ -17,4 +17,6 @@ public class TransmissibleCard implements Transmissible{
 	public void setTransmissibleCard(Card transmissibleCard) {
 		this.transmissibleCard = transmissibleCard;
 	}
+	
+	
 }
