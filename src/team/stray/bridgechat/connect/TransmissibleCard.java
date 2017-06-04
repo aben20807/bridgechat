@@ -1,10 +1,8 @@
 package team.stray.bridgechat.connect;
 
-import java.io.Serializable;
-
 import team.stray.bridgechat.bridge.Card;
 
-public class TransmissibleCard implements Transmissible, Serializable{
+public class TransmissibleCard implements Transmissible{
 
 	/**
 	 * 

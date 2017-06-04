@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import team.stray.bridgechat.connect.Transmissible;
 
-public class Card implements Comparable<Card>, Serializable, Transmissible, Suit{
+public class Card implements Comparable<Card>, Suit, Serializable{
 
 	/**
 	 * 

@@ -2,8 +2,8 @@ package team.stray.bridgechat.bridge;
 
 public interface Suit {
 
-	public static int SPADES 	= 4;
-	public static int HEARTS 	= 3;
-	public static int DIAMONDS 	= 2;
-	public static int CLUBS 	= 1;
+	public static final int SPADES 		= 4;
+	public static final int HEARTS 		= 3;
+	public static final int DIAMONDS 	= 2;
+	public static final int CLUBS 		= 1;
 }

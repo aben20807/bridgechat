@@ -1,5 +1,7 @@
 package team.stray.bridgechat.connect;
 
-public interface Transmissible {
+import java.io.Serializable;
+
+public interface Transmissible extends  Serializable{
 
 }

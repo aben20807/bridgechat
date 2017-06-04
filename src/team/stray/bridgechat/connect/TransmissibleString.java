@@ -1,8 +1,6 @@
 package team.stray.bridgechat.connect;
 
-import java.io.Serializable;
-
-public class TransmissibleString implements Transmissible, Serializable{
+public class TransmissibleString implements Transmissible{
 
 	/**
 	 * 
