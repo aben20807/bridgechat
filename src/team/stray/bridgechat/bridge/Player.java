@@ -1,9 +1,7 @@
-package team.stray.bridgechat.connect;
+package team.stray.bridgechat.bridge;
 
 import java.util.Collections;
 import java.util.Vector;
-
-import team.stray.bridgechat.bridge.Card;
 
 public abstract class Player {
 

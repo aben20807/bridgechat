@@ -2,8 +2,6 @@ package team.stray.bridgechat.bridge;
 
 import java.util.Vector;
 
-import team.stray.bridgechat.connect.Player;
-
 public class GameServer extends Player{
 
 	public static Vector<Card> cards;
@@ -21,7 +19,7 @@ public class GameServer extends Player{
 //		printCards();
 		dealer = Dealer.getInstnce();
 		dealer.shuffle(cards);
-//		printCards();
+		printCards();
 		dealer.deal(cards, this, 
 				players.get(0), 
 				players.get(1), 

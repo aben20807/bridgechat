@@ -3,8 +3,6 @@ package team.stray.bridgechat.bridge;
 import java.util.Collections;
 import java.util.Vector;
 
-import team.stray.bridgechat.connect.Player;
-
 public class Dealer {
 
 	public static Dealer instance = null;
