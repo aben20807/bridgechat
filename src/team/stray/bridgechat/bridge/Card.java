@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import team.stray.bridgechat.connect.Transmissible;
 
-public class Card implements Comparable<Card>, Serializable, Transmissible{
+public class Card implements Comparable<Card>, Serializable, Transmissible, Suit{
 
 	/**
 	 * 
@@ -56,7 +56,7 @@ public class Card implements Comparable<Card>, Serializable, Transmissible{
 		return suit;
 	}
 	public void setSuit(int suit) {
-		if(suit >= Suit.clubs && suit <= Suit.spades){
+		if(suit >= CLUBS && suit <= SPADES){
 			this.suit = suit;
 		}
 	}
