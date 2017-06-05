@@ -5,12 +5,14 @@ import team.stray.bridgechat.chat.ChatroomServer;
 
 public class Server{
 
-	ChatroomServer chatroomServer;
-	GameServer gameServer;
+	private final ChatroomServer chatroomServer;
+	private final GameServer gameServer;
+	private final ConnectionServer connectionServer;
 	
 	public Server(String name){
 		chatroomServer = new ChatroomServer();
-		gameServer = new GameServer(name);
+		gameServer = new GameServer();
+		connectionServer = new ConnectionServer();
 	}
 }
 

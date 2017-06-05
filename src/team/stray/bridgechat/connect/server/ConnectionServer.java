@@ -44,6 +44,10 @@ public class ConnectionServer extends Connection {
 		}
 	}
 
+	/**
+	 * 
+	 * @return server's IP address
+	 */
 	public String getIP() {
 		try {
 			return InetAddress.getLocalHost().getHostAddress().toString();

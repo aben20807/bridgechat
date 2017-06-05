@@ -10,10 +10,10 @@ import team.stray.bridgechat.connect.TransmitTimestamp;
 
 public class Client {
 
-	private ChatroomClient chatroomClient;
-	private GameClient gameClient;
-	private ConnectionClient connectionClient;
-	private Transmissible message;
+	private final ChatroomClient chatroomClient;
+	private final GameClient gameClient;
+	private final ConnectionClient connectionClient;
+	private Transmissible messageReceiveFromServer;
 
 	public Client(String name, String ip) {
 		chatroomClient = new ChatroomClient(name, ip);
@@ -35,9 +35,9 @@ public class Client {
 	}
 
 	public void printReceiveString() {
-		if (message != null) {
-			String t1 = ((TransmissibleString) message).getTransmissibleString();
-			String t2 = ((TransmitTimestamp) message).getSendTimestamp();
+		if (messageReceiveFromServer != null) {
+			String t1 = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
+			String t2 = ((TransmitTimestamp) messageReceiveFromServer).getSendTimestamp();
 			System.out.println("receive string : "+ t1);
 			System.out.println("receive time   : "+ t2);
 		} else {
@@ -48,21 +48,22 @@ public class Client {
 
 	class ThreadGetMessage implements Runnable {
 		public void run() {
-			Transmissible tmp;
 			while (true) {
-				tmp = connectionClient.getReceiveMessage();
+				Transmissible tmp = connectionClient.getReceiveMessage();
 				if (tmp != null) {
-					setMessage(tmp);
+					setMessageReceiveFromServer(tmp);
 				}
 			}
 		}
 	}
 
-	public Transmissible getMessage() {
-		return message;
+	/*getter and setter*/
+	
+	public Transmissible getMessageReceiveFromServer() {
+		return messageReceiveFromServer;
 	}
 
-	public void setMessage(Transmissible message) {
-		this.message = message;
+	public void setMessageReceiveFromServer(Transmissible message) {
+		this.messageReceiveFromServer = message;
 	}
 }

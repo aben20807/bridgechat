@@ -8,6 +8,7 @@ public class TransmissibleString extends TransmitTimestamp implements Transmissi
 	private static final long serialVersionUID = 1L;
 	private String transmissibleString;
 	
+	/*getter and setter*/
 	
 	public String getTransmissibleString() {
 		return transmissibleString;

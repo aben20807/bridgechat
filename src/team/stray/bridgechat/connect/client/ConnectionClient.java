@@ -57,6 +57,25 @@ public class ConnectionClient extends Connection{
 		}
 	}
 
+	/**
+	 * Let connectionClient get the receiveMessage
+	 * @param message: message in ThreadClient
+	 */
+	public void setReceiveMessage(Transmissible message) {//TODO Limit the size
+		this.message = message;
+	}
+	
+	/**
+	 * Let Client's ThreadGetMessage get message
+	 * @return Transmissible message
+	 */
+	public Transmissible getReceiveMessage(){
+		System.out.flush();//Oriental mysterious power OuO
+		return message;
+	}
+	
+	/*getter and setter*/
+	
 	public String getName() {
 		return name;
 	}
@@ -65,10 +84,6 @@ public class ConnectionClient extends Connection{
 		return ip;
 	}
 	
-	public void setReceiveMessage(Transmissible message) {//TODO Limit the size
-		this.message = message;
-	}
-
 	public void setMessage(String message) {//TODO Limit the size
 		this.message = new TransmissibleString();
 		((TransmissibleString)this.message).setTransmissibleString(message);
@@ -77,10 +92,5 @@ public class ConnectionClient extends Connection{
 	public void setMessage(Card card) {//TODO Limit the size
 		this.message = new TransmissibleCard();
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
-	}
-	
-	public Transmissible getReceiveMessage(){
-		System.out.flush();//Oriental mysterious power OuO
-		return message;
 	}
 }

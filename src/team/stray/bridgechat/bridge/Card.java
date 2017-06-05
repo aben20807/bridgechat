@@ -20,11 +20,16 @@ public class Card implements Comparable<Card>, Suit, Serializable{
 		setSuit(suit);
 	}
 	
+	/**
+	 * print Card's information
+	 */
 	public void printInfo(){
 		System.out.println(getValue()+ "\t"+getNumber()+getSuit());
 	}
 	
-
+	/**
+	 * Used to compare card's order in Player: sortCardsInHand()
+	 */
 	@Override
 	public int compareTo(Card o) {//sort from small to large by value
 		int compareSuit = o.getSuit();
@@ -36,25 +41,32 @@ public class Card implements Comparable<Card>, Suit, Serializable{
 			return this.getValue() - compareValue;
 	}
 	
+	/*getter and setter*/
+	
 	public int getValue() {
 		return value;
 	}
+	
 	public void setValue(int value) {
 		if(value >= 1 && value <= 52){
 			this.value = value;
 		}
 	}
+	
 	public char getNumber() {
 		return number;
 	}
+	
 	public void setNumber(char number) {
 		if((number >= '2' && number <= '9') || number == 'T' || number == 'J' || number == 'Q' || number == 'K' || number == 'A'){
 			this.number = number;
 		}
 	}
+	
 	public int getSuit() {
 		return suit;
 	}
+	
 	public void setSuit(int suit) {
 		if(suit >= CLUBS && suit <= SPADES){
 			this.suit = suit;

@@ -6,6 +6,7 @@ import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.client.ConnectionClient;
 import team.stray.bridgechat.connect.server.ConnectionServer;
+import team.stray.bridgechat.connect.server.Server;
 import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.chat.ChatroomClient;
 import team.stray.bridgechat.chat.ChatroomServer;
@@ -17,6 +18,7 @@ public class BridgeChat {
 //	private static Connection chatroom;
 	private static Connection connection;
 	private static Client client;
+	private static Server server;
 	public static void main(String[] args) {
 
 		while(true){//chat test
@@ -43,10 +45,12 @@ public class BridgeChat {
 	private static void open() {
 //		 GameServer gameserver = new GameServer("test");
 
-		connection = new ConnectionServer();
+		server = new Server("test server");
+//		connection = new ConnectionServer();
 		
-		connection = new ConnectionClient("test", "127.0.0.1");
-		((ConnectionClient) connection).doFunction(Connection.CONNECT);
+		connect();
+//		connection = new ConnectionClient("test", "127.0.0.1");
+//		((ConnectionClient) connection).doFunction(Connection.CONNECT);
 	}
 
 	private static void connect() {

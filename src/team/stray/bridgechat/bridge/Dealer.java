@@ -20,8 +20,12 @@ public class Dealer {
 		return instance;
 	}
 	
+	/**
+	 * Use Collections.shuffle to shuffle cards
+	 * @param cards: before shuffling
+	 * @return cards after shuffling
+	 */
 	public Vector<Card> shuffle(Vector<Card> cards){
-		
 		try {
 			Collections.shuffle(cards);
 		} catch (UnsupportedOperationException e) {
@@ -30,6 +34,14 @@ public class Dealer {
 		return cards;
 	}
 	
+	/**
+	 * deal cards to four Player
+	 * @param cards
+	 * @param player1
+	 * @param player2
+	 * @param player3
+	 * @param player4
+	 */
 	public void deal(Vector<Card> cards, 
 			Player player1, Player player2, 
 			Player player3, Player player4){

@@ -9,5 +9,5 @@ public abstract class Connection {
 	protected ObjectOutputStream out;
 	
 	public static final int CONNECT = 0;
-	public static final int SUBMIT = 1;
+	public static final int SUBMIT 	= 1;
 }

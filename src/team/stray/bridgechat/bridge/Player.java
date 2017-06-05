@@ -10,11 +10,10 @@ public abstract class Player {
 	private int points; //used to cut
 	private int seat;
 	
-
 	public Player(String name) {
 		setName(name);
 		setCardsInHand(new Vector<>());
-		setPoints(0);
+		setPoints(0);//initial point at object constructing
 	}
 	
 	public void chooseSeat(){
@@ -32,18 +31,11 @@ public abstract class Player {
 		Collections.sort(cardsInHand);
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Vector<Card> getCardsInHand() {
-		return cardsInHand;
-	}
-	public void setCardsInHand(Vector<Card> cardsInHand) {
-		this.cardsInHand = cardsInHand;
-	}
+	/**
+	 * Used in Dealer: deal()
+	 * By the way count point in hand
+	 * @param card: card which will be added in hand
+	 */
 	public void addCardIntoHand(Card card) {
 		if(card.getNumber() == 'A'){
 			this.setPoints(this.getPoints() + 4);
@@ -59,10 +51,38 @@ public abstract class Player {
 		}
 		this.cardsInHand.add(card);
 	}
+	
+	/*getter and setter*/
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Vector<Card> getCardsInHand() {
+		return cardsInHand;
+	}
+	
+	public void setCardsInHand(Vector<Card> cardsInHand) {
+		this.cardsInHand = cardsInHand;
+	}
+	
 	public int getPoints() {
 		return points;
 	}
+	
 	public void setPoints(int points) {
 		this.points = points;
+	}
+	
+	public int getSeat() {
+		return seat;
+	}
+	
+	public void setSeat(int seat) {
+		this.seat = seat;
 	}
 }

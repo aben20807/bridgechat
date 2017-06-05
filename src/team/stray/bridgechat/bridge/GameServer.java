@@ -2,31 +2,33 @@ package team.stray.bridgechat.bridge;
 
 import java.util.Vector;
 
-public class GameServer extends Player{
+public class GameServer{
 
 	public static Vector<Card> cards;
 	
 	private Dealer dealer;
 	private Vector<GameClient> players = new Vector<>();
 	
-	public GameServer(String name) {
-		super(name);
+	public GameServer() {
+//		super(name);
 		players.add(new GameClient("t"));//0
 		players.add(new GameClient("t"));//1
 		players.add(new GameClient("t"));//2
+		players.add(new GameClient("t"));//3
 		
 		createCards();
 //		printCards();
 		dealer = Dealer.getInstnce();
 		dealer.shuffle(cards);
 		printCards();
-		dealer.deal(cards, this, 
+		dealer.deal(cards,
 				players.get(0), 
 				players.get(1), 
-				players.get(2));
+				players.get(2),
+				players.get(3));
 		
-		this.sortCardsInHand();
-		this.printCardsInHand();
+//		this.sortCardsInHand();
+//		this.printCardsInHand();
 		
 		System.out.println("\n");
 		
@@ -40,15 +42,19 @@ public class GameServer extends Player{
 		
 		players.get(2).sortCardsInHand();
 		players.get(2).printCardsInHand();
+		System.out.println("\n");
+		
+		players.get(3).sortCardsInHand();
+		players.get(3).printCardsInHand();
 	}
 
+	/**
+	 * create cards to 52 different point and suit
+	 */
 	private void createCards(){
-		
 		cards = new Vector<>();
 		for(int i = 1; i <= 52; i++){
-			
-			int cardValueInEachSuit = (i-1)%13+2; //2~14
-			
+			int cardValueInEachSuit = (i-1)%13+2; //2~14 for sort in the same suit
 			if(cardValueInEachSuit <= 9){
 				cards.add(new Card(cardValueInEachSuit, (char)((i%13+1)+'0'), (i-1)/13+1));
 			}
@@ -70,6 +76,9 @@ public class GameServer extends Player{
 		}
 	}
 	
+	/**
+	 * print cards' order
+	 */
 	private void printCards(){
 		
 		for(int i = 0; i < 52; i++){

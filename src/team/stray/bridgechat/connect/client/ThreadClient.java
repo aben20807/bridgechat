@@ -26,7 +26,7 @@ public class ThreadClient implements Runnable {
 								.getTransmissibleString()) != null){
 					System.out.println(messageFromBroadCast);
 					
-					/*Let parent know the receiveMessage from server*/
+					/*Let connectionClient know the receiveMessage from server*/
 					connectionClient.setReceiveMessage(receiveMessage);
 				}
 			}

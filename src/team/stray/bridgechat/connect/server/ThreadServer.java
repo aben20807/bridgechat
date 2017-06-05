@@ -40,6 +40,11 @@ public class ThreadServer implements Runnable {
 		}
 	}
 
+	/**
+	 * Broadcast message to every members from server
+	 * @param message: message need to broadcast
+	 * @param memberList: broadcast target list
+	 */
 	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
 		/*Set Time stamp*/
 		Date date = new Date();

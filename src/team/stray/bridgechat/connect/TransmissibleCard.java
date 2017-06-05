@@ -10,6 +10,8 @@ public class TransmissibleCard extends TransmitTimestamp implements Transmissibl
 	private static final long serialVersionUID = 1L;
 	private Card transmissibleCard;
 	
+	/*getter and setter*/
+	
 	public Card getTransmissibleCard() {
 		return transmissibleCard;
 	}
