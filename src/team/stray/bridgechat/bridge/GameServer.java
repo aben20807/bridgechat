@@ -10,7 +10,6 @@ public class GameServer{
 	private Vector<GameClient> players = new Vector<>();
 	
 	public GameServer() {
-//		super(name);
 		players.add(new GameClient("t"));//0
 		players.add(new GameClient("t"));//1
 		players.add(new GameClient("t"));//2
@@ -20,15 +19,12 @@ public class GameServer{
 //		printCards();
 		dealer = Dealer.getInstnce();
 		dealer.shuffle(cards);
-		printCards();
+//		printCards();
 		dealer.deal(cards,
 				players.get(0), 
 				players.get(1), 
 				players.get(2),
 				players.get(3));
-		
-//		this.sortCardsInHand();
-//		this.printCardsInHand();
 		
 		System.out.println("\n");
 		
@@ -79,7 +75,7 @@ public class GameServer{
 	/**
 	 * print cards' order
 	 */
-	private void printCards(){
+	public void printCards(){
 		
 		for(int i = 0; i < 52; i++){
 			cards.get(i).printInfo();
