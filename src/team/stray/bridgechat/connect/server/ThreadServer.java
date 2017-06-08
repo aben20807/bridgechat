@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.TransmissibleString;
-import team.stray.bridgechat.connect.TransmitTimestamp;
+import team.stray.bridgechat.connect.Timestamp;
 
 public class ThreadServer implements Runnable {
 
@@ -48,7 +48,7 @@ public class ThreadServer implements Runnable {
 	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
 		/*Set Time stamp*/
 		Date date = new Date();
-		((TransmitTimestamp)message).setSendTimestamp(date.toString());
+		message.setTimestamp(date.toString());
 		
 		/*Broadcast*/
 		for (ObjectOutputStream i : memberList) {

@@ -14,6 +14,10 @@ public class Card implements Comparable<Card>, Suit, Serializable{
 	private char number;//card point (2~9,T,J,Q,K,A)
 	private int suit;	//card suit  (1~4, defined in ISuit)
 	
+	public Card(){
+		this(2, '2', 1);//2 club in default
+	}
+	
 	public Card(int value, char number, int suit) {
 		setValue(value);
 		setNumber(number);

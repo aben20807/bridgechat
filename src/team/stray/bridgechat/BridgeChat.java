@@ -42,7 +42,6 @@ public class BridgeChat {
 	private static void connect() {
 		client = new Client("test", "127.0.0.1");
 		client.connect();
-		
 	}
 
 	private static void submitString() {

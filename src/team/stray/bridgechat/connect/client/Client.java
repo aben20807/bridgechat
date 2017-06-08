@@ -6,7 +6,7 @@ import team.stray.bridgechat.chat.ChatroomClient;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.TransmissibleString;
-import team.stray.bridgechat.connect.TransmitTimestamp;
+import team.stray.bridgechat.connect.Timestamp;
 
 public class Client {
 
@@ -37,7 +37,7 @@ public class Client {
 	public void printReceiveString() {
 		if (messageReceiveFromServer != null) {
 			String t1 = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
-			String t2 = ((TransmitTimestamp) messageReceiveFromServer).getSendTimestamp();
+			String t2 = messageReceiveFromServer.getTimestamp();
 			System.out.println("receive string : "+ t1);
 			System.out.println("receive time   : "+ t2);
 		} else {

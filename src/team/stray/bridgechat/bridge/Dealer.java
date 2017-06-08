@@ -43,8 +43,8 @@ public class Dealer {
 	 * @param player4
 	 */
 	public void deal(Vector<Card> cards, 
-			Player player1, Player player2, 
-			Player player3, Player player4){
+			GameClient player1, GameClient player2, 
+			GameClient player3, GameClient player4){
 		for(int i = 0; i < 52; i++){
 			switch (i%4+1) {
 			case 1:
