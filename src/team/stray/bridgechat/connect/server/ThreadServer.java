@@ -46,11 +46,6 @@ public class ThreadServer implements Runnable {
 	 * @param memberList: broadcast target list
 	 */
 	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
-		/*Set Time stamp*/
-		Date date = new Date();
-		message.setTimestamp(date.toString());
-		
-		/*Broadcast*/
 		for (ObjectOutputStream i : memberList) {
 			try {
 				ObjectOutputStream out = i;

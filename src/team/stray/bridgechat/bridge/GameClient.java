@@ -1,10 +1,15 @@
 package team.stray.bridgechat.bridge;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Vector;
 
-public class GameClient{
+public class GameClient implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Vector<Card> cardsInHand;
 	private int points; //used to cut

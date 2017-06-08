@@ -27,7 +27,8 @@ public class BridgeChat {
 			submitString();
 			break;
 		case 4:
-			printString();
+//			printString();
+			printGameClient();
 			break;
 		default:
 			break;
@@ -36,7 +37,8 @@ public class BridgeChat {
 
 	private static void open() {
 		server = new Server("test server");
-		connect();
+		//connect();
+		client = server.getClient();
 	}
 
 	private static void connect() {
@@ -50,5 +52,9 @@ public class BridgeChat {
 
 	private static void printString() {
 		client.printReceiveString();
+	}
+	
+	private static void printGameClient() {
+		client.printReceiveGameClient();
 	}
 }

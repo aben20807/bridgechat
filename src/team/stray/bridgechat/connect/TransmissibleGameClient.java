@@ -11,6 +11,11 @@ public class TransmissibleGameClient implements Transmissible{
 	private GameClient transmissibleGameClient;
 	private Timestamp timestamp;
 	
+	public TransmissibleGameClient(){
+		transmissibleGameClient = new GameClient("test");
+		timestamp = new Timestamp();
+	}
+	
 	@Override
 	public String getTimestamp() {
 		return timestamp.getTimestamp();

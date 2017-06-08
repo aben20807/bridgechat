@@ -5,19 +5,32 @@ import java.util.Vector;
 public class GameServer{
 
 	public static Vector<Card> cards;
-	
+	public static boolean isPlayersReachFour = false;
 	private Dealer dealer;
 	private Vector<GameClient> players = new Vector<>();
 	
 	public GameServer() {
-		players.add(new GameClient("t"));//0
-		players.add(new GameClient("t"));//1
-		players.add(new GameClient("t"));//2
-		players.add(new GameClient("t"));//3
+//		players.add(new GameClient("t"));//0
+//		players.add(new GameClient("t"));//1
+//		players.add(new GameClient("t"));//2
+//		players.add(new GameClient("t"));//3
+		players.clear(); //initial vector
 		
 		createCards();
 //		printCards();
 		dealer = Dealer.getInstnce();
+		
+	}
+	
+	public void addPlayer(GameClient g){
+		this.players.add(g);
+		if(this.players.size() >= 4)
+			isPlayersReachFour = true;
+		else
+			isPlayersReachFour = false;
+	}
+	
+	public void shuffle(){
 		dealer.shuffle(cards);
 //		printCards();
 		dealer.deal(cards,

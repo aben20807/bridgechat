@@ -25,12 +25,14 @@ public class Client {
 
 	public void connect() {
 		connectionClient.doFunction(Connection.CONNECT);
+		/*submit GameClient to join game*/
+		connectionClient.setMessage(this.gameClient);
+		connectionClient.doFunction(Connection.SUBMIT);
 	}
 
 	public void submitString() {
-		String message = BridgeChat.scanner.nextLine();
-
-		connectionClient.setMessage(message);
+		String messageString = BridgeChat.scanner.nextLine();
+		connectionClient.setMessage(messageString);
 		connectionClient.doFunction(Connection.SUBMIT);
 	}
 
@@ -44,6 +46,15 @@ public class Client {
 			System.out.println("client receive : null");
 		}
 		
+	}
+	
+	public void printReceiveGameClient(){
+		if (messageReceiveFromServer != null) {
+			String t2 = messageReceiveFromServer.getTimestamp();
+			System.out.println("receive time   : "+ t2);
+		} else {
+			System.out.println("client receive : null");
+		}
 	}
 
 	class ThreadGetMessage implements Runnable {

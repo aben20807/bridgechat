@@ -3,11 +3,14 @@ package team.stray.bridgechat.connect.client;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
 
 import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.TransmissibleCard;
+import team.stray.bridgechat.connect.TransmissibleGameClient;
 import team.stray.bridgechat.connect.TransmissibleString;
 
 
@@ -45,6 +48,7 @@ public class ConnectionClient extends Connection{
 		case SUBMIT:
 			if((ip != null) && ((this.message) != null)){
 				try {
+					setMessageTimestamp();//set timestamp before transmitting
 					out.writeObject(message);
 					out.flush();
 				} catch (Exception e) {
@@ -84,13 +88,24 @@ public class ConnectionClient extends Connection{
 		return ip;
 	}
 	
-	public void setMessage(String message) {//TODO Limit the size
+	public void setMessage(String string) {//TODO Limit the size
 		this.message = new TransmissibleString();
-		((TransmissibleString)this.message).setTransmissibleString(message);
+		((TransmissibleString)this.message).setTransmissibleString(string);
 	}
 	
 	public void setMessage(Card card) {//TODO Limit the size
 		this.message = new TransmissibleCard();
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
+	}
+	
+	public void setMessage(GameClient gameClient) {//TODO Limit the size
+		this.message = new TransmissibleGameClient();
+		((TransmissibleGameClient)this.message).setTransmissibleGameClient(gameClient);
+	}
+	
+	private void setMessageTimestamp(){
+		/*Set Time stamp*/
+		Date date = new Date();
+		this.message.setTimestamp(date.toString());
 	}
 }
