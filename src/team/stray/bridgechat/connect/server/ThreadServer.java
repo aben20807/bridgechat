@@ -28,11 +28,12 @@ public class ThreadServer implements Runnable {
 				if (receiveMessage instanceof TransmissibleString) {
 					String clientText = ((TransmissibleString)receiveMessage).getTransmissibleString();
 					//System.out.println(clientText);
-					broadcast(receiveMessage, memberList);
+					
 					if (clientText.equals("bye")){
 						break;
 					}
 				}
+				broadcast(receiveMessage, memberList);
 			}
 			socket.close();
 		} catch (Exception e) {

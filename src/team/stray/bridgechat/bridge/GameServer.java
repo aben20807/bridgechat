@@ -22,6 +22,8 @@ public class GameServer{
 		
 	}
 	
+	
+
 	public void addPlayer(GameClient g){
 		this.players.add(g);
 		if(this.players.size() >= 4)
@@ -93,5 +95,9 @@ public class GameServer{
 		for(int i = 0; i < 52; i++){
 			cards.get(i).printInfo();
 		}
+	}
+	
+	public Vector<GameClient> getPlayers() {
+		return players;
 	}
 }

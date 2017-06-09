@@ -11,38 +11,45 @@ public class BridgeChat {
 
 	private static Client client;
 	private static Server server;
-	public static void main(String[] args) {
 
-		while(true){//chat test
-		int mode = Integer.parseInt(scanner.nextLine());
-		
-		switch (mode) {
-		case 1:
-			open();
-			break;
-		case 2:
-			connect();
-			break;
-		case 3:
-			submitString();
-			break;
-		case 4:
-//			printString();
-			printGameClient();
-			break;
-		default:
-			break;
-		}}
+	public static void main(String[] args) {
+		try {
+			while (true) {// chat test
+				int mode = Integer.parseInt(scanner.nextLine());
+
+				switch (mode) {
+				case 1:
+					open();
+					break;
+				case 2:
+					connect();
+					break;
+				case 3:
+					submitString();
+					break;
+				case 4:
+					// printString();
+					printGameClient();
+					break;
+				case 5:
+					client.printReceiveGameClient();
+				default:
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void open() {
 		server = new Server("test server");
-		//connect();
-		client = server.getClient();
+		// connect();
+		// client = server.getClient();
 	}
 
 	private static void connect() {
-		client = new Client("test", "127.0.0.1");
+		client = new Client("test client", "127.0.0.1");
 		client.connect();
 	}
 
@@ -53,8 +60,8 @@ public class BridgeChat {
 	private static void printString() {
 		client.printReceiveString();
 	}
-	
-	private static void printGameClient() {
-		client.printReceiveGameClient();
+
+	public static void printGameClient() {// private
+		server.getClient().printReceiveGameClient();
 	}
 }

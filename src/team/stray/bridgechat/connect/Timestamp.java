@@ -6,7 +6,7 @@ public final class Timestamp implements Transmissible{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected String timestamp;
+	private String timestamp;
 	
 	/*getter and setter*/
 	
