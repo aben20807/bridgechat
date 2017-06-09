@@ -28,7 +28,6 @@ public class ThreadServer implements Runnable {
 				if (receiveMessage instanceof TransmissibleString) {
 					String clientText = ((TransmissibleString)receiveMessage).getTransmissibleString();
 					//System.out.println(clientText);
-					
 					if (clientText.equals("bye")){
 						break;
 					}

@@ -1,27 +1,17 @@
 package team.stray.bridgechat.connect;
 
-public class TransmissibleString implements Transmissible{
+public class TransmissibleString extends Transmissible{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String transmissibleString;
-	private Timestamp timestamp;
-	
+
 	public TransmissibleString(){
 		transmissibleString = new String();
 		timestamp = new Timestamp();
-	}
-	
-	@Override
-	public String getTimestamp() {
-		return timestamp.getTimestamp();
-	}
-
-	@Override
-	public void setTimestamp(String sendTimestamp) {
-		this.timestamp.setTimestamp(sendTimestamp);
+		type = Transmissible.STRING;
 	}
 	
 	/*getter and setter*/

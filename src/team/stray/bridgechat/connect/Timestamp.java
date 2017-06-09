@@ -1,6 +1,6 @@
 package team.stray.bridgechat.connect;
 
-public final class Timestamp implements Transmissible{
+public final class Timestamp extends Transmissible{
 
 	/**
 	 * 
