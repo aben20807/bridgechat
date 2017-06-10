@@ -28,7 +28,7 @@ public class Client {
 		/*submit GameClient to join game*/
 		connectionClient.setMessage(this.gameClient);
 		connectionClient.doFunction(Connection.SUBMIT);
-		System.out.println("send GameClient"+messageReceiveFromServer.getTimestamp());
+		//System.out.println("send GameClient "+messageReceiveFromServer.getTimestamp());
 	}
 
 	public void submitString() {

@@ -27,10 +27,10 @@ public class BridgeChat {
 
 				switch (mode) {
 				case 1:
-					open();
+					openRoom();
 					break;
 				case 2:
-					connect();
+					connectRoom();
 					break;
 				case 3:
 					submitString();
@@ -47,14 +47,12 @@ public class BridgeChat {
 		}
 	}
 
-	private static void open() {
+	private static void openRoom() {
 		server = new Server("test server");
 		type = BridgeChat.SERVER;
-		// connect();
-		// client = server.getClient();
 	}
 
-	private static void connect() {
+	private static void connectRoom() {
 		client = new Client("test client", "127.0.0.1");
 		client.connect();
 		type = BridgeChat.CLIENT;
@@ -72,15 +70,18 @@ public class BridgeChat {
 		else if(type == BridgeChat.CLIENT){
 			message = client.getMessageReceiveFromServer();
 		}
+		
 		switch (message.getType()) {
 		case Transmissible.STRING:
 			System.out.println(message.getTimestamp());
 			System.out.println(((TransmissibleString)message).getTransmissibleString());
 			break;
+		
 		case Transmissible.GAMECLIENT:
 			System.out.println(message.getTimestamp());
 			System.out.println(((TransmissibleGameClient)message).getTransmissibleGameClient().getName());
 			break;
+		
 		case Transmissible.CARD:
 			System.out.println(message.getTimestamp());
 			((TransmissibleCard)message).getTransmissibleCard().printInfo();;

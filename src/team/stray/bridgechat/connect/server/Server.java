@@ -16,6 +16,8 @@ public class Server {
 	private final GameServer gameServer;
 	private final ConnectionServer connectionServer;
 	private final Client client;
+	
+	private volatile boolean isWaitClientConnect;
 
 	public Server(String name) {
 		chatroomServer = new ChatroomServer();
@@ -27,28 +29,30 @@ public class Server {
 		Thread thread = new Thread(new Runnable() {// Anonymous class
 			public void run() {
 				try {
-					boolean running = true;
+					isWaitClientConnect = true;
 					Transmissible last = null;
 					Vector<TransmissibleGameClient> players = new Vector<>();
-					while (running) {
+					System.out.println("wait connection....");
+					while (isWaitClientConnect) {
 						last = client.getMessageReceiveFromServer();
 						if (last instanceof TransmissibleGameClient && GameServer.isPlayersReachFour == false) {
-							boolean exist = false;
+							boolean isReceiveGameClientExist = false;
+							/*check if GameClient which is received is exist*/
 							for (TransmissibleGameClient i : players) {
 								if (last.getTimestamp().equals(i.getTimestamp())) {
-									exist = true;
+									isReceiveGameClientExist = true;
 									break;
 								}
 							}
-							if (exist == false) {
+							if (isReceiveGameClientExist == false) {
 								players.add((TransmissibleGameClient) last);
 								gameServer.addPlayer(((TransmissibleGameClient) last).getTransmissibleGameClient());
-								System.out.println(players.size());
+								System.out.println("now players : "+players.size());
 							}
 						}
 						if (GameServer.isPlayersReachFour == true) {
 							System.out.println("room full");
-							running = false;
+							isWaitClientConnect = false;
 						}
 					}
 				} catch (Exception e) {
