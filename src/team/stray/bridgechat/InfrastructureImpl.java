@@ -99,12 +99,17 @@ public class InfrastructureImpl implements Infrastructure{
 
 	@Override
 	public void shuffleCard() {
-		server.getGameServer().getDealer().shuffle(GameServer.cards);
+		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
 	}
 
 	@Override
 	public void dealCard() {
-//		server.getGameServer().getDealer().deal(GameServer.cards, player1, player2, player3, player4);
+		
+		server.getGameServer().getDealer().deal(GameServer.cards, 
+				server.getGameServer().getPlayers().get(0), 
+				server.getGameServer().getPlayers().get(1), 
+				server.getGameServer().getPlayers().get(2), 
+				server.getGameServer().getPlayers().get(3));
 	}
 
 	@Override
@@ -114,8 +119,8 @@ public class InfrastructureImpl implements Infrastructure{
 	
 	@Override
 	public void cut() {
-		// TODO Auto-generated method stub
-		
+		shuffleCard();
+		dealCard();
 	}
 
 	@Override
