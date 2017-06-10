@@ -1,4 +1,7 @@
-package team.stray.bridgechat.connect;
+package team.stray.bridgechat.connect.transmissible;
+
+import team.stray.bridgechat.connect.Timestamp;
+import team.stray.bridgechat.connect.Transmissible;
 
 public class TransmissibleString extends Transmissible{
 

@@ -5,7 +5,7 @@ import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.chat.ChatroomClient;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
-import team.stray.bridgechat.connect.TransmissibleString;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 import team.stray.bridgechat.connect.Timestamp;
 
 public class Client {

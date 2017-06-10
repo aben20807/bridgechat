@@ -7,8 +7,8 @@ import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.chat.ChatroomServer;
 import team.stray.bridgechat.connect.Transmissible;
-import team.stray.bridgechat.connect.TransmissibleGameClient;
 import team.stray.bridgechat.connect.client.Client;
+import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
 
 public class Server {
 

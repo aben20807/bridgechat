@@ -9,9 +9,9 @@ import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
-import team.stray.bridgechat.connect.TransmissibleCard;
-import team.stray.bridgechat.connect.TransmissibleGameClient;
-import team.stray.bridgechat.connect.TransmissibleString;
+import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
+import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 
 public class ConnectionClient extends Connection{

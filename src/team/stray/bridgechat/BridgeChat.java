@@ -3,11 +3,11 @@ package team.stray.bridgechat;
 import java.util.Scanner;
 
 import team.stray.bridgechat.connect.Transmissible;
-import team.stray.bridgechat.connect.TransmissibleCard;
-import team.stray.bridgechat.connect.TransmissibleGameClient;
-import team.stray.bridgechat.connect.TransmissibleString;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
+import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
+import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 public class BridgeChat {
 
