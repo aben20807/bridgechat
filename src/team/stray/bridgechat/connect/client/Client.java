@@ -1,6 +1,7 @@
 package team.stray.bridgechat.connect.client;
 
 import team.stray.bridgechat.BridgeChat;
+import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.chat.ChatroomClient;
 import team.stray.bridgechat.connect.Connection;
@@ -34,6 +35,16 @@ public class Client {
 	public void submitString() {
 		String messageString = BridgeChat.scanner.nextLine();
 		connectionClient.setMessage(messageString);
+		connectionClient.doFunction(Connection.SUBMIT);
+	}
+	
+	public void submitString(String string) {
+		connectionClient.setMessage(string);
+		connectionClient.doFunction(Connection.SUBMIT);
+	}
+	
+	public void submitCard(Card card) {
+		connectionClient.setMessage(card);
 		connectionClient.doFunction(Connection.SUBMIT);
 	}
 

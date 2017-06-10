@@ -1,7 +1,6 @@
 package team.stray.bridgechat;
 
-import java.util.Scanner;
-
+import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
@@ -9,61 +8,58 @@ import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
 import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
-public class BridgeChat {
-
-	public static Scanner scanner = new Scanner(System.in);
+public class InfrastructureImpl implements Infrastructure{
 
 	private static Client client;
 	private static Server server;
 	private static int type = 0;
 	
+	private String name;
+	private String connectionIP;
+	
 	public static final int SERVER = 1;
 	public static final int CLIENT = 2;
-
-	public static void main(String[] args) {
-		try {
-			while (true) {// chat test
-				int mode = Integer.parseInt(scanner.nextLine());
-
-				switch (mode) {
-				case 1:
-					openRoom();
-					break;
-				case 2:
-					connectRoom();
-					break;
-				case 3:
-					submitString();
-					break;
-				case 4:
-					printMessageInfo();
-					break;
-				default:
-					break;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static void openRoom() {
-		server = new Server("test server");
+	
+	@Override
+	public void openRoom() {
+		server = new Server(this.name);
 		type = BridgeChat.SERVER;
-		client = server.getClient();
 	}
 
-	private static void connectRoom() {
-		client = new Client("test client", "127.0.0.1");
+	@Override
+	public String getServerIP() {
+		return server.getIP();
+	}
+
+	@Override
+	public void connectRoom() {
+		client = new Client(this.name, this.connectionIP);
 		client.connect();
 		type = BridgeChat.CLIENT;
 	}
 
-	private static void submitString() {
-		client.submitString();
+	@Override
+	public void setConnectionIP(String connectionIP) {
+		this.connectionIP = connectionIP;
 	}
 
-	private static void printMessageInfo() {
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void submitString(String string) {
+		client.submitString(string);
+	}
+
+	@Override
+	public void submitCard(Card card) {
+		client.submitCard(card);
+	}
+
+	@Override
+	public void printMessageInfo() {
 		Transmissible message = null;
 		if(type == BridgeChat.SERVER){
 			message = server.getClient().getMessageReceiveFromServer();
@@ -91,4 +87,41 @@ public class BridgeChat {
 			break;
 		}
 	}
+
+	@Override
+	public void chooseSeat() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void shuffleCard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dealCard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cut() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void call() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void compareTrick() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -62,6 +62,10 @@ public class Server {
 		});
 		thread.start();
 	}
+	
+	public String getIP(){
+		return connectionServer.getIP();
+	}
 
 	/* getter and setter */
 
