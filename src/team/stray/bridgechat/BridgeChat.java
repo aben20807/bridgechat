@@ -1,7 +1,10 @@
 package team.stray.bridgechat;
 
 import java.util.Scanner;
+import java.util.Vector;
 
+import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.bridge.Suit;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
@@ -41,6 +44,20 @@ public class BridgeChat {
 				default:
 					break;
 				}
+//				Vector<Card> cardsInHand = new Vector<>();
+//				cardsInHand.add(new Card(2, '2', Suit.SPADES));
+//				cardsInHand.add(new Card(3, '3', Suit.HEARTS));
+//				cardsInHand.add(new Card(4, '4', Suit.DIAMONDS));
+//				cardsInHand.add(new Card(5, '5', Suit.CLUBS));
+//				cardsInHand.add(new Card(6, '6', Suit.SPADES));
+//				cardsInHand.add(new Card(7, '7', Suit.HEARTS));
+//				cardsInHand.add(new Card(8, '8', Suit.DIAMONDS));
+//				cardsInHand.add(new Card(9, '9', Suit.CLUBS));
+//				cardsInHand.add(new Card(10, 'T', Suit.SPADES));
+//				cardsInHand.add(new Card(11, 'J', Suit.HEARTS));
+//				cardsInHand.add(new Card(12, 'Q', Suit.DIAMONDS));
+//				cardsInHand.add(new Card(13, 'K', Suit.CLUBS));
+//				cardsInHand.add(new Card(14, 'A', Suit.SPADES));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,7 @@
 package team.stray.bridgechat;
 
+import java.util.Vector;
+
 import team.stray.bridgechat.bridge.Card;
 
 public interface Infrastructure {
@@ -22,6 +24,7 @@ public interface Infrastructure {
 	void chooseSeat();
 	void shuffleCard();
 	void dealCard();
+	Vector<Card> getCardsInHand();
 	void cut();
 	void call();
 	void compareTrick();

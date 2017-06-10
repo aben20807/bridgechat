@@ -1,6 +1,9 @@
 package team.stray.bridgechat;
 
+import java.util.Vector;
+
 import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
@@ -96,16 +99,19 @@ public class InfrastructureImpl implements Infrastructure{
 
 	@Override
 	public void shuffleCard() {
-		// TODO Auto-generated method stub
-		
+		server.getGameServer().getDealer().shuffle(GameServer.cards);
 	}
 
 	@Override
 	public void dealCard() {
-		// TODO Auto-generated method stub
-		
+//		server.getGameServer().getDealer().deal(GameServer.cards, player1, player2, player3, player4);
 	}
 
+	@Override
+	public Vector<Card> getCardsInHand() {
+		return client.getGameClient().getCardsInHand();
+	}
+	
 	@Override
 	public void cut() {
 		// TODO Auto-generated method stub
@@ -123,5 +129,7 @@ public class InfrastructureImpl implements Infrastructure{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

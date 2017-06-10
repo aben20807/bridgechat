@@ -13,6 +13,7 @@ public class Client {
 
 	private final ChatroomClient chatroomClient;
 	private final GameClient gameClient;
+
 	private final ConnectionClient connectionClient;
 	private Transmissible messageReceiveFromServer;
 
@@ -88,5 +89,9 @@ public class Client {
 
 	public void setMessageReceiveFromServer(Transmissible message) {
 		this.messageReceiveFromServer = message;
+	}
+	
+	public GameClient getGameClient() {
+		return gameClient;
 	}
 }

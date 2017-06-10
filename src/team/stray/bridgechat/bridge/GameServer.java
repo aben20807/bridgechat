@@ -7,6 +7,7 @@ public class GameServer{
 	public static Vector<Card> cards;
 	public static boolean isPlayersReachFour = false;
 	private Dealer dealer;
+
 	private Vector<GameClient> players = new Vector<>();
 	
 	public GameServer() {
@@ -99,5 +100,9 @@ public class GameServer{
 	
 	public Vector<GameClient> getPlayers() {
 		return players;
+	}
+	
+	public Dealer getDealer() {
+		return dealer;
 	}
 }

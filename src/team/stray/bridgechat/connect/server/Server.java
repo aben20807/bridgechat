@@ -72,4 +72,8 @@ public class Server {
 	public Client getClient() {
 		return client;
 	}
+	
+	public GameServer getGameServer() {
+		return gameServer;
+	}
 }
