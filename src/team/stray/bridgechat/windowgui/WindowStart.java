@@ -1,5 +1,6 @@
 package team.stray.bridgechat.windowgui;
 
+import team.stray.bridgechat.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,6 +14,8 @@ import java.awt.Font;
 import javax.swing.JRadioButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.*;
@@ -27,11 +30,12 @@ public class WindowStart {
 	private JFrame frame;
 	private JTextField inputIP;
 	private JTextField inputName;
-
+	public static Infrastructure infrastructure;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		infrastructure = new InfrastructureImpl();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -141,22 +145,29 @@ public class WindowStart {
 		});
 		
 		JLabel labelUserIP = new JLabel("IP :");
-		labelUserIP.setBounds(10, 10, 77, 15);
+		labelUserIP.setFont(new Font("微軟正黑體 Light", Font.PLAIN, 12));
+		labelUserIP.setBounds(10, 10, 124, 15);
 		frame.getContentPane().add(labelUserIP);
-
+//		System.out.println(getIP());
+		labelUserIP.setText("\u672C\u5730IP : " + getIP());
+		
 		JButton btnStart = new JButton("\u958B\u59CB");
 		btnStart.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				// success into the room
-			
+				// success into the room		
 				if ( btnBuildRoom.isSelected() || (btnEnterRoom.isSelected() && !inputIP.getText().equals(""))) {
+					if(btnEnterRoom.isSelected()){
+						infrastructure.setConnectionIP(inputIP.getText());					// set client connection ip
+					}
+					infrastructure.setName(inputName.getText());							// set user name
+					System.out.println(inputName.getText());
 					WindowSeat windowSeat = new WindowSeat();
 					windowSeat.setVisible(true);
 					frame.setVisible(false);
 					
-				}else if( !btnBuildRoom.isSelected() && !btnEnterRoom.isSelected() ){
+				}else if( !btnBuildRoom.isSelected() && !btnEnterRoom.isSelected() ){		// no press buildroom btn & enterroom btn
 					JFrame stupid = new JFrame();
 					stupid.setSize(200, 100);
 					JDialog.setDefaultLookAndFeelDecorated(true);
@@ -168,7 +179,7 @@ public class WindowStart {
 					JOptionPane.showMessageDialog(stupid, "請進入房間 或建立房間", "瘟腥提醒", JOptionPane.ERROR_MESSAGE);				
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); 
 				}
-				else if( inputIP.getText().equals("") || !btnBuildRoom.isSelected() ){
+				else if( inputIP.getText().equals("") || !btnBuildRoom.isSelected() ){		// no input ip or no build room
 					
 					JFrame stupid = new JFrame();
 					stupid.setSize(200, 100);
@@ -190,5 +201,14 @@ public class WindowStart {
 		btnStart.setBounds(233, 209, 87, 23);
 		frame.getContentPane().add(btnStart);
 
+	}
+	
+	public String getIP() {
+		try {
+			return InetAddress.getLocalHost().getHostAddress().toString();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
