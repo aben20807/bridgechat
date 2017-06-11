@@ -16,7 +16,7 @@ public class InfrastructureImpl implements Infrastructure{
 	public static Client client;
 	public static Server server;
 	private static int type = 0;
-	
+
 	private String name;
 	private String connectionIP;
 	
@@ -142,6 +142,7 @@ public class InfrastructureImpl implements Infrastructure{
 		
 	}
 
-	
-
+	public static int getType() {
+		return type;
+	}
 }
