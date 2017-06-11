@@ -43,12 +43,33 @@ public class GameWindow extends JFrame {
 		infrastructure3 = new InfrastructureImpl();
 		infrastructure4 = new InfrastructureImpl();
 		infrastructure1.openRoom();
+		try{
+			Thread.sleep(1000);
+			System.out.println("2 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		infrastructure2.setName("Joe");
 		infrastructure2.setConnectionIP("10.3.250.204");
 		infrastructure2.connectRoom();
+		try{
+			Thread.sleep(1000);
+			System.out.println("3 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		infrastructure3.setName("John");
 		infrastructure3.setConnectionIP("127.0.0.1");
 		infrastructure3.connectRoom();
+		try{
+			Thread.sleep(1000);
+			System.out.println("4 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		infrastructure4.setName("Ace");
 		infrastructure4.setConnectionIP("127.0.0.1");
 		infrastructure4.connectRoom();
@@ -56,8 +77,8 @@ public class GameWindow extends JFrame {
 		//infrastructure.dealCard();
 		//cards = new Vector<>();
 		//cards = infrastructure.getCardsInHand();
-		cardInHand = new Vector<>();
-		cardInHand.add(new Card(2, '2', Suit.SPADES));
+		//cardInHand = new Vector<>();
+	/*	cardInHand.add(new Card(2, '2', Suit.SPADES));
 		cardInHand.add(new Card(3, '3', Suit.HEARTS));
 		cardInHand.add(new Card(4, '4', Suit.DIAMONDS));
 		cardInHand.add(new Card(5, '5', Suit.CLUBS));
@@ -69,12 +90,12 @@ public class GameWindow extends JFrame {
 		cardInHand.add(new Card(11, 'J', Suit.HEARTS));
 		cardInHand.add(new Card(12, 'Q', Suit.DIAMONDS));
 		cardInHand.add(new Card(13, 'K', Suit.CLUBS));
-		cardInHand.add(new Card(14, 'A', Suit.SPADES));
+		cardInHand.add(new Card(14, 'A', Suit.SPADES));*/
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GameWindow frame = new GameWindow();
-					//frame.updateDeck();
+					frame.updateDeck();
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
@@ -95,9 +116,13 @@ public class GameWindow extends JFrame {
 		
 	}
 	public void updateDeck() {
-		WindowStart.infrastructure.cut();
-		cards = new Vector<>();
-		cards = WindowStart.infrastructure.getCardsInHand();
+	//	WindowStart.infrastructure.cut();
+		infrastructure1.shuffleCard();
+		infrastructure1.dealCard();
+		//cards = new Vector<>();
+		cardInHand = new Vector<>();
+		//cards = WindowStart.infrastructure.getCardsInHand();
+		cardInHand = infrastructure1.getCardsInHand();
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWindow.class.getResource("/resource/chip.png")));
 		setTitle("Bridgechat");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
