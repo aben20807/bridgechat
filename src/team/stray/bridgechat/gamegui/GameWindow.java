@@ -43,7 +43,7 @@ public class GameWindow extends JFrame {
 		infrastructure3 = new InfrastructureImpl();
 		infrastructure4 = new InfrastructureImpl();
 		infrastructure1.openRoom();
-
+		infrastructure1.setSeat(0);
 		try{
 			Thread.sleep(1000);
 			System.out.println("2 loading");
@@ -53,6 +53,7 @@ public class GameWindow extends JFrame {
 		}
 		infrastructure2.setName("Joe");
 		infrastructure2.setConnectionIP("10.3.250.204");
+		infrastructure2.setSeat(1);
 		infrastructure2.connectRoom();
 		try{
 			Thread.sleep(1000);
@@ -63,6 +64,7 @@ public class GameWindow extends JFrame {
 		}
 		infrastructure3.setName("John");
 		infrastructure3.setConnectionIP("127.0.0.1");
+		infrastructure3.setSeat(2);
 		infrastructure3.connectRoom();
 		try{
 			Thread.sleep(1000);
@@ -73,6 +75,7 @@ public class GameWindow extends JFrame {
 		}
 		infrastructure4.setName("Ace");
 		infrastructure4.setConnectionIP("127.0.0.1");
+		infrastructure4.setSeat(3);
 		infrastructure4.connectRoom();
 		//infrastructure.shuffleCard();
 		//infrastructure.dealCard();
@@ -97,10 +100,30 @@ public class GameWindow extends JFrame {
 			public void run() {
 				try {
 					GameWindow frame = new GameWindow();
-					frame.updateDeck();
+					frame.cut();
+					frame.updateDeck(0);
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
+				
+					GameWindow frame1 = new GameWindow();
+					frame1.updateDeck(1);
+					frame1.setVisible(true);
+					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame1.setResizable(false);
+					
+					GameWindow frame2 = new GameWindow();
+					frame2.updateDeck(2);
+					frame2.setVisible(true);
+					frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame2.setResizable(false);
+					
+					GameWindow frame3 = new GameWindow();
+					frame3.updateDeck(3);
+					frame3.setVisible(true);
+					frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame3.setResizable(false);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -117,15 +140,31 @@ public class GameWindow extends JFrame {
 	public GameWindow(){
 		
 	}
-	public void updateDeck() {
-
-	//	WindowStart.infrastructure.cut();
+	public void cut(){
 		infrastructure1.shuffleCard();
 		infrastructure1.dealCard();
+	}
+	public void updateDeck(int a) {
+
+	//	WindowStart.infrastructure.cut();
+		//infrastructure1.shuffleCard();
+		//infrastructure1.dealCard();
 		//cards = new Vector<>();
 		cardInHand = new Vector<>();
 		//cards = WindowStart.infrastructure.getCardsInHand();
-		cardInHand = infrastructure1.getCardsInHand();
+		if(a == 0){
+			cardInHand = infrastructure1.getCardsInHand();
+		}
+		else if(a == 1){
+			cardInHand = infrastructure2.getCardsInHand();
+		}
+		else if(a == 2){
+			cardInHand = infrastructure3.getCardsInHand();
+		}
+		else if(a == 3){
+			cardInHand = infrastructure4.getCardsInHand();
+		}
+		//cardInHand = infrastructure1.getCardsInHand();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWindow.class.getResource("/resource/chip.png")));
 		setTitle("Bridgechat");
