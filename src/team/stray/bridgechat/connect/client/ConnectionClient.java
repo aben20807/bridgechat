@@ -28,7 +28,7 @@ public class ConnectionClient extends Connection{
 	protected void linkStart() {
 		try {
 			@SuppressWarnings("resource")
-			Socket socket = new Socket(ip, 8000);
+			Socket socket = new Socket(ip, 8080);
 			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
 		} catch (Exception e) {
@@ -95,6 +95,12 @@ public class ConnectionClient extends Connection{
 	
 	public void setMessage(Card card) {//TODO Limit the size
 		this.message = new TransmissibleCard();
+		((TransmissibleCard)this.message).setTransmissibleCard(card);
+	}
+	
+	public void setMessage(int member, Card card) {//TODO Limit the size
+		this.message = new TransmissibleCard();
+		((TransmissibleCard)this.message).setMember(member);
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
 	}
 	

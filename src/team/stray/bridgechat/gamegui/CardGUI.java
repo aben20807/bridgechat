@@ -49,8 +49,7 @@ public class CardGUI extends JLabel {
 				isMouseHold = false;
 				if (getY() < 260) {
 					setVisible(false);
-					InfrastructureImpl infrastruc = new InfrastructureImpl();
-					infrastruc.submitCard(card);
+					//infrastructure.submitCard(card);
 				} else {
 					setLocation(cardx, cardy);
 				}

@@ -25,26 +25,27 @@ public class BridgeChat {
 
 	public static void main(String[] args) {
 		try {
-			Infrastructure infrastructure = new InfrastructureImpl();
 			while (true) {// chat test
 				int mode = Integer.parseInt(scanner.nextLine());
-
+				Infrastructure infrastructure = new InfrastructureImpl();
 				switch (mode) {
 				case 1:
 					openRoom();
-//					infrastructure.openRoom();
 					break;
 				case 2:
 					connectRoom();
-//					infrastructure.connectRoom();
 					break;
 				case 3:
 					submitString();
-//					infrastructure.submitString("aa");
 					break;
 				case 4:
 					printMessageInfo();
-//					infrastructure.printMessageInfo();
+					break;
+				case 5:
+//					InfrastructureImpl.server = server;
+					infrastructure.shuffleCard();
+					server.getGameServer().printCards();
+					infrastructure.dealCard();
 					break;
 				default:
 					break;

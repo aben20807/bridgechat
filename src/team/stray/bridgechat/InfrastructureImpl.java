@@ -11,22 +11,23 @@ import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
 import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
-public class InfrastructureImpl implements Infrastructure{
+public class InfrastructureImpl implements Infrastructure {
 
-	private static Client client;
-	private static Server server;
+	private Client client;
+	private Server server;
 	private static int type = 0;
-	
+
 	private String name;
 	private String connectionIP;
-	
+
 	public static final int SERVER = 1;
 	public static final int CLIENT = 2;
-	
+
 	@Override
 	public void openRoom() {
-		server = new Server(this.name);
+		this.server = new Server(this.name);
 		type = BridgeChat.SERVER;
+		this.client = this.server.getClient();
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class InfrastructureImpl implements Infrastructure{
 
 	@Override
 	public void connectRoom() {
-		client = new Client(this.name, this.connectionIP);
-		client.connect();
+		this.client = new Client(this.name, this.connectionIP);
+		this.client.connect();
 		type = BridgeChat.CLIENT;
 	}
 
@@ -52,39 +53,44 @@ public class InfrastructureImpl implements Infrastructure{
 	}
 
 	@Override
+	public String getName() {
+		return client.getGameClient().getName();
+	}
+
+	@Override
 	public void submitString(String string) {
-		client.submitString(string);
+		this.client.submitString(string);
 	}
 
 	@Override
 	public void submitCard(Card card) {
-		client.submitCard(card);
+		this.client.submitCard(card);
 	}
 
 	@Override
 	public void printMessageInfo() {
 		Transmissible message = null;
-		if(type == BridgeChat.SERVER){
-			message = server.getClient().getMessageReceiveFromServer();
+		if (type == BridgeChat.SERVER) {
+			message = this.server.getClient().getMessageReceiveFromServer();
+		} else if (type == BridgeChat.CLIENT) {
+			message = this.client.getMessageReceiveFromServer();
 		}
-		else if(type == BridgeChat.CLIENT){
-			message = client.getMessageReceiveFromServer();
-		}
-		
+
 		switch (message.getType()) {
 		case Transmissible.STRING:
 			System.out.println(message.getTimestamp());
-			System.out.println(((TransmissibleString)message).getTransmissibleString());
+			System.out.println(((TransmissibleString) message).getTransmissibleString());
 			break;
-		
+
 		case Transmissible.GAMECLIENT:
 			System.out.println(message.getTimestamp());
-			System.out.println(((TransmissibleGameClient)message).getTransmissibleGameClient().getName());
+			System.out.println(((TransmissibleGameClient) message).getTransmissibleGameClient().getName());
 			break;
-		
+
 		case Transmissible.CARD:
 			System.out.println(message.getTimestamp());
-			((TransmissibleCard)message).getTransmissibleCard().printInfo();;
+			((TransmissibleCard) message).getTransmissibleCard().printInfo();
+			;
 			break;
 		default:
 			break;
@@ -94,29 +100,50 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void chooseSeat() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void shuffleCard() {
 		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
+		System.out.println("shuffle finished");
 	}
 
 	@Override
 	public void dealCard() {
-		
-		server.getGameServer().getDealer().deal(GameServer.cards, 
-				server.getGameServer().getPlayers().get(0), 
-				server.getGameServer().getPlayers().get(1), 
-				server.getGameServer().getPlayers().get(2), 
+		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
+				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
+		for (int i = 0; i < 4; i++) {
+			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();//sort cards in hand
+			if (i == 0) {//server cards
+				for(Card c : this.server.getGameServer().getPlayers().get(0).getCardsInHand()){
+					this.client.getGameClient().addCardIntoHand(c);
+					c.printInfo();
+				}
+			} else {
+				for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+					this.client.submitCard(i, c);
+					//System.out.print(i + " : ");
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					c.printInfo();
+				}
+			}
+			System.out.println(i + " point : "+ this.server.getGameServer().getPlayers().get(i).getPoints());
+			System.out.println("----");
+		}
+		System.out.println("deal finished");
 	}
 
 	@Override
 	public Vector<Card> getCardsInHand() {
-		return client.getGameClient().getCardsInHand();
+		return this.client.getGameClient().getCardsInHand();
 	}
-	
+
 	@Override
 	public void cut() {
 		shuffleCard();
@@ -126,15 +153,27 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void call() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void compareTrick() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
+	@Override
+	public int getType() {
+		return type;
+	}
 
+	@Override
+	public void setSeat(int seat) {
+		this.client.getGameClient().setSeat(seat);
+	}
+	
+	@Override
+	public int getSeat() {
+		return client.getGameClient().getSeat();
+	}
 }
