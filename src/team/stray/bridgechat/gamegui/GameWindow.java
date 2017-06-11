@@ -98,7 +98,6 @@ public class GameWindow extends JFrame {
 				try {
 					GameWindow frame = new GameWindow();
 					frame.updateDeck();
-
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
