@@ -43,6 +43,7 @@ public class GameWindow extends JFrame {
 		infrastructure3 = new InfrastructureImpl();
 		infrastructure4 = new InfrastructureImpl();
 		infrastructure1.openRoom();
+
 		try{
 			Thread.sleep(1000);
 			System.out.println("2 loading");
@@ -77,6 +78,7 @@ public class GameWindow extends JFrame {
 		//infrastructure.dealCard();
 		//cards = new Vector<>();
 		//cards = infrastructure.getCardsInHand();
+
 		//cardInHand = new Vector<>();
 	/*	cardInHand.add(new Card(2, '2', Suit.SPADES));
 		cardInHand.add(new Card(3, '3', Suit.HEARTS));
@@ -96,6 +98,7 @@ public class GameWindow extends JFrame {
 				try {
 					GameWindow frame = new GameWindow();
 					frame.updateDeck();
+
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
@@ -116,6 +119,7 @@ public class GameWindow extends JFrame {
 		
 	}
 	public void updateDeck() {
+
 	//	WindowStart.infrastructure.cut();
 		infrastructure1.shuffleCard();
 		infrastructure1.dealCard();
@@ -123,6 +127,7 @@ public class GameWindow extends JFrame {
 		cardInHand = new Vector<>();
 		//cards = WindowStart.infrastructure.getCardsInHand();
 		cardInHand = infrastructure1.getCardsInHand();
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWindow.class.getResource("/resource/chip.png")));
 		setTitle("Bridgechat");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
