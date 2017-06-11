@@ -13,8 +13,8 @@ import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 public class InfrastructureImpl implements Infrastructure {
 
-	public static Client client;
-	public static Server server;
+	private Client client;
+	private Server server;
 	private static int type = 0;
 
 	private String name;
@@ -25,9 +25,9 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void openRoom() {
-		server = new Server(this.name);
+		this.server = new Server(this.name);
 		type = BridgeChat.SERVER;
-		client = server.getClient();
+		this.client = this.server.getClient();
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void connectRoom() {
-		client = new Client(this.name, this.connectionIP);
-		client.connect();
+		this.client = new Client(this.name, this.connectionIP);
+		this.client.connect();
 		type = BridgeChat.CLIENT;
 	}
 
@@ -59,21 +59,21 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void submitString(String string) {
-		client.submitString(string);
+		this.client.submitString(string);
 	}
 
 	@Override
 	public void submitCard(Card card) {
-		client.submitCard(card);
+		this.client.submitCard(card);
 	}
 
 	@Override
 	public void printMessageInfo() {
 		Transmissible message = null;
 		if (type == BridgeChat.SERVER) {
-			message = server.getClient().getMessageReceiveFromServer();
+			message = this.server.getClient().getMessageReceiveFromServer();
 		} else if (type == BridgeChat.CLIENT) {
-			message = client.getMessageReceiveFromServer();
+			message = this.client.getMessageReceiveFromServer();
 		}
 
 		switch (message.getType()) {
@@ -111,19 +111,19 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void dealCard() {
-		server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
+		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
 		for (int i = 0; i < 4; i++) {
-			server.getGameServer().getPlayers().get(i).sortCardsInHand();//sort cards in hand
+			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();//sort cards in hand
 			if (i == 0) {//server cards
-				for(Card c : server.getGameServer().getPlayers().get(0).getCardsInHand()){
-					client.getGameClient().addCardIntoHand(c);
+				for(Card c : this.server.getGameServer().getPlayers().get(0).getCardsInHand()){
+					this.client.getGameClient().addCardIntoHand(c);
 					c.printInfo();
 				}
 			} else {
-				for (Card c : server.getGameServer().getPlayers().get(i).getCardsInHand()) {
-					client.submitCard(i, c);
+				for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+					this.client.submitCard(i, c);
 					//System.out.print(i + " : ");
 					try {
 						Thread.sleep(200);
@@ -133,7 +133,7 @@ public class InfrastructureImpl implements Infrastructure {
 					c.printInfo();
 				}
 			}
-			System.out.println(i + " point : "+ server.getGameServer().getPlayers().get(i).getPoints());
+			System.out.println(i + " point : "+ this.server.getGameServer().getPlayers().get(i).getPoints());
 			System.out.println("----");
 		}
 		System.out.println("deal finished");
@@ -141,7 +141,7 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public Vector<Card> getCardsInHand() {
-		return client.getGameClient().getCardsInHand();
+		return this.client.getGameClient().getCardsInHand();
 	}
 
 	@Override
@@ -162,12 +162,18 @@ public class InfrastructureImpl implements Infrastructure {
 
 	}
 
-	public static int getType() {
+	@Override
+	public int getType() {
 		return type;
 	}
 
 	@Override
 	public void setSeat(int seat) {
-		client.getGameClient().setSeat(seat);
+		this.client.getGameClient().setSeat(seat);
+	}
+	
+	@Override
+	public int getSeat() {
+		return client.getGameClient().getSeat();
 	}
 }

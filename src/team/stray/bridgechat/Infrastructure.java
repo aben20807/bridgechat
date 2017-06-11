@@ -17,7 +17,9 @@ public interface Infrastructure {
 	/*Server and Client*/
 	void setName(String name);
 	String getName();
+	int getType();
 	void setSeat(int seat);
+	int getSeat();
 	void submitString(String string);
 	void submitCard(Card card);
 	void printMessageInfo();

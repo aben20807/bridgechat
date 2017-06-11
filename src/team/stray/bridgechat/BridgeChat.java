@@ -42,7 +42,7 @@ public class BridgeChat {
 					printMessageInfo();
 					break;
 				case 5:
-					InfrastructureImpl.server = server;
+//					InfrastructureImpl.server = server;
 					infrastructure.shuffleCard();
 					server.getGameServer().printCards();
 					infrastructure.dealCard();
