@@ -16,11 +16,15 @@ public class InfrastructureImplTest {
 			switch (mode) {
 			case 1:
 				infrastructure.openRoom();
+				System.out.print("seat:");
+				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
 				break;
 			case 2:
 				infrastructure.setName("inf");
 				infrastructure.setConnectionIP("127.0.0.1");
 				infrastructure.connectRoom();
+				System.out.print("seat:");
+				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
 				break;
 			case 3:
 				infrastructure.shuffleCard();

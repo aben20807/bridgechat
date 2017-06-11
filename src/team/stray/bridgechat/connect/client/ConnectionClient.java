@@ -98,6 +98,12 @@ public class ConnectionClient extends Connection{
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
 	}
 	
+	public void setMessage(int member, Card card) {//TODO Limit the size
+		this.message = new TransmissibleCard();
+		((TransmissibleCard)this.message).setMember(member);
+		((TransmissibleCard)this.message).setTransmissibleCard(card);
+	}
+	
 	public void setMessage(GameClient gameClient) {//TODO Limit the size
 		this.message = new TransmissibleGameClient();
 		((TransmissibleGameClient)this.message).setTransmissibleGameClient(gameClient);
