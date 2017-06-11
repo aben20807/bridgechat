@@ -106,6 +106,7 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void shuffleCard() {
 		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
+		System.out.println("shuffle finished");
 	}
 
 	@Override
@@ -114,12 +115,13 @@ public class InfrastructureImpl implements Infrastructure {
 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
 		for (int i = 0; i < 4; i++) {
+			server.getGameServer().getPlayers().get(i).sortCardsInHand();//sort cards in hand
 			if (i == 0) {//server cards
 				for(Card c : server.getGameServer().getPlayers().get(0).getCardsInHand()){
 					client.getGameClient().addCardIntoHand(c);
+					c.printInfo();
 				}
 			} else {
-				server.getGameServer().getPlayers().get(i).sortCardsInHand();
 				for (Card c : server.getGameServer().getPlayers().get(i).getCardsInHand()) {
 					client.submitCard(i, c);
 					//System.out.print(i + " : ");
@@ -130,10 +132,11 @@ public class InfrastructureImpl implements Infrastructure {
 					}
 					c.printInfo();
 				}
-				//System.out.println("----");
 			}
-
+			System.out.println(i + " point : "+ server.getGameServer().getPlayers().get(i).getPoints());
+			System.out.println("----");
 		}
+		System.out.println("deal finished");
 	}
 
 	@Override
