@@ -52,7 +52,7 @@ public class GameWindow extends JFrame {
 			e.printStackTrace();
 		}
 		infrastructure2.setName("Joe");
-		infrastructure2.setConnectionIP("10.3.250.204");
+		infrastructure2.setConnectionIP("127.0.0.1");
 		infrastructure2.setSeat(1);
 		infrastructure2.connectRoom();
 		try{
