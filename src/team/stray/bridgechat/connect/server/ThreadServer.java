@@ -47,13 +47,16 @@ public class ThreadServer implements Runnable {
 	 */
 	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
 		for (ObjectOutputStream i : memberList) {
-			try {
-				ObjectOutputStream out = i;
-				out.writeObject(message);
-				out.flush();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			straightTransmit(message, i);
+		}
+	}
+	
+	public void straightTransmit(Transmissible message, ObjectOutputStream out){
+		try {
+			out.writeObject(message);
+			out.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

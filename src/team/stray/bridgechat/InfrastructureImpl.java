@@ -11,22 +11,23 @@ import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
 import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
-public class InfrastructureImpl implements Infrastructure{
+public class InfrastructureImpl implements Infrastructure {
 
-	private static Client client;
-	private static Server server;
+	public static Client client;
+	public static Server server;
 	private static int type = 0;
-	
+
 	private String name;
 	private String connectionIP;
-	
+
 	public static final int SERVER = 1;
 	public static final int CLIENT = 2;
-	
+
 	@Override
 	public void openRoom() {
 		server = new Server(this.name);
 		type = BridgeChat.SERVER;
+		client = server.getClient();
 	}
 
 	@Override
@@ -52,6 +53,11 @@ public class InfrastructureImpl implements Infrastructure{
 	}
 
 	@Override
+	public String getName() {
+		return client.getGameClient().getName();
+	}
+
+	@Override
 	public void submitString(String string) {
 		client.submitString(string);
 	}
@@ -64,27 +70,27 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void printMessageInfo() {
 		Transmissible message = null;
-		if(type == BridgeChat.SERVER){
+		if (type == BridgeChat.SERVER) {
 			message = server.getClient().getMessageReceiveFromServer();
-		}
-		else if(type == BridgeChat.CLIENT){
+		} else if (type == BridgeChat.CLIENT) {
 			message = client.getMessageReceiveFromServer();
 		}
-		
+
 		switch (message.getType()) {
 		case Transmissible.STRING:
 			System.out.println(message.getTimestamp());
-			System.out.println(((TransmissibleString)message).getTransmissibleString());
+			System.out.println(((TransmissibleString) message).getTransmissibleString());
 			break;
-		
+
 		case Transmissible.GAMECLIENT:
 			System.out.println(message.getTimestamp());
-			System.out.println(((TransmissibleGameClient)message).getTransmissibleGameClient().getName());
+			System.out.println(((TransmissibleGameClient) message).getTransmissibleGameClient().getName());
 			break;
-		
+
 		case Transmissible.CARD:
 			System.out.println(message.getTimestamp());
-			((TransmissibleCard)message).getTransmissibleCard().printInfo();;
+			((TransmissibleCard) message).getTransmissibleCard().printInfo();
+			;
 			break;
 		default:
 			break;
@@ -94,7 +100,7 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void chooseSeat() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -104,19 +110,37 @@ public class InfrastructureImpl implements Infrastructure{
 
 	@Override
 	public void dealCard() {
-		
-		server.getGameServer().getDealer().deal(GameServer.cards, 
-				server.getGameServer().getPlayers().get(0), 
-				server.getGameServer().getPlayers().get(1), 
-				server.getGameServer().getPlayers().get(2), 
+		server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
+				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
+		for (int i = 0; i < 4; i++) {
+			if (i == 0) {//server cards
+				for(Card c : server.getGameServer().getPlayers().get(0).getCardsInHand()){
+					client.getGameClient().addCardIntoHand(c);
+				}
+			} else {
+				server.getGameServer().getPlayers().get(i).sortCardsInHand();
+				for (Card c : server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+					client.submitCard(i, c);
+					//System.out.print(i + " : ");
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					c.printInfo();
+				}
+				//System.out.println("----");
+			}
+
+		}
 	}
 
 	@Override
 	public Vector<Card> getCardsInHand() {
 		return client.getGameClient().getCardsInHand();
 	}
-	
+
 	@Override
 	public void cut() {
 		shuffleCard();
@@ -126,15 +150,21 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void call() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void compareTrick() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
+	public static int getType() {
+		return type;
+	}
 
+	@Override
+	public void setSeat(int seat) {
+		client.getGameClient().setSeat(seat);
+	}
 }
