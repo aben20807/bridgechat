@@ -28,7 +28,7 @@ public class ConnectionClient extends Connection{
 	protected void linkStart() {
 		try {
 			@SuppressWarnings("resource")
-			Socket socket = new Socket(ip, 8080);
+			Socket socket = new Socket(ip, 8000);
 			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
 		} catch (Exception e) {

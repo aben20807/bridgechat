@@ -20,7 +20,7 @@ public class ConnectionServer extends Connection {
 	public ConnectionServer() {
 		memberList = new Vector<>();
 		try {
-			serverSocket = new ServerSocket(8080);
+			serverSocket = new ServerSocket(8000);
 			System.out.println("Server started....");
 			System.out.println(getIP());
 			Thread thread = new Thread(new Runnable() {//Anonymous class
