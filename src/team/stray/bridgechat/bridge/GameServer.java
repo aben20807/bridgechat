@@ -23,41 +23,12 @@ public class GameServer{
 		
 	}
 	
-	
-
 	public void addPlayer(GameClient g){
 		this.players.add(g);
 		if(this.players.size() >= 4)
 			isPlayersReachFour = true;
 		else
 			isPlayersReachFour = false;
-	}
-	
-	public void shuffle(){
-		dealer.shuffle(cards);
-//		printCards();
-		dealer.deal(cards,
-				players.get(0), 
-				players.get(1), 
-				players.get(2),
-				players.get(3));
-		
-		System.out.println("\n");
-		
-		players.get(0).sortCardsInHand();
-		players.get(0).printCardsInHand();
-		System.out.println("\n");
-		
-		players.get(1).sortCardsInHand();
-		players.get(1).printCardsInHand();
-		System.out.println("\n");
-		
-		players.get(2).sortCardsInHand();
-		players.get(2).printCardsInHand();
-		System.out.println("\n");
-		
-		players.get(3).sortCardsInHand();
-		players.get(3).printCardsInHand();
 	}
 
 	/**
@@ -97,6 +68,8 @@ public class GameServer{
 			cards.get(i).printInfo();
 		}
 	}
+	
+	/*getter and setter*/
 	
 	public Vector<GameClient> getPlayers() {
 		return players;
