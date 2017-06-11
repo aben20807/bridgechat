@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class WindowSeat extends JFrame {
 
@@ -54,7 +55,7 @@ public class WindowSeat extends JFrame {
 				
 		JCheckBox checkBoxSouth = new JCheckBox("\u5357");
 		checkBoxSouth.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		checkBoxSouth.setBounds(175, 185, 43, 23);
+		checkBoxSouth.setBounds(175, 165, 43, 23);
 		contentPane.add(checkBoxSouth);
 		checkBoxSouth.setOpaque(false);
 		checkBoxSouth.setContentAreaFilled(false);
@@ -62,7 +63,7 @@ public class WindowSeat extends JFrame {
 		
 		JCheckBox checkBoxNorth = new JCheckBox("\u5317");
 		checkBoxNorth.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		checkBoxNorth.setBounds(175, 63, 43, 23);
+		checkBoxNorth.setBounds(175, 43, 43, 23);
 		contentPane.add(checkBoxNorth);
 		checkBoxNorth.setOpaque(false);
 		checkBoxNorth.setContentAreaFilled(false);
@@ -70,7 +71,7 @@ public class WindowSeat extends JFrame {
 		
 		JCheckBox checkBoxEast = new JCheckBox("\u6771");
 		checkBoxEast.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		checkBoxEast.setBounds(270, 120, 43, 23);
+		checkBoxEast.setBounds(270, 100, 43, 23);
 		contentPane.add(checkBoxEast);
 		checkBoxEast.setOpaque(false);
 		checkBoxEast.setContentAreaFilled(false);
@@ -79,7 +80,7 @@ public class WindowSeat extends JFrame {
 		
 		JCheckBox checkBoxWest = new JCheckBox("\u897F");
 		checkBoxWest.setFont(new Font("微軟正黑體", Font.PLAIN, 18));
-		checkBoxWest.setBounds(70, 120, 43, 23);
+		checkBoxWest.setBounds(70, 100, 43, 23);
 		contentPane.add(checkBoxWest);
 		checkBoxWest.setOpaque(false);
 		checkBoxWest.setContentAreaFilled(false);
@@ -105,5 +106,25 @@ public class WindowSeat extends JFrame {
 		btnCheckSeat.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		btnCheckSeat.setBounds(324, 228, 87, 23);
 		contentPane.add(btnCheckSeat);
+		
+		JLabel lblNameSouth = new JLabel("name_south");
+		lblNameSouth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
+		lblNameSouth.setBounds(175, 194, 100, 23);
+		contentPane.add(lblNameSouth);
+		
+		JLabel lblNameNorth = new JLabel("name_north");
+		lblNameNorth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
+		lblNameNorth.setBounds(175, 71, 100, 23);
+		contentPane.add(lblNameNorth);
+		
+		JLabel lblNameEast = new JLabel("name_east");
+		lblNameEast.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
+		lblNameEast.setBounds(270, 129, 100, 23);
+		contentPane.add(lblNameEast);
+		
+		JLabel lblNameWest = new JLabel("name_west");
+		lblNameWest.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
+		lblNameWest.setBounds(70, 129, 100, 23);
+		contentPane.add(lblNameWest);
 	}
 }
