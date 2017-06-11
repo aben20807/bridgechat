@@ -11,7 +11,8 @@ public class TransmissibleCard extends Transmissible{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Card transmissibleCard;
-	
+	private int member;
+
 	public TransmissibleCard(){
 		transmissibleCard = new Card();
 		timestamp = new Timestamp();
@@ -26,5 +27,13 @@ public class TransmissibleCard extends Transmissible{
 	
 	public void setTransmissibleCard(Card transmissibleCard) {
 		this.transmissibleCard = transmissibleCard;
+	}
+	
+	public int getMember() {
+		return member;
+	}
+
+	public void setMember(int member) {
+		this.member = member;
 	}
 }

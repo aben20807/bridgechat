@@ -9,11 +9,13 @@ import java.net.UnknownHostException;
 import java.util.Vector;
 
 import team.stray.bridgechat.connect.Connection;
+import team.stray.bridgechat.connect.Transmissible;
 
 public class ConnectionServer extends Connection {
 
 	private Vector<ObjectOutputStream> memberList;
 	private ServerSocket serverSocket;
+	private Thread threadServer;
 
 	public ConnectionServer() {
 		memberList = new Vector<>();
@@ -30,7 +32,7 @@ public class ConnectionServer extends Connection {
 							out = new ObjectOutputStream(socket.getOutputStream());
 							memberList.add(out);
 
-							Thread threadServer = new Thread(new ThreadServer(socket, memberList));
+							threadServer = new Thread(new ThreadServer(socket, memberList));
 							threadServer.start();
 						} catch (IOException e) {
 							e.printStackTrace();

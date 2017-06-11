@@ -6,6 +6,7 @@ import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.chat.ChatroomClient;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
+import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 import team.stray.bridgechat.connect.Timestamp;
 
@@ -45,6 +46,11 @@ public class Client {
 	}
 	
 	public void submitCard(Card card) {
+		connectionClient.setMessage(card);
+		connectionClient.doFunction(Connection.SUBMIT);
+	}
+	
+	public void submitCard(int member, Card card) {
 		connectionClient.setMessage(card);
 		connectionClient.doFunction(Connection.SUBMIT);
 	}
@@ -89,6 +95,10 @@ public class Client {
 
 	public void setMessageReceiveFromServer(Transmissible message) {
 		this.messageReceiveFromServer = message;
+		if(this.messageReceiveFromServer instanceof TransmissibleCard &&
+				gameClient.getCardsInHand().size() < 13){
+			gameClient.addCardIntoHand(((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard());
+		}
 	}
 	
 	public GameClient getGameClient() {

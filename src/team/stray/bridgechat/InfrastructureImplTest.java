@@ -10,6 +10,7 @@ public class InfrastructureImplTest {
 	public static void main(String[] args) {
 
 		infrastructure = new InfrastructureImpl();
+		System.out.println("InfrastructureImplTest....");
 		while (true) {
 			int mode = Integer.parseInt(BridgeChat.scanner.nextLine());
 			switch (mode) {
@@ -24,6 +25,7 @@ public class InfrastructureImplTest {
 			case 3:
 				infrastructure.shuffleCard();
 				infrastructure.dealCard();
+				
 				break;
 			case 4:
 				Vector<Card> cards = infrastructure.getCardsInHand();

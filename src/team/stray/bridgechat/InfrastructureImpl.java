@@ -27,6 +27,7 @@ public class InfrastructureImpl implements Infrastructure{
 	public void openRoom() {
 		server = new Server(this.name);
 		type = BridgeChat.SERVER;
+		client = server.getClient();
 	}
 
 	@Override
@@ -114,9 +115,9 @@ public class InfrastructureImpl implements Infrastructure{
 				server.getGameServer().getPlayers().get(1), 
 				server.getGameServer().getPlayers().get(2), 
 				server.getGameServer().getPlayers().get(3));
-//		for(Card i : server.getGameServer().getPlayers().get(0).getCardsInHand()){
-//			i.printInfo();
-//		}
+		for(Card i : GameServer.cards){
+			submitCard(i);
+		}
 	}
 
 	@Override
