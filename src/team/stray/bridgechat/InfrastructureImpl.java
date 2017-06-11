@@ -13,8 +13,8 @@ import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 public class InfrastructureImpl implements Infrastructure{
 
-	private static Client client;
-	private static Server server;
+	public static Client client;
+	public static Server server;
 	private static int type = 0;
 	
 	private String name;
@@ -49,6 +49,11 @@ public class InfrastructureImpl implements Infrastructure{
 	@Override
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String getName(){
+		return client.getGameClient().getName();
 	}
 
 	@Override
@@ -104,12 +109,14 @@ public class InfrastructureImpl implements Infrastructure{
 
 	@Override
 	public void dealCard() {
-		
 		server.getGameServer().getDealer().deal(GameServer.cards, 
 				server.getGameServer().getPlayers().get(0), 
 				server.getGameServer().getPlayers().get(1), 
 				server.getGameServer().getPlayers().get(2), 
 				server.getGameServer().getPlayers().get(3));
+//		for(Card i : server.getGameServer().getPlayers().get(0).getCardsInHand()){
+//			i.printInfo();
+//		}
 	}
 
 	@Override
