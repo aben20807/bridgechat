@@ -41,14 +41,7 @@ public class GameWindow extends JFrame {
 	static Infrastructure infrastructure4;
 	public static void main(String[] args) {
 		infrastructure1 = new InfrastructureImpl();
-		//infrastructure2 = new InfrastructureImpl();
-		//infrastructure3 = new InfrastructureImpl();
-		//infrastructure4 = new InfrastructureImpl();
 		infrastructure1.setName("Ben");
-
-		//System.out.println(infrastructure2.getName());
-		//System.out.println(infrastructure3.getName());
-		//System.out.println(infrastructure4.getName());
 		infrastructure1.openRoom();
 		System.out.println(infrastructure1.getName());
 		infrastructure1.setSeat(0);
@@ -59,16 +52,14 @@ public class GameWindow extends JFrame {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		//infrastructure2.connectRoom();
 		infrastructure2 = new InfrastructureImpl();
 		infrastructure2.setName("Joe");
-
-		System.out.println(infrastructure1.getName());
-		System.out.println(infrastructure2.getName());
-		//System.out.println(infrastructure3.getName());
-		//System.out.println(infrastructure4.getName());
 		infrastructure2.setConnectionIP("127.0.0.1");
 		infrastructure2.connectRoom();
+		System.out.println(infrastructure1.getName());
+		System.out.println(infrastructure2.getName());
 		infrastructure2.setSeat(1);
 		System.out.println("2 connected");
 		try{
@@ -78,16 +69,15 @@ public class GameWindow extends JFrame {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		//infrastructure3.connectRoom();
 		infrastructure3 = new InfrastructureImpl();
 		infrastructure3.setName("John");
-
+		infrastructure3.setConnectionIP("127.0.0.1");
+		infrastructure3.connectRoom();
 		System.out.println(infrastructure1.getName());
 		System.out.println(infrastructure2.getName());
 		System.out.println(infrastructure3.getName());
-		//System.out.println(infrastructure4.getName());
-		infrastructure3.setConnectionIP("127.0.0.1");
-		infrastructure3.connectRoom();
 		infrastructure3.setSeat(2);
 		System.out.println("3 connected");
 		try{
@@ -97,16 +87,16 @@ public class GameWindow extends JFrame {
 		catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		//infrastructure4.connectRoom();
 		infrastructure4 = new InfrastructureImpl();
 		infrastructure4.setName("Ace");
-
+		infrastructure4.setConnectionIP("127.0.0.1");
+		infrastructure4.connectRoom();
 		System.out.println(infrastructure1.getName());
 		System.out.println(infrastructure2.getName());
 		System.out.println(infrastructure3.getName());
 		System.out.println(infrastructure4.getName());
-		infrastructure4.setConnectionIP("127.0.0.1");
-		infrastructure4.connectRoom();
 		infrastructure4.setSeat(3);
 		System.out.println("4 connected");
 		try{
@@ -135,44 +125,12 @@ public class GameWindow extends JFrame {
 		cardInHand.add(new Card(12, 'Q', Suit.DIAMONDS));
 		cardInHand.add(new Card(13, 'K', Suit.CLUBS));
 		cardInHand.add(new Card(14, 'A', Suit.SPADES));*/
-		infrastructure1.shuffleCard();
-		infrastructure1.dealCard();
 
-		System.out.println(infrastructure1.getName());
-		System.out.println(infrastructure2.getName());
-		System.out.println(infrastructure3.getName());
-		System.out.println(infrastructure4.getName());
-		for(Card i : infrastructure1.getCardsInHand()){
-			i.printInfo();
-		}
-		for(Card i : infrastructure2.getCardsInHand()){
-			i.printInfo();
-		}
-		for(Card i : infrastructure3.getCardsInHand()){
-			i.printInfo();
-		}
-		for(Card i : infrastructure4.getCardsInHand()){
-			i.printInfo();
-		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
-//					infrastructure1.shuffleCard();
-//					infrastructure1.dealCard();
-//					for(Card i : infrastructure1.getCardsInHand()){
-//						i.printInfo();
-//					}
-//					for(Card i : infrastructure2.getCardsInHand()){
-//						i.printInfo();
-//					}
-//					for(Card i : infrastructure3.getCardsInHand()){
-//						i.printInfo();
-//					}
-//					for(Card i : infrastructure4.getCardsInHand()){
-//						i.printInfo();
-//					}
-				/*	GameWindow frame = new GameWindow();
+					GameWindow frame = new GameWindow();
+					frame.cut();
 					frame.updateDeck(0);
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -194,7 +152,7 @@ public class GameWindow extends JFrame {
 					frame3.updateDeck(3);
 					frame3.setVisible(true);
 					frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame3.setResizable(false); */
+					frame3.setResizable(false); 
 					
 				} catch (Exception e) {
 					e.printStackTrace();
