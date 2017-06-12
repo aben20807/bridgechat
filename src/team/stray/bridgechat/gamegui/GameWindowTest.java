@@ -61,7 +61,7 @@ public class GameWindowTest extends JFrame {
 		infrastructure1.setName("Ben");
 		infrastructure1.openRoom();
 		System.out.println(infrastructure1.getName());
-		infrastructure1.setSeat(0);
+	//	infrastructure1.setSeat(0);
 		try{
 			Thread.sleep(1000);
 			System.out.println("2 loading");
@@ -77,7 +77,7 @@ public class GameWindowTest extends JFrame {
 		infrastructure2.connectRoom();
 		System.out.println(infrastructure1.getName());
 		System.out.println(infrastructure2.getName());
-		infrastructure2.setSeat(1);
+//		infrastructure2.setSeat(1);
 		System.out.println("2 connected");
 		try{
 			Thread.sleep(1000);
@@ -95,7 +95,7 @@ public class GameWindowTest extends JFrame {
 		System.out.println(infrastructure1.getName());
 		System.out.println(infrastructure2.getName());
 		System.out.println(infrastructure3.getName());
-		infrastructure3.setSeat(2);
+//		infrastructure3.setSeat(2);
 		System.out.println("3 connected");
 		try{
 			Thread.sleep(1000);
@@ -113,7 +113,7 @@ public class GameWindowTest extends JFrame {
 		System.out.println(infrastructure2.getName());
 		System.out.println(infrastructure3.getName());
 		System.out.println(infrastructure4.getName());
-		infrastructure4.setSeat(3);
+//		infrastructure4.setSeat(3);
 		System.out.println("4 connected");
 		try{
 			Thread.sleep(1000);

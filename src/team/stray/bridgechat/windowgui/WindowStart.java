@@ -170,16 +170,17 @@ public class WindowStart {
 					if( btnBuildRoom.isSelected() ){
 						infrastructure.openRoom();
 					}
-//					WindowSeat windowSeat = new WindowSeat();
-//					windowSeat.setVisible(true);
-					WindowLoad windowLoad;
-					try {
-						windowLoad = new WindowLoad();
-						windowLoad.setVisible(true);
-					} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}			
+					WindowSeat windowSeat = new WindowSeat();
+					windowSeat.setVisible(true);
+//					WindowLoad windowLoad;
+//					try {
+//						windowLoad = new WindowLoad();
+//						windowLoad.setVisible(true);
+//					} catch (MalformedURLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}			
+					
 					frame.setVisible(false);
 					
 				}else if( !btnBuildRoom.isSelected() && !btnEnterRoom.isSelected() ){		// no press buildroom btn & enterroom btn
@@ -195,7 +196,7 @@ public class WindowStart {
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); 
 				}
 				else if( inputIP.getText().equals("") || !btnBuildRoom.isSelected() ){		// no input ip or no build room
-					
+						
 					JFrame stupid = new JFrame();
 					stupid.setSize(200, 100);
 					JDialog.setDefaultLookAndFeelDecorated(true);
