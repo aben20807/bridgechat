@@ -11,13 +11,19 @@ import team.stray.bridgechat.Infrastructure;
 import team.stray.bridgechat.InfrastructureImpl;
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.Suit;
+import team.stray.bridgechat.windowgui.WindowStart;
 
 public class CardGUI extends JLabel {
 	private boolean isMouseHold = false;
 	private boolean isMoveable = true;
 	int cardx;
 	int cardy;
-	CardGUI() {
+	CardGUI(){
+		
+	}
+	
+	CardGUI(Card card) {
+		printIcon(card);
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -46,7 +52,7 @@ public class CardGUI extends JLabel {
 				isMouseHold = false;
 				if (getY() < 260) {
 					setVisible(false);
-					//infrastructure.submitCard(card);
+					WindowStart.infrastructure.submitCard(card);
 				} else {
 					setLocation(cardx, cardy);
 				}
