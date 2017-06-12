@@ -22,8 +22,8 @@ public interface Infrastructure {
 	void setName(String name);
 	String getName();
 	int getType();
-	void setSeat(int seat);
-	int getSeat();
+	void setSeat(String seat);
+	String getSeat();
 	void submitString(String string);
 	void submitCard(Card card);
 	Transmissible getMessage();

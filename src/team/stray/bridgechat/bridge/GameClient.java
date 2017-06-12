@@ -13,7 +13,7 @@ public class GameClient implements Serializable{
 	private String name;
 	private Vector<Card> cardsInHand;
 	private int points; //used to cut
-	private int seat;
+	private String seat;
 
 	public GameClient(String name) {
 		setName(name);
@@ -84,11 +84,11 @@ public class GameClient implements Serializable{
 		this.points = points;
 	}
 	
-	public int getSeat() {
+	public String getSeat() {
 		return seat;
 	}
 	
-	public void setSeat(int seat) {
+	public void setSeat(String seat) {
 		this.seat = seat;
 	}
 }

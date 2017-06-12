@@ -59,12 +59,11 @@ public class Server {
 								gameServer.addPlayer(((TransmissibleGameClient) last).getTransmissibleGameClient());
 								System.out.println("now players : "+players.size());
 							}
-						}
-						else if(last instanceof TransmissibleString) {
+						}else if(last instanceof TransmissibleString) {
 							//prefix = '@' for seat;'#' for call;'%'for out of the card
 							String get= ((TransmissibleString) last).getTransmissibleString();
 							if(get.length()!=0&&get.charAt(0)=='@'&&get.substring(2).equals(client.getGameClient().getName())){
-								int seat =(int)( get.charAt(1)-'0');
+								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(),get.charAt(1)-'0');
 							}

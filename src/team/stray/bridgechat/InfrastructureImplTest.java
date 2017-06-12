@@ -24,7 +24,7 @@ public class InfrastructureImplTest {
 					e.printStackTrace();
 				}
 				System.out.print("seat:");
-				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
+				infrastructure.setSeat((BridgeChat.scanner.nextLine()));
 				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
 				break;
 			
@@ -33,7 +33,7 @@ public class InfrastructureImplTest {
 				infrastructure.setConnectionIP("192.168.56.1");
 				infrastructure.connectRoom();
 				System.out.print("seat:");
-				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
+				infrastructure.setSeat((BridgeChat.scanner.nextLine()));
 				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
 				break;
 			
