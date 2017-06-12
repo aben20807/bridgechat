@@ -10,4 +10,5 @@ public abstract class Connection {
 	
 	public static final int CONNECT = 0;
 	public static final int SUBMIT 	= 1;
+	public static final int CHOOSESEAT 	= 2;
 }

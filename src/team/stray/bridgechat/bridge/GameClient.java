@@ -2,7 +2,9 @@ package team.stray.bridgechat.bridge;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameClient implements Serializable{
 
@@ -11,13 +13,13 @@ public class GameClient implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
-	private Vector<Card> cardsInHand;
+	private List<Card> cardsInHand;
 	private int points; //used to cut
-	private int seat;
-	
+	private String seat;
+
 	public GameClient(String name) {
 		setName(name);
-		setCardsInHand(new Vector<>());
+		setCardsInHand(new CopyOnWriteArrayList<Card>());
 		setPoints(0);//initial point at object constructing
 	}
 	
@@ -57,6 +59,7 @@ public class GameClient implements Serializable{
 		this.cardsInHand.add(card);
 	}
 	
+	
 	/*getter and setter*/
 	
 	public String getName() {
@@ -67,11 +70,11 @@ public class GameClient implements Serializable{
 		this.name = name;
 	}
 	
-	public Vector<Card> getCardsInHand() {
+	public List<Card> getCardsInHand() {
 		return cardsInHand;
 	}
 	
-	public void setCardsInHand(Vector<Card> cardsInHand) {
+	public void setCardsInHand(List<Card> cardsInHand) {
 		this.cardsInHand = cardsInHand;
 	}
 	
@@ -83,11 +86,11 @@ public class GameClient implements Serializable{
 		this.points = points;
 	}
 	
-	public int getSeat() {
+	public String getSeat() {
 		return seat;
 	}
 	
-	public void setSeat(int seat) {
+	public void setSeat(String seat) {
 		this.seat = seat;
 	}
 }

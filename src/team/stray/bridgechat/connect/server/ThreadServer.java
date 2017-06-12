@@ -4,6 +4,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import team.stray.bridgechat.connect.Transmissible;
@@ -13,9 +14,9 @@ import team.stray.bridgechat.connect.Timestamp;
 public class ThreadServer implements Runnable {
 
 	private final Socket socket;
-	private Vector<ObjectOutputStream> memberList;
+	private List<ObjectOutputStream> memberList;
 
-	public ThreadServer(Socket socket, Vector<ObjectOutputStream> memberList) {
+	public ThreadServer(Socket socket, List<ObjectOutputStream> memberList) {
 		this.socket = socket;
 		this.memberList = memberList;
 	}
@@ -45,7 +46,7 @@ public class ThreadServer implements Runnable {
 	 * @param message: message need to broadcast
 	 * @param memberList: broadcast target list
 	 */
-	public void broadcast(Transmissible message, Vector<ObjectOutputStream> memberList) {
+	public void broadcast(Transmissible message, List<ObjectOutputStream> memberList) {
 		for (ObjectOutputStream i : memberList) {
 			straightTransmit(message, i);
 		}
