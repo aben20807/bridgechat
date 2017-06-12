@@ -14,7 +14,7 @@ public class InfrastructureImplTest {
 		while (true) {
 			int mode = Integer.parseInt(BridgeChat.scanner.nextLine());
 			switch (mode) {
-			case 1://server creat room
+			case 1://server create room
 				infrastructure.setName("inf server");
 				infrastructure.openRoom();
 				try {
@@ -29,7 +29,7 @@ public class InfrastructureImplTest {
 			
 			case 2://client connect
 				infrastructure.setName("inf client");
-				infrastructure.setConnectionIP("127.0.0.1");
+				infrastructure.setConnectionIP("10.3.250.208");
 				infrastructure.connectRoom();
 				System.out.print("seat:");
 				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
@@ -67,7 +67,5 @@ public class InfrastructureImplTest {
 				break;
 			}
 		}
-
 	}
-
 }
