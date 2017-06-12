@@ -14,7 +14,7 @@ public class GameClient implements Serializable{
 	private Vector<Card> cardsInHand;
 	private int points; //used to cut
 	private int seat;
-	
+
 	public GameClient(String name) {
 		setName(name);
 		setCardsInHand(new Vector<>());
@@ -56,6 +56,7 @@ public class GameClient implements Serializable{
 		}
 		this.cardsInHand.add(card);
 	}
+	
 	
 	/*getter and setter*/
 	

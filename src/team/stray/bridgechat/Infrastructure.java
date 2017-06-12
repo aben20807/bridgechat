@@ -3,6 +3,7 @@ package team.stray.bridgechat;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.connect.Transmissible;
 
 public interface Infrastructure {
 
@@ -25,6 +26,7 @@ public interface Infrastructure {
 	int getSeat();
 	void submitString(String string);
 	void submitCard(Card card);
+	Transmissible getMessage();
 	void printMessageInfo();
 	
 	/*Bridge*/

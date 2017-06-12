@@ -70,6 +70,7 @@ public class InfrastructureImpl implements Infrastructure {
 	public void submitString(String string) {
 		if (client != null) {
 			this.client.submitString(string);
+			
 		}
 	}
 
@@ -168,14 +169,13 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void call() {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void compareTrick() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -191,5 +191,12 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public int getSeat() {
 		return client.getGameClient().getSeat();
+	}
+	
+
+
+	@Override
+	public Transmissible getMessage() {
+		return client.getMessageReceiveFromServer();
 	}
 }

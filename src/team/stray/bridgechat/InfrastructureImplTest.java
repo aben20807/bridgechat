@@ -25,14 +25,16 @@ public class InfrastructureImplTest {
 				}
 				System.out.print("seat:");
 				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
+				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
 				break;
 			
 			case 2://client connect
 				infrastructure.setName("inf client");
-				infrastructure.setConnectionIP("10.3.250.208");
+				infrastructure.setConnectionIP("192.168.56.1");
 				infrastructure.connectRoom();
 				System.out.print("seat:");
 				infrastructure.setSeat(Integer.parseInt(BridgeChat.scanner.nextLine()));
+				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
 				break;
 			
 			case 3://shuffle and deal card
