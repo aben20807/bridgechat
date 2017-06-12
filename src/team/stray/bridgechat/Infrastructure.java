@@ -1,8 +1,10 @@
 package team.stray.bridgechat;
 
+import java.util.List;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.connect.Transmissible;
 
 public interface Infrastructure {
 
@@ -21,17 +23,18 @@ public interface Infrastructure {
 	void setName(String name);
 	String getName();
 	int getType();
-	void setSeat(int seat);
-	int getSeat();
+	void setSeat(String seat);
+	String getSeat();
 	void submitString(String string);
 	void submitCard(Card card);
+	Transmissible getMessage();
 	void printMessageInfo();
 	
 	/*Bridge*/
 	void chooseSeat();
 	void shuffleCard();
 	void dealCard();
-	Vector<Card> getCardsInHand();
+	List<Card> getCardsInHand();
 	void cut();
 	void call();
 	void compareTrick();

@@ -1,5 +1,7 @@
 package team.stray.bridgechat.bridge;
 
+import team.stray.bridgechat.InfrastructureImpl;
+
 public class Seat implements Direction{
 
 	private int direction;
@@ -14,7 +16,7 @@ public class Seat implements Direction{
 		setNameatSeat(nameatSeat);
 	}
 	
-	
+
 	/**
 	 * print Seat's information
 	 */
@@ -40,7 +42,7 @@ public class Seat implements Direction{
 		return direction;
 	}
 	
-	public void setDirection(int direction){
+	public void setDirection(int direction){	
 		if(direction >= SOUTH && direction <= EAST){
 		this.direction = direction;
 		}
@@ -51,6 +53,6 @@ public class Seat implements Direction{
 	}
 	
 	public void setNameatSeat(String nameatSeat){
-		this.nameatSeat = nameatSeat;
+		
 	}
 }

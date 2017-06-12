@@ -1,6 +1,7 @@
 package team.stray.bridgechat.bridge;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class Dealer {
@@ -25,7 +26,7 @@ public class Dealer {
 	 * @param cards: before shuffling
 	 * @return cards after shuffling
 	 */
-	public Vector<Card> shuffle(Vector<Card> cards){
+	public List<Card> shuffle(List<Card> cards){
 		try {
 			Collections.shuffle(cards);
 		} catch (UnsupportedOperationException e) {
@@ -42,7 +43,7 @@ public class Dealer {
 	 * @param player3
 	 * @param player4
 	 */
-	public void deal(Vector<Card> cards, 
+	public void deal(List<Card> cards, 
 			GameClient player1, GameClient player2, 
 			GameClient player3, GameClient player4){
 		for(int i = 0; i < 52; i++){

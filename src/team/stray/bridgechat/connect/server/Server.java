@@ -1,6 +1,10 @@
-package team.stray.bridgechat.connect.server;
+ package team.stray.bridgechat.connect.server;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import team.stray.bridgechat.BridgeChat;
 import team.stray.bridgechat.bridge.GameClient;
@@ -9,6 +13,7 @@ import team.stray.bridgechat.chat.ChatroomServer;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 public class Server {
 
@@ -16,22 +21,30 @@ public class Server {
 	private final GameServer gameServer;
 	private final ConnectionServer connectionServer;
 	private final Client client;
+	private Map<String,Integer> nameToSeat;
+	private Map<String,Integer> nameToTrick;
 	
 	private volatile boolean isWaitClientConnect;
-
+	
+	
+	
+	
 	public Server(String name) {
 		chatroomServer = new ChatroomServer();
 		gameServer = new GameServer();
 		connectionServer = new ConnectionServer();
 		client = new Client(name, "127.0.0.1");
 		client.connect();
+		nameToSeat = new HashMap<String,Integer>();
+		nameToTrick = new HashMap<String,Integer>();//�[��
 
 		Thread thread = new Thread(new Runnable() {// Anonymous class
 			public void run() {
 				try {
+					boolean isPrintOnce = false;
 					isWaitClientConnect = true;
 					Transmissible last = null;
-					Vector<TransmissibleGameClient> players = new Vector<>();
+					List<TransmissibleGameClient> players = new CopyOnWriteArrayList<>();
 					System.out.println("wait connection....");
 					while (isWaitClientConnect) {
 						last = client.getMessageReceiveFromServer();
@@ -49,10 +62,20 @@ public class Server {
 								gameServer.addPlayer(((TransmissibleGameClient) last).getTransmissibleGameClient());
 								System.out.println("now players : "+players.size());
 							}
+						}else if(last instanceof TransmissibleString) {
+							//prefix = '@' for seat;'#' for call;'%'for out of the card
+							String get= ((TransmissibleString) last).getTransmissibleString();
+							if(get.length()!=0&&get.charAt(0)=='@'&&get.substring(2).equals(client.getGameClient().getName())){
+								String seat =( get.substring(0, 1));
+								client.getGameClient().setSeat(seat);
+								nameToSeat.put(client.getGameClient().getName(),get.charAt(1)-'0');
+							}
 						}
-						if (GameServer.isPlayersReachFour == true) {
+						
+						if (GameServer.isPlayersReachFour == true && isPrintOnce == false) {
 							System.out.println("room full");
-							isWaitClientConnect = false;
+							isPrintOnce = true;
+							//isWaitClientConnect = false;
 						}
 					}
 				} catch (Exception e) {
