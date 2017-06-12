@@ -56,6 +56,7 @@ public class ConnectionClient extends Connection{
 				}
 			}
 			break;
+		
 		default:
 			break;
 		}
@@ -88,7 +89,7 @@ public class ConnectionClient extends Connection{
 		return ip;
 	}
 	
-	public void setMessage(String string) {//TODO Limit the size
+	public void setMessage(String string) {//TODO Limit the size, need to add : in chatroom
 		this.message = new TransmissibleString();
 		((TransmissibleString)this.message).setTransmissibleString(getName()+" : "+string);
 	}

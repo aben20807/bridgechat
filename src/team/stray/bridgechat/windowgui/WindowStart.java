@@ -158,11 +158,17 @@ public class WindowStart {
 			public void mouseClicked(MouseEvent arg0) {
 				// success into the room		
 				if ( btnBuildRoom.isSelected() || (btnEnterRoom.isSelected() && !inputIP.getText().equals(""))) {
-					if(btnEnterRoom.isSelected()){
-						infrastructure.setConnectionIP(inputIP.getText());					// set client connection ip
-					}
+					
 					infrastructure.setName(inputName.getText());							// set user name
 					System.out.println(inputName.getText());
+					if( btnEnterRoom.isSelected() ){
+						infrastructure.setConnectionIP(inputIP.getText());					// set client connection ip
+						System.out.println(inputIP.getText());
+						infrastructure.connectRoom();										// connect to the input ip room
+					}
+					if( btnBuildRoom.isSelected() ){
+						infrastructure.openRoom();
+					}
 					WindowSeat windowSeat = new WindowSeat();
 					windowSeat.setVisible(true);
 					frame.setVisible(false);

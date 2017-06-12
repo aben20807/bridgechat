@@ -168,14 +168,13 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void call() {
-		// TODO Auto-generated method stub
+
 
 	}
 
 	@Override
 	public void compareTrick() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -184,12 +183,19 @@ public class InfrastructureImpl implements Infrastructure {
 	}
 
 	@Override
-	public void setSeat(int seat) {
+	public void setSeat(String seat) {
 		this.client.getGameClient().setSeat(seat);
 	}
 
 	@Override
-	public int getSeat() {
+	public String getSeat() {
 		return client.getGameClient().getSeat();
+	}
+	
+
+
+	@Override
+	public Transmissible getMessage() {
+		return client.getMessageReceiveFromServer();
 	}
 }
