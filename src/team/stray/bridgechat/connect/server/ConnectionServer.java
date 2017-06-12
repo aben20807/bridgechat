@@ -6,19 +6,21 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
 
 public class ConnectionServer extends Connection {
 
-	private Vector<ObjectOutputStream> memberList;
+	private List<ObjectOutputStream> memberList;
 	private ServerSocket serverSocket;
 	private Thread threadServer;
 
 	public ConnectionServer() {
-		memberList = new Vector<>();
+		memberList = new CopyOnWriteArrayList<>();
 		try {
 			serverSocket = new ServerSocket(8080);
 			System.out.println("Server started....");
