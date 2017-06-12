@@ -26,7 +26,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.Vector;
 import team.stray.bridgechat.windowgui.*;
 
-public class GameWindow extends JFrame {
+public class GameWindowTest extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -34,19 +34,127 @@ public class GameWindow extends JFrame {
 	 * Launch the application.
 	 */
 	static Vector<Card> cardInHand;
-	
-	public static void openGameGui(String[] args) {
+	static Vector<Card> cards;
+	static Infrastructure infrastructure1;
+	static Infrastructure infrastructure2;
+	static Infrastructure infrastructure3;
+	static Infrastructure infrastructure4;
+	public static void main(String[] args) {
+		infrastructure1 = new InfrastructureImpl();
+		//infrastructure2 = new InfrastructureImpl();
+		//infrastructure3 = new InfrastructureImpl();
+		//infrastructure4 = new InfrastructureImpl();
+		infrastructure1.setName("Ben");
+		infrastructure1.openRoom();
+		System.out.println(infrastructure1.getName());
+		infrastructure1.setSeat(0);
+		try{
+			Thread.sleep(1000);
+			System.out.println("2 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		//infrastructure2.connectRoom();
+		infrastructure2 = new InfrastructureImpl();
+		infrastructure2.setName("Joe");
+		infrastructure2.setConnectionIP("127.0.0.1");
+		infrastructure2.connectRoom();
+		System.out.println(infrastructure1.getName());
+		System.out.println(infrastructure2.getName());
+		infrastructure2.setSeat(1);
+		System.out.println("2 connected");
+		try{
+			Thread.sleep(1000);
+			System.out.println("3 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		//infrastructure3.connectRoom();
+		infrastructure3 = new InfrastructureImpl();
+		infrastructure3.setName("John");
+		infrastructure3.setConnectionIP("127.0.0.1");
+		infrastructure3.connectRoom();
+		System.out.println(infrastructure1.getName());
+		System.out.println(infrastructure2.getName());
+		System.out.println(infrastructure3.getName());
+		infrastructure3.setSeat(2);
+		System.out.println("3 connected");
+		try{
+			Thread.sleep(1000);
+			System.out.println("4 loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		//infrastructure4.connectRoom();
+		infrastructure4 = new InfrastructureImpl();
+		infrastructure4.setName("Ace");
+		infrastructure4.setConnectionIP("127.0.0.1");
+		infrastructure4.connectRoom();
+		System.out.println(infrastructure1.getName());
+		System.out.println(infrastructure2.getName());
+		System.out.println(infrastructure3.getName());
+		System.out.println(infrastructure4.getName());
+		infrastructure4.setSeat(3);
+		System.out.println("4 connected");
+		try{
+			Thread.sleep(1000);
+			System.out.println("finish loading");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		//infrastructure.shuffleCard();
+		//infrastructure.dealCard();
+		//cards = new Vector<>();
+		//cards = infrastructure.getCardsInHand();
+
+		//cardInHand = new Vector<>();
+	/*	cardInHand.add(new Card(2, '2', Suit.SPADES));
+		cardInHand.add(new Card(3, '3', Suit.HEARTS));
+		cardInHand.add(new Card(4, '4', Suit.DIAMONDS));
+		cardInHand.add(new Card(5, '5', Suit.CLUBS));
+		cardInHand.add(new Card(6, '6', Suit.SPADES));
+		cardInHand.add(new Card(7, '7', Suit.HEARTS));
+		cardInHand.add(new Card(8, '8', Suit.DIAMONDS));
+		cardInHand.add(new Card(9, '9', Suit.CLUBS));
+		cardInHand.add(new Card(10, 'T', Suit.SPADES));
+		cardInHand.add(new Card(11, 'J', Suit.HEARTS));
+		cardInHand.add(new Card(12, 'Q', Suit.DIAMONDS));
+		cardInHand.add(new Card(13, 'K', Suit.CLUBS));
+		cardInHand.add(new Card(14, 'A', Suit.SPADES));*/
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GameWindow frame = new GameWindow();
-					if(WindowStart.infrastructure.getType() == 1){ // check if server then cut cards
-						frame.cut();
-					}
-					frame.updateDeck();
+					GameWindowTest frame = new GameWindowTest();
+					frame.cut();
+					frame.updateDeck(0);
 					frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
+				
+					GameWindowTest frame1 = new GameWindowTest();
+					frame1.updateDeck(1);
+					frame1.setVisible(true);
+					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame1.setResizable(false);
+					
+					GameWindowTest frame2 = new GameWindowTest();
+					frame2.updateDeck(2);
+					frame2.setVisible(true);
+					frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame2.setResizable(false);
+					
+					GameWindowTest frame3 = new GameWindowTest();
+					frame3.updateDeck(3);
+					frame3.setVisible(true);
+					frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame3.setResizable(false); 
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,21 +168,33 @@ public class GameWindow extends JFrame {
 	private boolean isMouseHold = false;
 	int cardx;
 	int cardy;
-	public GameWindow(){
+	public GameWindowTest(){
 		
 	}
 	public void cut(){
-		WindowStart.infrastructure.shuffleCard();
-		WindowStart.infrastructure.dealCard();
+		infrastructure1.shuffleCard();
+		infrastructure1.dealCard();
 	}
-	public void updateDeck() {
+	public void updateDeck(int a) {
 
 	//	WindowStart.infrastructure.cut();
 		//infrastructure1.shuffleCard();
 		//infrastructure1.dealCard();
-		
+		//cards = new Vector<>();
 		cardInHand = new Vector<>();
-		cardInHand = WindowStart.infrastructure.getCardsInHand();
+		//cards = WindowStart.infrastructure.getCardsInHand();
+		if(a == 0){
+			cardInHand = infrastructure1.getCardsInHand();
+		}
+		else if(a == 1){
+			cardInHand = infrastructure2.getCardsInHand();
+		}
+		else if(a == 2){
+			cardInHand = infrastructure3.getCardsInHand();
+		}
+		else if(a == 3){
+			cardInHand = infrastructure4.getCardsInHand();
+		}
 		//cardInHand = infrastructure1.getCardsInHand();
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWindow.class.getResource("/resource/chip.png")));
