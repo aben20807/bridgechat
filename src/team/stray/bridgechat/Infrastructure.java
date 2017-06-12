@@ -6,6 +6,9 @@ import team.stray.bridgechat.bridge.Card;
 
 public interface Infrastructure {
 
+	public static final int SERVER = 1;
+	public static final int CLIENT = 2;
+	
 	/*Server*/
 	void openRoom();
 	String getServerIP();
