@@ -1,8 +1,10 @@
  package team.stray.bridgechat.connect.server;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import team.stray.bridgechat.BridgeChat;
 import team.stray.bridgechat.bridge.GameClient;
@@ -34,14 +36,15 @@ public class Server {
 		client = new Client(name, "127.0.0.1");
 		client.connect();
 		nameToSeat = new HashMap<String,Integer>();
-		nameToTrick = new HashMap<String,Integer>();//¼[¼Æ
+		nameToTrick = new HashMap<String,Integer>();//ï¿½[ï¿½ï¿½
 
 		Thread thread = new Thread(new Runnable() {// Anonymous class
 			public void run() {
 				try {
+					boolean isPrintOnce = false;
 					isWaitClientConnect = true;
 					Transmissible last = null;
-					Vector<TransmissibleGameClient> players = new Vector<>();
+					List<TransmissibleGameClient> players = new CopyOnWriteArrayList<>();
 					System.out.println("wait connection....");
 					while (isWaitClientConnect) {
 						last = client.getMessageReceiveFromServer();
@@ -69,8 +72,9 @@ public class Server {
 							}
 						}
 						
-						if (GameServer.isPlayersReachFour == true) {
+						if (GameServer.isPlayersReachFour == true && isPrintOnce == false) {
 							System.out.println("room full");
+							isPrintOnce = true;
 							//isWaitClientConnect = false;
 						}
 					}

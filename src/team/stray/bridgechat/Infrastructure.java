@@ -1,5 +1,6 @@
 package team.stray.bridgechat;
 
+import java.util.List;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -33,7 +34,7 @@ public interface Infrastructure {
 	void chooseSeat();
 	void shuffleCard();
 	void dealCard();
-	Vector<Card> getCardsInHand();
+	List<Card> getCardsInHand();
 	void cut();
 	void call();
 	void compareTrick();

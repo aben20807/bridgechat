@@ -91,7 +91,7 @@ public class ConnectionClient extends Connection{
 	
 	public void setMessage(String string) {//TODO Limit the size, need to add : in chatroom
 		this.message = new TransmissibleString();
-		((TransmissibleString)this.message).setTransmissibleString(getName()+" : "+string);
+		((TransmissibleString)this.message).setTransmissibleString(string);
 	}
 	
 	public void setMessage(Card card) {

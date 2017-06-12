@@ -1,5 +1,6 @@
 package team.stray.bridgechat;
 
+import java.util.List;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -43,7 +44,7 @@ public class InfrastructureImplTest {
 				break;
 			
 			case 4://print card in hand
-				Vector<Card> cards = infrastructure.getCardsInHand();
+				List<Card> cards = infrastructure.getCardsInHand();
 				for (Card i : cards) {
 					i.printInfo();
 				}

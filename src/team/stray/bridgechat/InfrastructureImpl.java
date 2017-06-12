@@ -1,5 +1,6 @@
 package team.stray.bridgechat;
 
+import java.util.List;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -128,16 +129,14 @@ public class InfrastructureImpl implements Infrastructure {
 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
 		for (int i = 0; i < 4; i++) {
-			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();// sort
-																				// cards
-																				// in
-																				// hand
+			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();// sort cards in hand
 			if (i == 0) {// server cards
 				for (Card c : this.server.getGameServer().getPlayers().get(0).getCardsInHand()) {
 					this.client.getGameClient().addCardIntoHand(c);
 					c.printInfo();
 				}
-			} else {
+			} 
+			else {
 				for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
 					this.client.submitCard(i, c);
 					// System.out.print(i + " : ");
@@ -156,7 +155,7 @@ public class InfrastructureImpl implements Infrastructure {
 	}
 
 	@Override
-	public Vector<Card> getCardsInHand() {
+	public List<Card> getCardsInHand() {
 		return this.client.getGameClient().getCardsInHand();
 	}
 
