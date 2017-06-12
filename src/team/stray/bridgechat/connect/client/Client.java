@@ -106,7 +106,7 @@ public class Client {
 		
 		if(message instanceof TransmissibleCard &&
 				gameClient.getCardsInHand().size() < 13 &&
-				((TransmissibleCard) message).getMember() == getGameClient().getSeat()){
+				((TransmissibleCard) message).getMember() ==Integer.parseInt(getGameClient().getSeat().substring(0,1))){
 			Card receive = ((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard();
 			boolean isCardExist = false;
 			for(Card i : gameClient.getCardsInHand()){

@@ -17,10 +17,7 @@ public class CardGUI extends JLabel {
 	private boolean isMoveable = true;
 	int cardx;
 	int cardy;
-	CardGUI(){
-	}
-	CardGUI(Card card) {
-		printIcon(card);
+	CardGUI() {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
