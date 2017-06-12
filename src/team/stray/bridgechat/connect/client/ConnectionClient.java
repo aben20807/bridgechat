@@ -88,23 +88,23 @@ public class ConnectionClient extends Connection{
 		return ip;
 	}
 	
-	public void setMessage(String string) {//TODO Limit the size
+	public void setMessage(String string) {//TODO Limit the size, need to add : in chatroom
 		this.message = new TransmissibleString();
 		((TransmissibleString)this.message).setTransmissibleString(string);
 	}
 	
-	public void setMessage(Card card) {//TODO Limit the size
+	public void setMessage(Card card) {
 		this.message = new TransmissibleCard();
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
 	}
 	
-	public void setMessage(int member, Card card) {//TODO Limit the size
+	public void setMessage(int member, Card card) {
 		this.message = new TransmissibleCard();
 		((TransmissibleCard)this.message).setMember(member);
 		((TransmissibleCard)this.message).setTransmissibleCard(card);
 	}
 	
-	public void setMessage(GameClient gameClient) {//TODO Limit the size
+	public void setMessage(GameClient gameClient) {
 		this.message = new TransmissibleGameClient();
 		((TransmissibleGameClient)this.message).setTransmissibleGameClient(gameClient);
 	}

@@ -1,4 +1,4 @@
-package team.stray.bridgechat.connect.server;
+ package team.stray.bridgechat.connect.server;
 
 import java.util.Vector;
 
