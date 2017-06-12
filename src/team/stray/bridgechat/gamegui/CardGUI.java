@@ -53,6 +53,7 @@ public class CardGUI extends JLabel {
 				if (getY() < 260) {
 					setVisible(false);
 					WindowStart.infrastructure.submitCard(card);
+				//	System.out.println(WindowStart.infrastructure.server);
 				} else {
 					setLocation(cardx, cardy);
 				}
