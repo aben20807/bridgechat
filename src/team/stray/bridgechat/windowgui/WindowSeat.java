@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.xml.internal.ws.developer.StreamingAttachment;
 
+import javafx.scene.control.CheckBox;
 import team.stray.bridgechat.bridge.Direction;
 
 import java.awt.Toolkit;
@@ -26,14 +27,14 @@ public class WindowSeat extends JFrame {
 
 	private JPanel contentPane;
 	private int seatDirection	= -1;
-	private boolean SeatSouth	= false;
-	private boolean SeatWest 	= false;
-	private boolean SeatNorth	= false;
-	private boolean SeatEast	= false;
-	private String NameSouth;
-	private String NameWest;
-	private String NameNorth;
-	private String NameEast;
+	private boolean seatSouth	= false;
+	private boolean seatWest 	= false;
+	private boolean seatNorth	= false;
+	private boolean seatEast	= false;
+	private String nameSouth;
+	private String nameWest;
+	private String nameNorth;
+	private String nameEast;
 
 	/**
 	 * Launch the application.
@@ -56,7 +57,7 @@ public class WindowSeat extends JFrame {
 		new Thread() {
 			public void run() {
 				try{
-					//WindowStart.infrastructure.getMessage();
+//					WindowStart.infrastructure.getMessage();
 				}catch (Exception e){
 					e.printStackTrace();
 				}
@@ -120,6 +121,7 @@ public class WindowSeat extends JFrame {
 		btnCheckSeat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				
 				checkBoxNorth.setEnabled(false);
 				checkBoxWest.setEnabled(false);
 				checkBoxEast.setEnabled(false);
@@ -147,7 +149,7 @@ public class WindowSeat extends JFrame {
 		lblNameSouth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameSouth.setBounds(175, 194, 100, 23);
 		contentPane.add(lblNameSouth);
-
+	
 		JLabel lblNameNorth = new JLabel("name_north");
 		lblNameNorth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameNorth.setBounds(175, 71, 100, 23);
@@ -162,5 +164,23 @@ public class WindowSeat extends JFrame {
 		lblNameWest.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
+		
+		lblNameWest.setText("abc");
+		lblNameWest.setEnabled(false);
+		if( !seatSouth ){
+			lblNameWest.setText("abdeec");
+
+			checkBoxSouth.setEnabled(false);
+		}
+		if( seatWest ){
+			checkBoxWest.setEnabled(false);
+		}
+		if( seatNorth ){
+			checkBoxNorth.setEnabled(false);
+		}
+		if( seatEast ){
+			checkBoxEast.setEnabled(false);
+		}
 	}
+	
 }
