@@ -2,6 +2,7 @@ package team.stray.bridgechat.windowgui;
 
 import team.stray.bridgechat.*;
 import team.stray.bridgechat.gamegui.GameWindow;
+import team.stray.bridgechat.gamegui.GameWindowTest;
 
 import java.awt.EventQueue;
 
@@ -172,8 +173,24 @@ public class WindowStart {
 					if( btnBuildRoom.isSelected() ){
 						infrastructure.openRoom();
 					}
-					WindowSeat windowSeat = new WindowSeat();
-					windowSeat.setVisible(true);
+					//WindowSeat windowSeat = new WindowSeat();
+					//windowSeat.setVisible(true);
+					/*GameWindow frame1 = new GameWindow();
+					 try{
+					    	Thread.sleep(10000);
+					    }
+					    catch(Exception e){
+					    	e.printStackTrace();
+					    }
+					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
+						frame1.cut();
+					}
+					
+					frame1.updateDeck();
+					frame1.setVisible(true);
+					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+					GameWindow game = new GameWindow();
+					game.openGameGui();
 					frame.setVisible(false);
 					
 				}else if( !btnBuildRoom.isSelected() && !btnEnterRoom.isSelected() ){		// no press buildroom btn & enterroom btn
