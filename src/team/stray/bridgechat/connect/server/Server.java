@@ -41,8 +41,10 @@ public class Server {
 		client = new Client(name, "127.0.0.1");
 		client.connect();
 		nameToSeat = new HashMap<String,Integer>();
+
 		nameToTrick = new HashMap<String,Integer>();//trick
 		nameToCardValue = new HashMap<String,Integer>();
+
 
 		Thread thread = new Thread(new Runnable() {// Anonymous class
 			public void run() {

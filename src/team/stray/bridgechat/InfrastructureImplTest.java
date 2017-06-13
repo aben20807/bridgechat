@@ -25,8 +25,8 @@ public class InfrastructureImplTest {
 					e.printStackTrace();
 				}
 				System.out.print("seat:");
-				infrastructure.setSeat((BridgeChat.scanner.nextLine()));
-				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
+				infrastructure.setSeat("@"+(BridgeChat.scanner.nextLine()+infrastructure.getName()));
+				infrastructure.submitString(infrastructure.getSeat());
 				break;
 
 			case 2://client connect
@@ -34,8 +34,8 @@ public class InfrastructureImplTest {
 				infrastructure.setConnectionIP("192.168.56.1");
 				infrastructure.connectRoom();
 				System.out.print("seat:");
-				infrastructure.setSeat((BridgeChat.scanner.nextLine()));
-				infrastructure.submitString("@"+infrastructure.getSeat()+infrastructure.getName());
+				infrastructure.setSeat("@"+(BridgeChat.scanner.nextLine()+infrastructure.getName()));
+				infrastructure.submitString(infrastructure.getSeat());
 				break;
 			
 			case 3://shuffle and deal card

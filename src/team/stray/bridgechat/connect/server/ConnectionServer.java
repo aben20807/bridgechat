@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
 
@@ -25,24 +26,34 @@ public class ConnectionServer extends Connection {
 			serverSocket = new ServerSocket(8080);
 			System.out.println("Server started....");
 			System.out.println(getIP());
-			Thread thread = new Thread(new Runnable() {//Anonymous class
+			new Thread(new Runnable() {// Anonymous class
+				public volatile boolean isTerminated = false;
 				public void run() {
-					while (true) {
-						Socket socket;
-						try {
+					Socket socket = null;
+					try {
+						while (!isTerminated) {
 							socket = serverSocket.accept();
 							out = new ObjectOutputStream(socket.getOutputStream());
 							memberList.add(out);
-
 							threadServer = new Thread(new ThreadServer(socket, memberList));
 							threadServer.start();
-						} catch (IOException e) {
-							e.printStackTrace();
+							System.out.println(memberList.size());
+							if(memberList.size() == 4){//terminate when room full
+								try {
+									Thread.sleep(30);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								isTerminated = true;
+								serverSocket.close();
+								System.out.println("Stop accepting people connect to server....");
+							}
 						}
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
-			});
-			thread.start();
+			}).start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,9 @@
 package team.stray.bridgechat.windowgui;
 
 import team.stray.bridgechat.*;
+import team.stray.bridgechat.gamegui.GameWindow;
+//import team.stray.bridgechat.gamegui.GameWindowTest;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,6 +50,7 @@ public class WindowStart {
 				}
 			}
 		});
+	//	GameWindow.openGameGui();
 	}
 
 	/**
@@ -170,8 +174,31 @@ public class WindowStart {
 					if( btnBuildRoom.isSelected() ){
 						infrastructure.openRoom();
 					}
-					WindowSeat windowSeat = new WindowSeat();
+
+					//WindowSeat windowSeat = new WindowSeat();
+					//windowSeat.setVisible(true);
+					/*GameWindow frame1 = new GameWindow();
+					 try{
+					    	Thread.sleep(10000);
+					    }
+					    catch(Exception e){
+					    	e.printStackTrace();
+					    }
+					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
+						frame1.cut();
+					}
+					
+					frame1.updateDeck();
+					frame1.setVisible(true);
+					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		    /******************************************
+			Test for Game GUI
+			//	 GameWindow game = new GameWindow();
+			//	 game.openGameGui();
+            *******************************************/
+					WindowSeat windowSeat = new WindowSeat(); // new
 					windowSeat.setVisible(true);
+					
 //					WindowLoad windowLoad;
 //					try {
 //						windowLoad = new WindowLoad();

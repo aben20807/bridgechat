@@ -20,7 +20,7 @@ public class InfrastructureImpl implements Infrastructure {
 
 	private String name;
 	private String connectionIP;
-	
+
 	@Override
 	public void openRoom() {
 		this.server = new Server(this.name);
@@ -118,34 +118,35 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void shuffleCard() {
+		System.out.println("shuffling....");
 		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
 		System.out.println("shuffle finished");
 	}
 
 	@Override
 	public void dealCard() {
+		System.out.println("dealing....");
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
 		for (int i = 0; i < 4; i++) {
-			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();// sort cards in hand
-			if (i == 0) {// server cards
-				for (Card c : this.server.getGameServer().getPlayers().get(0).getCardsInHand()) {
-					this.client.getGameClient().addCardIntoHand(c);
-					c.printInfo();
+			// sort cards in hand
+			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
+			// deal
+			for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+				this.client.submitCard(i, c);
+				// System.out.print(i + " : ");
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-			} 
-			else {
-				for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
-					this.client.submitCard(i, c);
-					// System.out.print(i + " : ");
-					try {
-						Thread.sleep(30);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					c.printInfo();
-				}
+				c.printInfo();
 			}
 			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
 			System.out.println("----");
@@ -167,12 +168,11 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void call() {
 
-
 	}
 
 	@Override
 	public void compareTrick() {
-		
+
 	}
 
 	@Override
@@ -189,8 +189,6 @@ public class InfrastructureImpl implements Infrastructure {
 	public String getSeat() {
 		return client.getGameClient().getSeat();
 	}
-	
-
 
 	@Override
 	public Transmissible getMessage() {

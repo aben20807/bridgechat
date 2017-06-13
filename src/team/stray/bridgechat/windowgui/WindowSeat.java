@@ -37,8 +37,10 @@ public class WindowSeat extends JFrame {
 	private static String nameWest;
 	private static String nameNorth;
 	private static String nameEast;
-
+	private static boolean controlThread = true;
+	private int count = 0;
 	private static String stringReceiveFromServer;
+	public static boolean doneSeat = false;
 
 	/**
 	 * Launch the application.
@@ -135,7 +137,7 @@ public class WindowSeat extends JFrame {
 				}
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
 				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
-		
+
 			}
 		});
 		btnCheckSeat.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
@@ -161,7 +163,7 @@ public class WindowSeat extends JFrame {
 		lblNameWest.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
-		
+
 		JButton button = new JButton("\u66F4\u65B0");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -187,57 +189,73 @@ public class WindowSeat extends JFrame {
 		button.setBounds(10, 10, 87, 23);
 		contentPane.add(button);
 
-//		if (seatSouth) {
-//			checkBoxSouth.setEnabled(false);
-//			lblNameSouth.setText(nameSouth);
-//		}
-//		if (seatWest) {
-//			checkBoxWest.setEnabled(false);
-//			lblNameWest.setText(nameWest);
-//		}
-//		if (seatNorth) {
-//			checkBoxNorth.setEnabled(false);
-//			lblNameNorth.setText(nameNorth);
-//		}
-//		if (seatEast) {
-//			checkBoxEast.setEnabled(false);
-//			lblNameEast.setEnabled(seatEast);
-//		}
+		// if (seatSouth) {
+		// checkBoxSouth.setEnabled(false);
+		// lblNameSouth.setText(nameSouth);
+		// }
+		// if (seatWest) {
+		// checkBoxWest.setEnabled(false);
+		// lblNameWest.setText(nameWest);
+		// }
+		// if (seatNorth) {
+		// checkBoxNorth.setEnabled(false);
+		// lblNameNorth.setText(nameNorth);
+		// }
+		// if (seatEast) {
+		// checkBoxEast.setEnabled(false);
+		// lblNameEast.setEnabled(seatEast);
+		// }
 
 		// new Thread() {
 		Thread thread = new Thread(new Runnable() {
 			public void run() {
-//				System.out.println("windowseeeeeeeeeeeeeeeat");
+				// System.out.println("windowseeeeeeeeeeeeeeeat");
 				try {
-//					System.out.println("windowseeeeeeeeeeeeeeeat2");
-					while (true) {
-//						System.out.println("windowseeeeeeeeeeeeeeeat3");
+					// System.out.println("windowseeeeeeeeeeeeeeeat2");
+					while (controlThread) {
+						// System.out.println("windowseeeeeeeeeeeeeeeat3");
 						System.out.flush();
 						Transmissible messageReceiveFromServer;
 						if (WindowStart.infrastructure != null && WindowStart.infrastructure.getMessage() != null) {
 							messageReceiveFromServer = WindowStart.infrastructure.getMessage();
 							if (messageReceiveFromServer instanceof TransmissibleString) {
-								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
-							//	System.out.println("windowseeeeeeeeeeeeeeeat" + stringReceiveFromServer);
-							//	System.out.println((int) (stringReceiveFromServer.charAt(1) - '0'));
-								switch ((int) (stringReceiveFromServer.charAt(1) - '0')) {
-								case Direction.SOUTH:
-									seatSouth = true;
-									nameSouth = stringReceiveFromServer.substring(2);
-									break;
-								case Direction.WEST:
-									seatWest = true;
-									nameWest = stringReceiveFromServer.substring(2);
-									break;
-								case Direction.NORTH:
-									seatNorth = true;
-									nameNorth = stringReceiveFromServer.substring(2);
-									break;
-								case Direction.EAST:
-									seatEast = true;
-									nameEast = stringReceiveFromServer.substring(2);
-									break;
+								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer)
+										.getTransmissibleString();
+								// System.out.println("windowseeeeeeeeeeeeeeeat"
+								// + stringReceiveFromServer);
+								// System.out.println((int)
+								// (stringReceiveFromServer.charAt(1) - '0'));
+								if (stringReceiveFromServer.length() != 0 && stringReceiveFromServer.charAt(0) == '@') {
+									switch ((int) (stringReceiveFromServer.charAt(1) - '0')) {
+									case Direction.SOUTH:
+										seatSouth = true;
+										nameSouth = stringReceiveFromServer.substring(2);
+										break;
+									case Direction.WEST:
+										seatWest = true;
+										nameWest = stringReceiveFromServer.substring(2);
+										break;
+									case Direction.NORTH:
+										seatNorth = true;
+										nameNorth = stringReceiveFromServer.substring(2);
+										break;
+									case Direction.EAST:
+										seatEast = true;
+										nameEast = stringReceiveFromServer.substring(2);
+										break;
 
+									}
+								}
+							}
+						}
+						if (!lblNameSouth.getText().equals(" ")) {
+							if (!lblNameWest.getText().equals(" ")) {
+								if (!lblNameNorth.getText().equals(" ")) {
+									if (!lblNameEast.getText().equals(" ")) {
+										System.out.println("stop the thread");
+										doneSeat = true;
+										controlThread = false;
+									}
 								}
 							}
 						}
