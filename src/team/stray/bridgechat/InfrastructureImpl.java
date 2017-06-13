@@ -143,7 +143,7 @@ public class InfrastructureImpl implements Infrastructure {
 				this.client.submitCard(i, c);
 				// System.out.print(i + " : ");
 				try {
-					Thread.sleep(40);
+					Thread.sleep(600);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

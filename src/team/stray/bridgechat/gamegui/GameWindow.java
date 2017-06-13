@@ -40,27 +40,20 @@ public class GameWindow extends JFrame {
 	 * Launch the application.
 	 */
 	// Vector<Card> cardInHand;
-	static CardGUI card1;
-	static CardGUI card2;
-	static CardGUI card3;
-	static CardGUI card4;
-	static CardGUI card5;
-	static CardGUI card6;
-	static CardGUI card7;
-	static CardGUI card8;
-	static CardGUI card9;
-	static CardGUI card10;
-	static CardGUI card11;
-	static CardGUI card12;
-	static CardGUI card13;
+	/*
+	 * static CardGUI card1; static CardGUI card2; static CardGUI card3; static
+	 * CardGUI card4; static CardGUI card5; static CardGUI card6; static CardGUI
+	 * card7; static CardGUI card8; static CardGUI card9; static CardGUI card10;
+	 * static CardGUI card11; static CardGUI card12; static CardGUI card13;
+	 */
 	JLabel submitCard1;
 	JLabel submitCard2;
 	JLabel submitCard3;
 	JLabel submitCard4;
 	static GameWindow frame;
-	boolean isDeck = true;
+	static boolean isDeck = false;
 
-	public static void  openGameGui() {
+	public static void openGameGui() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,15 +63,16 @@ public class GameWindow extends JFrame {
 							Thread.sleep(2000);
 							// System.out.println(GameServer.isPlayersReachFour);
 						}
+						Thread.sleep(2000);
 						WindowStart.infrastructure.shuffleCard();
 						Thread.sleep(3000);
 						WindowStart.infrastructure.dealCard();
 						// frame.setVisible(true);
-						frame.updateDeck();
+						// frame.updateDeck();
 					}
 					// frame.setVisible(true);
 					// frame.updateDeck();
-					// frame.setVisible(true);
+
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -89,7 +83,7 @@ public class GameWindow extends JFrame {
 
 		Thread updateDeck = new Thread(new Runnable() {
 			public void run() {
-				while (true) {
+				while (!isDeck) {
 					try {
 						// System.out.println(frame != null);
 						Thread.sleep(3000);
@@ -152,58 +146,46 @@ public class GameWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		// card
-/*		card13 = new CardGUI();
-		card13.setBounds(477, 355, 71, 96);
-		contentPane.add(card13);
-
-		card12 = new CardGUI();
-		card12.setBounds(443, 355, 71, 96);
-		contentPane.add(card12);
-
-		card11 = new CardGUI();
-		card11.setBounds(409, 355, 71, 96);
-		contentPane.add(card11);
-
-		card10 = new CardGUI();
-		card10.setBounds(379, 355, 71, 96);
-		contentPane.add(card10);
-
-		card9 = new CardGUI();
-		card9.setBounds(343, 355, 71, 96);
-		contentPane.add(card9);
-
-		card8 = new CardGUI();
-		card8.setBounds(312, 355, 71, 96);
-		contentPane.add(card8);
-
-		card7 = new CardGUI();
-		card7.setBounds(273, 355, 71, 96);
-		contentPane.add(card7);
-
-		card6 = new CardGUI();
-		card6.setBounds(231, 355, 71, 96);
-		contentPane.add(card6);
-
-		card5 = new CardGUI();
-		card5.setBounds(192, 355, 71, 96);
-		contentPane.add(card5);
-
-		card4 = new CardGUI();
-		card4.setBounds(152, 355, 71, 96);
-		contentPane.add(card4);
-
-		card3 = new CardGUI();
-		card3.setBounds(111, 355, 67, 96);
-		contentPane.add(card3);
-
-		card2 = new CardGUI();
-		card2.setBounds(71, 355, 71, 96);
-		contentPane.add(card2);
-
-		card1 = new CardGUI();
-		card1.setBounds(36, 355, 71, 96);
-		contentPane.add(card1);
-		*/
+		/*
+		 * card13 = new CardGUI(); card13.setBounds(477, 355, 71, 96);
+		 * contentPane.add(card13);
+		 * 
+		 * card12 = new CardGUI(); card12.setBounds(443, 355, 71, 96);
+		 * contentPane.add(card12);
+		 * 
+		 * card11 = new CardGUI(); card11.setBounds(409, 355, 71, 96);
+		 * contentPane.add(card11);
+		 * 
+		 * card10 = new CardGUI(); card10.setBounds(379, 355, 71, 96);
+		 * contentPane.add(card10);
+		 * 
+		 * card9 = new CardGUI(); card9.setBounds(343, 355, 71, 96);
+		 * contentPane.add(card9);
+		 * 
+		 * card8 = new CardGUI(); card8.setBounds(312, 355, 71, 96);
+		 * contentPane.add(card8);
+		 * 
+		 * card7 = new CardGUI(); card7.setBounds(273, 355, 71, 96);
+		 * contentPane.add(card7);
+		 * 
+		 * card6 = new CardGUI(); card6.setBounds(231, 355, 71, 96);
+		 * contentPane.add(card6);
+		 * 
+		 * card5 = new CardGUI(); card5.setBounds(192, 355, 71, 96);
+		 * contentPane.add(card5);
+		 * 
+		 * card4 = new CardGUI(); card4.setBounds(152, 355, 71, 96);
+		 * contentPane.add(card4);
+		 * 
+		 * card3 = new CardGUI(); card3.setBounds(111, 355, 67, 96);
+		 * contentPane.add(card3);
+		 * 
+		 * card2 = new CardGUI(); card2.setBounds(71, 355, 71, 96);
+		 * contentPane.add(card2);
+		 * 
+		 * card1 = new CardGUI(); card1.setBounds(36, 355, 71, 96);
+		 * contentPane.add(card1);
+		 */
 
 		// chat room
 		textField = new JTextField();
@@ -279,61 +261,61 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateDeck() {
-		//System.out.println("card in hand size = " + WindowStart.infrastructure.getCardsInHand().size());
-		if (WindowStart.infrastructure.getCardsInHand().size() >= 13 && isDeck == true) {
+		// System.out.println("card in hand size = " +
+		// WindowStart.infrastructure.getCardsInHand().size());
+		if (WindowStart.infrastructure.getCardsInHand().size() == 13) {
 			List<Card> cardInHand = new CopyOnWriteArrayList<>();
 			cardInHand = WindowStart.infrastructure.getCardsInHand();
-			System.out.println("haha");
 			// cards in new one turn
-			card13 = new CardGUI(cardInHand.get(12));
+			CardGUI card13 = new CardGUI(cardInHand.get(12));
 			card13.setBounds(477, 355, 71, 96);
 			contentPane.add(card13);
 
-			card12 = new CardGUI(cardInHand.get(11));
+			CardGUI card12 = new CardGUI(cardInHand.get(11));
 			card12.setBounds(443, 355, 71, 96);
 			contentPane.add(card12);
 
-			card11 = new CardGUI(cardInHand.get(10));
+			CardGUI card11 = new CardGUI(cardInHand.get(10));
 			card11.setBounds(409, 355, 71, 96);
 			contentPane.add(card11);
 
-			card10 = new CardGUI(cardInHand.get(9));
+			CardGUI card10 = new CardGUI(cardInHand.get(9));
 			card10.setBounds(379, 355, 71, 96);
 			contentPane.add(card10);
 
-			card9 = new CardGUI(cardInHand.get(8));
+			CardGUI card9 = new CardGUI(cardInHand.get(8));
 			card9.setBounds(343, 355, 71, 96);
 			contentPane.add(card9);
 
-			card8 = new CardGUI(cardInHand.get(7));
+			CardGUI card8 = new CardGUI(cardInHand.get(7));
 			card8.setBounds(312, 355, 71, 96);
 			contentPane.add(card8);
 
-			card7 = new CardGUI(cardInHand.get(6));
+			CardGUI card7 = new CardGUI(cardInHand.get(6));
 			card7.setBounds(273, 355, 71, 96);
 			contentPane.add(card7);
 
-			card6 = new CardGUI(cardInHand.get(5));
+			CardGUI card6 = new CardGUI(cardInHand.get(5));
 			card6.setBounds(231, 355, 71, 96);
 			contentPane.add(card6);
 
-			card5 = new CardGUI(cardInHand.get(4));
+			CardGUI card5 = new CardGUI(cardInHand.get(4));
 			card5.setBounds(192, 355, 71, 96);
 			contentPane.add(card5);
 
-			card4 = new CardGUI(cardInHand.get(3));
+			CardGUI card4 = new CardGUI(cardInHand.get(3));
 			card4.setBounds(152, 355, 71, 96);
 			contentPane.add(card4);
 
-			card3 = new CardGUI(cardInHand.get(2));
+			CardGUI card3 = new CardGUI(cardInHand.get(2));
 			card3.setBounds(111, 355, 67, 96);
 			contentPane.add(card3);
 
-			card2 = new CardGUI(cardInHand.get(1));
+			CardGUI card2 = new CardGUI(cardInHand.get(1));
 			card2.setBounds(71, 355, 71, 96);
 			contentPane.add(card2);
 
-			card1 = new CardGUI(cardInHand.get(0));
+			CardGUI card1 = new CardGUI(cardInHand.get(0));
 			card1.setBounds(36, 355, 71, 96);
 			contentPane.add(card1);
 			try {
@@ -341,11 +323,11 @@ public class GameWindow extends JFrame {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			//if (frame != null && isDeck == true) {
-		//		System.out.println("frame is not null");
-				isDeck = false;
-				frame.setVisible(true);
-		//	}
+
+			isDeck = true;
+			System.out.println("deal cards finished");
+			frame.setVisible(true);
+
 		}
 	}
 }
