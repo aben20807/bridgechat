@@ -69,6 +69,7 @@ public class Server {
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(),get.charAt(1)-'0');
+								client.setMessageReceiveFromServer(last);
 							}
 						}
 						

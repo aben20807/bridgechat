@@ -9,7 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.xml.internal.ws.developer.StreamingAttachment;
 
+import javafx.scene.control.CheckBox;
 import team.stray.bridgechat.bridge.Direction;
+import team.stray.bridgechat.connect.Transmissible;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 import java.awt.Toolkit;
 
@@ -25,15 +28,17 @@ import javax.swing.JLabel;
 public class WindowSeat extends JFrame {
 
 	private JPanel contentPane;
-	private int seatDirection	= -1;
-	private boolean SeatSouth	= false;
-	private boolean SeatWest 	= false;
-	private boolean SeatNorth	= false;
-	private boolean SeatEast	= false;
-	private String NameSouth;
-	private String NameWest;
-	private String NameNorth;
-	private String NameEast;
+	private int seatDirection = -1;
+	private static boolean seatSouth = false;
+	private static boolean seatWest = false;
+	private static boolean seatNorth = false;
+	private static boolean seatEast = false;
+	private static String nameSouth;
+	private static String nameWest;
+	private static String nameNorth;
+	private static String nameEast;
+
+	private static String stringReceiveFromServer;
 
 	/**
 	 * Launch the application.
@@ -53,15 +58,6 @@ public class WindowSeat extends JFrame {
 			}
 		});
 
-		new Thread() {
-			public void run() {
-				try{
-					//WindowStart.infrastructure.getMessage();
-				}catch (Exception e){
-					e.printStackTrace();
-				}
-			}
-		}.start();
 	}
 
 	/**
@@ -120,6 +116,7 @@ public class WindowSeat extends JFrame {
 		btnCheckSeat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+
 				checkBoxNorth.setEnabled(false);
 				checkBoxWest.setEnabled(false);
 				checkBoxEast.setEnabled(false);
@@ -136,31 +133,122 @@ public class WindowSeat extends JFrame {
 				if (checkBoxEast.isSelected()) {
 					seatDirection = Direction.EAST;
 				}
-				WindowStart.infrastructure.submitString( "@" + seatDirection + WindowStart.infrastructure.getName());
+				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+		
 			}
 		});
 		btnCheckSeat.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		btnCheckSeat.setBounds(324, 228, 87, 23);
 		contentPane.add(btnCheckSeat);
 
-		JLabel lblNameSouth = new JLabel("name_south");
+		JLabel lblNameSouth = new JLabel(" ");
 		lblNameSouth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameSouth.setBounds(175, 194, 100, 23);
 		contentPane.add(lblNameSouth);
 
-		JLabel lblNameNorth = new JLabel("name_north");
+		JLabel lblNameNorth = new JLabel(" ");
 		lblNameNorth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameNorth.setBounds(175, 71, 100, 23);
 		contentPane.add(lblNameNorth);
 
-		JLabel lblNameEast = new JLabel("name_east");
+		JLabel lblNameEast = new JLabel(" ");
 		lblNameEast.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameEast.setBounds(270, 129, 100, 23);
 		contentPane.add(lblNameEast);
 
-		JLabel lblNameWest = new JLabel("name_west");
+		JLabel lblNameWest = new JLabel(" ");
 		lblNameWest.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
+		
+		JButton button = new JButton("\u66F4\u65B0");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (seatSouth) {
+					checkBoxSouth.setEnabled(false);
+					lblNameSouth.setText(nameSouth);
+				}
+				if (seatWest) {
+					checkBoxWest.setEnabled(false);
+					lblNameWest.setText(nameWest);
+				}
+				if (seatNorth) {
+					checkBoxNorth.setEnabled(false);
+					lblNameNorth.setText(nameNorth);
+				}
+				if (seatEast) {
+					checkBoxEast.setEnabled(false);
+					lblNameEast.setText(nameEast);
+				}
+			}
+		});
+		button.setBounds(10, 10, 87, 23);
+		contentPane.add(button);
+
+//		if (seatSouth) {
+//			checkBoxSouth.setEnabled(false);
+//			lblNameSouth.setText(nameSouth);
+//		}
+//		if (seatWest) {
+//			checkBoxWest.setEnabled(false);
+//			lblNameWest.setText(nameWest);
+//		}
+//		if (seatNorth) {
+//			checkBoxNorth.setEnabled(false);
+//			lblNameNorth.setText(nameNorth);
+//		}
+//		if (seatEast) {
+//			checkBoxEast.setEnabled(false);
+//			lblNameEast.setEnabled(seatEast);
+//		}
+
+		// new Thread() {
+		Thread thread = new Thread(new Runnable() {
+			public void run() {
+//				System.out.println("windowseeeeeeeeeeeeeeeat");
+				try {
+//					System.out.println("windowseeeeeeeeeeeeeeeat2");
+					while (true) {
+//						System.out.println("windowseeeeeeeeeeeeeeeat3");
+						System.out.flush();
+						Transmissible messageReceiveFromServer;
+						if (WindowStart.infrastructure != null && WindowStart.infrastructure.getMessage() != null) {
+							messageReceiveFromServer = WindowStart.infrastructure.getMessage();
+							if (messageReceiveFromServer instanceof TransmissibleString) {
+								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
+							//	System.out.println("windowseeeeeeeeeeeeeeeat" + stringReceiveFromServer);
+							//	System.out.println((int) (stringReceiveFromServer.charAt(1) - '0'));
+								switch ((int) (stringReceiveFromServer.charAt(1) - '0')) {
+								case Direction.SOUTH:
+									seatSouth = true;
+									nameSouth = stringReceiveFromServer.substring(2);
+									break;
+								case Direction.WEST:
+									seatWest = true;
+									nameWest = stringReceiveFromServer.substring(2);
+									break;
+								case Direction.NORTH:
+									seatNorth = true;
+									nameNorth = stringReceiveFromServer.substring(2);
+									break;
+								case Direction.EAST:
+									seatEast = true;
+									nameEast = stringReceiveFromServer.substring(2);
+									break;
+
+								}
+							}
+						}
+
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});// .start();
+		thread.start();
 	}
 }
