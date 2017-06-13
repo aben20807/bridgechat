@@ -1,16 +1,18 @@
 package team.stray.bridgechat.bridge;
 
+import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.sun.security.ntlm.Client;
 
 public class GameServer{
 
-	public static Vector<Card> cards;
+	public static List<Card> cards;
 	public static boolean isPlayersReachFour = false;
 	private Dealer dealer;
 
-	private Vector<GameClient> players = new Vector<>();
+	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
 	
 	public GameServer() {
 //		players.add(new GameClient("t"));//0
@@ -37,7 +39,7 @@ public class GameServer{
 	 * create cards to 52 different point and suit
 	 */
 	private void createCards(){
-		cards = new Vector<>();
+		cards = new CopyOnWriteArrayList<>();
 		for(int i = 1; i <= 52; i++){
 			int cardValueInEachSuit = (i-1)%13+2; //2~14 for sort in the same suit
 			if(cardValueInEachSuit <= 9){
@@ -77,7 +79,7 @@ public class GameServer{
 	
 	/*getter and setter*/
 	
-	public Vector<GameClient> getPlayers() {
+	public List<GameClient> getPlayers() {
 		return players;
 	}
 	

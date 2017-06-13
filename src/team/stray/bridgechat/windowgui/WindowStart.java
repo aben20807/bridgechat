@@ -15,6 +15,7 @@ import javax.swing.JRadioButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.UnknownHostException;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -158,13 +159,28 @@ public class WindowStart {
 			public void mouseClicked(MouseEvent arg0) {
 				// success into the room		
 				if ( btnBuildRoom.isSelected() || (btnEnterRoom.isSelected() && !inputIP.getText().equals(""))) {
-					if(btnEnterRoom.isSelected()){
-						infrastructure.setConnectionIP(inputIP.getText());					// set client connection ip
-					}
+					
 					infrastructure.setName(inputName.getText());							// set user name
 					System.out.println(inputName.getText());
+					if( btnEnterRoom.isSelected() ){
+						infrastructure.setConnectionIP(inputIP.getText());					// set client connection ip
+						System.out.println(inputIP.getText());
+						infrastructure.connectRoom();										// connect to the input ip room
+					}
+					if( btnBuildRoom.isSelected() ){
+						infrastructure.openRoom();
+					}
 					WindowSeat windowSeat = new WindowSeat();
 					windowSeat.setVisible(true);
+//					WindowLoad windowLoad;
+//					try {
+//						windowLoad = new WindowLoad();
+//						windowLoad.setVisible(true);
+//					} catch (MalformedURLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}			
+					
 					frame.setVisible(false);
 					
 				}else if( !btnBuildRoom.isSelected() && !btnEnterRoom.isSelected() ){		// no press buildroom btn & enterroom btn
@@ -180,7 +196,7 @@ public class WindowStart {
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); 
 				}
 				else if( inputIP.getText().equals("") || !btnBuildRoom.isSelected() ){		// no input ip or no build room
-					
+						
 					JFrame stupid = new JFrame();
 					stupid.setSize(200, 100);
 					JDialog.setDefaultLookAndFeelDecorated(true);
