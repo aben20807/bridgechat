@@ -26,7 +26,10 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import team.stray.bridgechat.windowgui.*;
 
 public class GameWindow extends JFrame {
@@ -37,19 +40,19 @@ public class GameWindow extends JFrame {
 	 * Launch the application.
 	 */
 	// Vector<Card> cardInHand;
-	CardGUI card1;
-	CardGUI card2;
-	CardGUI card3;
-	CardGUI card4;
-	CardGUI card5;
-	CardGUI card6;
-	CardGUI card7;
-	CardGUI card8;
-	CardGUI card9;
-	CardGUI card10;
-	CardGUI card11;
-	CardGUI card12;
-	CardGUI card13;
+	static CardGUI card1;
+	static CardGUI card2;
+	static CardGUI card3;
+	static CardGUI card4;
+	static CardGUI card5;
+	static CardGUI card6;
+	static CardGUI card7;
+	static CardGUI card8;
+	static CardGUI card9;
+	static CardGUI card10;
+	static CardGUI card11;
+	static CardGUI card12;
+	static CardGUI card13;
 	JLabel submitCard1;
 	JLabel submitCard2;
 	JLabel submitCard3;
@@ -70,11 +73,11 @@ public class GameWindow extends JFrame {
 						Thread.sleep(3000);
 						WindowStart.infrastructure.dealCard();
 						// frame.setVisible(true);
-						// frame.updateDeck();
+						 frame.updateDeck();
 					}
 					// frame.setVisible(true);
 					// frame.updateDeck();
-					frame.setVisible(true);
+					//frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -89,7 +92,7 @@ public class GameWindow extends JFrame {
 					try {
 				//		System.out.println(frame != null);
 						Thread.sleep(3000);
-						if (frame != null) {
+						if (frame != null && isDeck) {						
 							frame.updateDeck();
 						}
 					} catch (Exception e) {
@@ -274,9 +277,9 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateDeck() {
-		//System.out.println("card in hand size = "+WindowStart.infrastructure.getCardsInHand().size());
-		if (WindowStart.infrastructure.getCardsInHand().size() == 13 && isDeck == true) {
-			Vector<Card> cardInHand = new Vector<>();
+		System.out.println("card in hand size = "+WindowStart.infrastructure.getCardsInHand().size());
+		if (WindowStart.infrastructure.getCardsInHand().size() >= 13 && isDeck == true) {
+			List<Card> cardInHand = new CopyOnWriteArrayList<>();
 			cardInHand = WindowStart.infrastructure.getCardsInHand();
 			System.out.println("haha");
 			// cards in new one turn
@@ -332,7 +335,9 @@ public class GameWindow extends JFrame {
 			card1.setBounds(36, 355, 71, 96);
 			contentPane.add(card1);
 			isDeck = false;
-			
+			if(frame!=null){
+				frame.setVisible(true);
+			}
 		}
 	}
 }

@@ -2,7 +2,7 @@ package team.stray.bridgechat.windowgui;
 
 import team.stray.bridgechat.*;
 import team.stray.bridgechat.gamegui.GameWindow;
-import team.stray.bridgechat.gamegui.GameWindowTest;
+//import team.stray.bridgechat.gamegui.GameWindowTest;
 
 import java.awt.EventQueue;
 
