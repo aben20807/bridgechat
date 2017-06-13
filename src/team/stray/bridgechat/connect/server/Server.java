@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Vector;
 
 import team.stray.bridgechat.BridgeChat;
+import team.stray.bridgechat.InfrastructureImpl;
+import team.stray.bridgechat.InfrastructureImplTest;
 import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.chat.ChatroomServer;
@@ -66,6 +68,7 @@ public class Server {
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(),get.charAt(1)-'0');
+								client.setMessageReceiveFromServer(last);
 							}
 						}
 						

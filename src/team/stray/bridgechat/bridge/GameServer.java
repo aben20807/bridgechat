@@ -2,6 +2,8 @@ package team.stray.bridgechat.bridge;
 
 import java.util.Vector;
 
+import com.sun.security.ntlm.Client;
+
 public class GameServer{
 
 	public static Vector<Card> cards;
@@ -67,6 +69,10 @@ public class GameServer{
 		for(int i = 0; i < 52; i++){
 			cards.get(i).printInfo();
 		}
+	}
+	
+	public void compareTrick(){
+		
 	}
 	
 	/*getter and setter*/
