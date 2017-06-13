@@ -194,7 +194,7 @@ public class WindowStart {
 					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 		   
 		//	Test for Game GUI
-				 //infrastructure.setSeat("@"+Direction.NORTH+"d");
+				// infrastructure.setSeat("@"+Direction.NORTH+"d");
 				// GameWindow.openGameGui();
 				 
             
