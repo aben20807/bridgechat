@@ -37,7 +37,7 @@ public class WindowStart {
 	private JFrame frame;
 	private JTextField inputIP;
 	private JTextField inputName;
-	public static Infrastructure infrastructure;
+	public static Infrastructure infrastructure = null;
 	private static String stringReceiveFromServer;
 	private static boolean isRoomFull = false;
 	private static WindowLoad windowLoad;
@@ -210,7 +210,7 @@ public class WindowStart {
 					WindowSeat windowSeat = new WindowSeat(); // new
 					windowSeat.setVisible(true);
 					 *******************************************/
-					//WindowLoad windowLoad;
+//					WindowLoad windowLoad;
 					try {
 						windowLoad = new WindowLoad();
 						windowLoad.setVisible(true);
@@ -258,22 +258,20 @@ public class WindowStart {
 		
 		Thread thread = new Thread(new Runnable() {
 			public void run() {
-				// System.out.println("windowseeeeeeeeeeeeeeeat");
+//				 System.out.println("windowseeeeeeeeeeeeeeeat");
 				try {
-					// System.out.println("windowseeeeeeeeeeeeeeeat2");
+//					 System.out.println("windowseeeeeeeeeeeeeeeat2");
 					while ( true ) {
-						// System.out.println("windowseeeeeeeeeeeeeeeat3");
+//						 System.out.println("windowseeeeeeeeeeeeeeeat3");
 						System.out.flush();
 						Transmissible messageReceiveFromServer;						
 						if (infrastructure != null && infrastructure.getMessage() != null) {
 							messageReceiveFromServer = infrastructure.getMessage();
 							if (messageReceiveFromServer instanceof TransmissibleString) {
 								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
-								// System.out.println("windowseeeeeeeeeeeeeeeat"
-								// + stringReceiveFromServer);
-								// System.out.println((int)
-								// (stringReceiveFromServer.charAt(1) - '0'));
+									
 								if (stringReceiveFromServer.length() != 0 && stringReceiveFromServer.equals("ROOM_FULL")) {
+									System.out.println(stringReceiveFromServer + "test1");
 									windowLoad.dispose();
 									windowSeat.setVisible(true);
 								}
