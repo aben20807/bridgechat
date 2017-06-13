@@ -119,12 +119,19 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void shuffleCard() {
+		System.out.println("shuffling....");
 		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
 		System.out.println("shuffle finished");
 	}
 
 	@Override
 	public void dealCard() {
+		System.out.println("dealing....");
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
 		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
 				server.getGameServer().getPlayers().get(3));
