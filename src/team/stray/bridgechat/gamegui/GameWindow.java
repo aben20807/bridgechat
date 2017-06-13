@@ -40,12 +40,20 @@ public class GameWindow extends JFrame {
 	 * Launch the application.
 	 */
 	// Vector<Card> cardInHand;
-	/*
-	 * static CardGUI card1; static CardGUI card2; static CardGUI card3; static
-	 * CardGUI card4; static CardGUI card5; static CardGUI card6; static CardGUI
-	 * card7; static CardGUI card8; static CardGUI card9; static CardGUI card10;
-	 * static CardGUI card11; static CardGUI card12; static CardGUI card13;
-	 */
+/*	static CardGUI card1;
+	static CardGUI card2;
+	static CardGUI card3;
+	static CardGUI card4;
+	static CardGUI card5;
+	static CardGUI card6;
+	static CardGUI card7;
+	static CardGUI card8;
+	static CardGUI card9;
+	static CardGUI card10;
+	static CardGUI card11;
+	static CardGUI card12;
+	static CardGUI card13;*/
+
 	JLabel submitCard1;
 	JLabel submitCard2;
 	JLabel submitCard3;
@@ -67,12 +75,7 @@ public class GameWindow extends JFrame {
 						WindowStart.infrastructure.shuffleCard();
 						Thread.sleep(3000);
 						WindowStart.infrastructure.dealCard();
-						// frame.setVisible(true);
-						// frame.updateDeck();
 					}
-					// frame.setVisible(true);
-					// frame.updateDeck();
-
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
 				} catch (Exception e) {
