@@ -336,6 +336,7 @@ public class GameWindow extends JFrame {
 			contentPane.add(card1);
 			isDeck = false;
 			if(frame!=null){
+				System.out.println("frame is not null");
 				frame.setVisible(true);
 			}
 		}

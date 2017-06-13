@@ -191,11 +191,14 @@ public class WindowStart {
 					frame1.updateDeck();
 					frame1.setVisible(true);
 					frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
-					GameWindow game = new GameWindow();
-					game.openGameGui();
-
-				//	WindowSeat windowSeat = new WindowSeat();
-				//	windowSeat.setVisible(true);
+		    /******************************************
+			Test for Game GUI
+			//	 GameWindow game = new GameWindow();
+			//	 game.openGameGui();
+            *******************************************/
+					WindowSeat windowSeat = new WindowSeat(); // new
+					windowSeat.setVisible(true);
+					
 //					WindowLoad windowLoad;
 //					try {
 //						windowLoad = new WindowLoad();
