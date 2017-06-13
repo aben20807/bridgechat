@@ -60,7 +60,7 @@ public class GameWindow extends JFrame {
 	static GameWindow frame;
 	boolean isDeck = true;
 
-	public void openGameGui() {
+	public static void  openGameGui() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -205,7 +205,7 @@ public class GameWindow extends JFrame {
 		contentPane.add(card1);
 		*/
 
-		// chatroom
+		// chat room
 		textField = new JTextField();
 		textField.setBounds(650, 422, 239, 29);
 		contentPane.add(textField);

@@ -195,11 +195,11 @@ public class WindowStart {
 		   
 		//	Test for Game GUI
 				 //infrastructure.setSeat("@"+Direction.NORTH+"d");
-				 GameWindow game = new GameWindow();
-				 game.openGameGui();
+				// GameWindow.openGameGui();
+				 
             
-				//	WindowSeat windowSeat = new WindowSeat(); // new
-				//	windowSeat.setVisible(true);
+					WindowSeat windowSeat = new WindowSeat(); // new
+					windowSeat.setVisible(true);
 					
 //					WindowLoad windowLoad;
 //					try {
