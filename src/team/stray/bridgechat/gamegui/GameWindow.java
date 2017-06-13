@@ -57,8 +57,9 @@ public class GameWindow extends JFrame {
 	JLabel submitCard2;
 	JLabel submitCard3;
 	JLabel submitCard4;
-	GameWindow frame;
+	static GameWindow frame;
 	boolean isDeck = true;
+
 	public void openGameGui() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,11 +74,11 @@ public class GameWindow extends JFrame {
 						Thread.sleep(3000);
 						WindowStart.infrastructure.dealCard();
 						// frame.setVisible(true);
-						 frame.updateDeck();
+						frame.updateDeck();
 					}
 					// frame.setVisible(true);
 					// frame.updateDeck();
-					//frame.setVisible(true);
+					// frame.setVisible(true);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -90,9 +91,9 @@ public class GameWindow extends JFrame {
 			public void run() {
 				while (true) {
 					try {
-				//		System.out.println(frame != null);
+						// System.out.println(frame != null);
 						Thread.sleep(3000);
-						if (frame != null && isDeck) {						
+						if (frame != null) {
 							frame.updateDeck();
 						}
 					} catch (Exception e) {
@@ -151,7 +152,7 @@ public class GameWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		// card
-		card13 = new CardGUI();
+/*		card13 = new CardGUI();
 		card13.setBounds(477, 355, 71, 96);
 		contentPane.add(card13);
 
@@ -202,6 +203,7 @@ public class GameWindow extends JFrame {
 		card1 = new CardGUI();
 		card1.setBounds(36, 355, 71, 96);
 		contentPane.add(card1);
+		*/
 
 		// chatroom
 		textField = new JTextField();
@@ -277,7 +279,7 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateDeck() {
-		System.out.println("card in hand size = "+WindowStart.infrastructure.getCardsInHand().size());
+		//System.out.println("card in hand size = " + WindowStart.infrastructure.getCardsInHand().size());
 		if (WindowStart.infrastructure.getCardsInHand().size() >= 13 && isDeck == true) {
 			List<Card> cardInHand = new CopyOnWriteArrayList<>();
 			cardInHand = WindowStart.infrastructure.getCardsInHand();
@@ -334,11 +336,16 @@ public class GameWindow extends JFrame {
 			card1 = new CardGUI(cardInHand.get(0));
 			card1.setBounds(36, 355, 71, 96);
 			contentPane.add(card1);
-			isDeck = false;
-			if(frame!=null){
-				System.out.println("frame is not null");
-				frame.setVisible(true);
+			try {
+				Thread.sleep(2000);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
+			//if (frame != null && isDeck == true) {
+		//		System.out.println("frame is not null");
+				isDeck = false;
+				frame.setVisible(true);
+		//	}
 		}
 	}
 }
