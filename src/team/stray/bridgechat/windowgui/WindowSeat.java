@@ -134,65 +134,93 @@ public class WindowSeat extends JFrame {
 					seatDirection = Direction.EAST;
 				}
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+		
 			}
 		});
 		btnCheckSeat.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
 		btnCheckSeat.setBounds(324, 228, 87, 23);
 		contentPane.add(btnCheckSeat);
 
-		JLabel lblNameSouth = new JLabel("name_south");
+		JLabel lblNameSouth = new JLabel(" ");
 		lblNameSouth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameSouth.setBounds(175, 194, 100, 23);
 		contentPane.add(lblNameSouth);
 
-		JLabel lblNameNorth = new JLabel("name_north");
+		JLabel lblNameNorth = new JLabel(" ");
 		lblNameNorth.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameNorth.setBounds(175, 71, 100, 23);
 		contentPane.add(lblNameNorth);
 
-		JLabel lblNameEast = new JLabel("name_east");
+		JLabel lblNameEast = new JLabel(" ");
 		lblNameEast.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameEast.setBounds(270, 129, 100, 23);
 		contentPane.add(lblNameEast);
 
-		JLabel lblNameWest = new JLabel("name_west");
+		JLabel lblNameWest = new JLabel(" ");
 		lblNameWest.setFont(new Font("微軟正黑體", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
+		
+		JButton button = new JButton("\u66F4\u65B0");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (seatSouth) {
+					checkBoxSouth.setEnabled(false);
+					lblNameSouth.setText(nameSouth);
+				}
+				if (seatWest) {
+					checkBoxWest.setEnabled(false);
+					lblNameWest.setText(nameWest);
+				}
+				if (seatNorth) {
+					checkBoxNorth.setEnabled(false);
+					lblNameNorth.setText(nameNorth);
+				}
+				if (seatEast) {
+					checkBoxEast.setEnabled(false);
+					lblNameEast.setText(nameEast);
+				}
+			}
+		});
+		button.setBounds(10, 10, 87, 23);
+		contentPane.add(button);
 
-		if (seatSouth) {
-			checkBoxSouth.setEnabled(false);
-			lblNameSouth.setText(nameSouth);
-		}
-		if (seatWest) {
-			checkBoxWest.setEnabled(false);
-			lblNameWest.setText(nameWest);
-		}
-		if (seatNorth) {
-			checkBoxNorth.setEnabled(false);
-			lblNameNorth.setText(nameNorth);
-		}
-		if (seatEast) {
-			checkBoxEast.setEnabled(false);
-			lblNameEast.setEnabled(seatEast);
-		}
+//		if (seatSouth) {
+//			checkBoxSouth.setEnabled(false);
+//			lblNameSouth.setText(nameSouth);
+//		}
+//		if (seatWest) {
+//			checkBoxWest.setEnabled(false);
+//			lblNameWest.setText(nameWest);
+//		}
+//		if (seatNorth) {
+//			checkBoxNorth.setEnabled(false);
+//			lblNameNorth.setText(nameNorth);
+//		}
+//		if (seatEast) {
+//			checkBoxEast.setEnabled(false);
+//			lblNameEast.setEnabled(seatEast);
+//		}
 
 		// new Thread() {
 		Thread thread = new Thread(new Runnable() {
 			public void run() {
-				System.out.println("windowseeeeeeeeeeeeeeeat");
+//				System.out.println("windowseeeeeeeeeeeeeeeat");
 				try {
-					System.out.println("windowseeeeeeeeeeeeeeeat2");
+//					System.out.println("windowseeeeeeeeeeeeeeeat2");
 					while (true) {
-				//		System.out.println("windowseeeeeeeeeeeeeeeat3");
+//						System.out.println("windowseeeeeeeeeeeeeeeat3");
 						System.out.flush();
 						Transmissible messageReceiveFromServer;
 						if (WindowStart.infrastructure != null && WindowStart.infrastructure.getMessage() != null) {
 							messageReceiveFromServer = WindowStart.infrastructure.getMessage();
 							if (messageReceiveFromServer instanceof TransmissibleString) {
 								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
-								System.out.println("windowseeeeeeeeeeeeeeeat" + stringReceiveFromServer);
-								switch ((int) (stringReceiveFromServer.charAt(0) - '0')) {
+							//	System.out.println("windowseeeeeeeeeeeeeeeat" + stringReceiveFromServer);
+							//	System.out.println((int) (stringReceiveFromServer.charAt(1) - '0'));
+								switch ((int) (stringReceiveFromServer.charAt(1) - '0')) {
 								case Direction.SOUTH:
 									seatSouth = true;
 									nameSouth = stringReceiveFromServer.substring(2);
@@ -223,5 +251,4 @@ public class WindowSeat extends JFrame {
 		});// .start();
 		thread.start();
 	}
-
 }
