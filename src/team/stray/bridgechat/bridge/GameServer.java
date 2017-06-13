@@ -1,24 +1,28 @@
 package team.stray.bridgechat.bridge;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.sun.security.ntlm.Client;
 
 public class GameServer{
 
 	public static List<Card> cards;
 	public static boolean isPlayersReachFour = false;
+	public static boolean isGameOver = false;
 	private Dealer dealer;
 
 	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
+	private List<Card> cardsInGame = new CopyOnWriteArrayList<Card>();
+	private List<Card> cardsInRound = new CopyOnWriteArrayList<Card>();
 	
 	public GameServer() {
 //		players.add(new GameClient("t"));//0
 //		players.add(new GameClient("t"));//1
 //		players.add(new GameClient("t"));//2
 //		players.add(new GameClient("t"));//3
+		cardsInGame.clear();
 		players.clear(); //initial vector
 		
 		createCards();
@@ -33,6 +37,13 @@ public class GameServer{
 			isPlayersReachFour = true;
 		else
 			isPlayersReachFour = false;
+	}
+	public void remainCardiInGame(Card e) {
+		this.cardsInGame.add(e);
+		if(this.cardsInGame.size() >= 52)
+			isGameOver = true;
+		else
+			isGameOver = false;
 	}
 
 	/**
@@ -74,7 +85,7 @@ public class GameServer{
 	}
 	
 	public void compareTrick(){
-		
+		Collections.sort(cardsInRound);
 	}
 	
 	/*getter and setter*/
