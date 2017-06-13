@@ -40,19 +40,12 @@ public class GameWindow extends JFrame {
 	 * Launch the application.
 	 */
 	// Vector<Card> cardInHand;
-/*	static CardGUI card1;
-	static CardGUI card2;
-	static CardGUI card3;
-	static CardGUI card4;
-	static CardGUI card5;
-	static CardGUI card6;
-	static CardGUI card7;
-	static CardGUI card8;
-	static CardGUI card9;
-	static CardGUI card10;
-	static CardGUI card11;
-	static CardGUI card12;
-	static CardGUI card13;*/
+	/*
+	 * static CardGUI card1; static CardGUI card2; static CardGUI card3; static
+	 * CardGUI card4; static CardGUI card5; static CardGUI card6; static CardGUI
+	 * card7; static CardGUI card8; static CardGUI card9; static CardGUI card10;
+	 * static CardGUI card11; static CardGUI card12; static CardGUI card13;
+	 */
 
 	JLabel submitCard1;
 	JLabel submitCard2;
@@ -65,6 +58,19 @@ public class GameWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					while (WindowStart.infrastructure.getSeat() == null ) {
+							System.out.println("Seat null!!");
+							Thread.sleep(1000);
+					}
+					while  (WindowStart.infrastructure.getSeat().length() < 2) {
+						System.out.println(WindowStart.infrastructure.getSeat());
+						Thread.sleep(1000);
+				}
+					while (Integer.parseInt(WindowStart.infrastructure.getSeat().substring(1, 2)) < 1) {
+						System.out.println(Integer.parseInt(WindowStart.infrastructure.getSeat().substring(1, 2)));
+						Thread.sleep(1000);
+					}
+					System.out.println("Get Seat OK!!");
 					frame = new GameWindow();
 					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
 						while (!GameServer.isPlayersReachFour) {
@@ -204,58 +210,162 @@ public class GameWindow extends JFrame {
 		textArea.setBounds(650, 10, 303, 423);
 		contentPane.add(textArea);
 
-		// player
-		JLabel myicon = new JLabel("New label");
-		myicon.setBounds(558, 368, 71, 65);
-		contentPane.add(myicon);
+		// System.out.println(WindowStart.infrastructure.getSeat().charAt(1));
+		if (WindowStart.infrastructure.getSeat().charAt(1) == '1') {
 
-		JLabel myname = new JLabel("New label");
-		myname.setBounds(558, 332, 71, 29);
-		contentPane.add(myname);
+			JLabel player1name = new JLabel("New label");
+			player1name.setBounds(558, 371, 71, 29);
+			contentPane.add(player1name);
 
-		JLabel label = new JLabel("New label");
-		label.setBounds(558, 181, 71, 65);
-		contentPane.add(label);
+			JLabel player4name = new JLabel("New label");
+			player4name.setBounds(558, 197, 71, 29);
+			contentPane.add(player4name);
 
-		JLabel player2icon = new JLabel("New label");
-		player2icon.setBounds(21, 181, 71, 65);
-		contentPane.add(player2icon);
+			JLabel player3name = new JLabel("New label");
+			player3name.setBounds(286, 8, 71, 29);
+			contentPane.add(player3name);
 
-		JLabel player3icon = new JLabel("New label");
-		player3icon.setBounds(273, 10, 71, 65);
-		contentPane.add(player3icon);
+			JLabel player2name = new JLabel("New label");
+			player2name.setBounds(31, 197, 71, 29);
+			contentPane.add(player2name);
 
-		JLabel player4name = new JLabel("New label");
-		player4name.setBounds(558, 145, 71, 29);
-		contentPane.add(player4name);
+			submitCard1 = new JLabel("New label");
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard1.setBounds(286, 224, 71, 96);
+			contentPane.add(submitCard1);
 
-		JLabel player3name = new JLabel("New label");
-		player3name.setBounds(354, 25, 71, 29);
-		contentPane.add(player3name);
+			submitCard2 = new JLabel("New label");
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard2.setBounds(162, 163, 71, 96);
+			contentPane.add(submitCard2);
 
-		JLabel player2name = new JLabel("New label");
-		player2name.setBounds(21, 142, 71, 29);
-		contentPane.add(player2name);
+			submitCard3 = new JLabel("New label");
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard3.setBounds(286, 85, 71, 96);
+			contentPane.add(submitCard3);
 
-		submitCard1 = new JLabel("New label");
-		submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
-		submitCard1.setBounds(286, 224, 71, 96);
-		contentPane.add(submitCard1);
+			submitCard4 = new JLabel("New label");
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard4.setBounds(409, 163, 71, 96);
+			contentPane.add(submitCard4);
+		}
 
-		submitCard2 = new JLabel("New label");
-		submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
-		submitCard2.setBounds(162, 163, 71, 96);
-		contentPane.add(submitCard2);
+		else if (WindowStart.infrastructure.getSeat().charAt(1) == '2') {
 
-		submitCard3 = new JLabel("New label");
-		submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
-		submitCard3.setBounds(286, 85, 71, 96);
-		contentPane.add(submitCard3);
+			JLabel player2name = new JLabel("New label");
+			player2name.setBounds(558, 371, 71, 29);
+			contentPane.add(player2name);
 
-		submitCard4 = new JLabel("New label");
-		submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
-		submitCard4.setBounds(409, 163, 71, 96);
-		contentPane.add(submitCard4);
+			JLabel player1name = new JLabel("New label");
+			player1name.setBounds(558, 197, 71, 29);
+			contentPane.add(player1name);
+
+			JLabel player4name = new JLabel("New label");
+			player4name.setBounds(286, 8, 71, 29);
+			contentPane.add(player4name);
+
+			JLabel player3name = new JLabel("New label");
+			player3name.setBounds(31, 197, 71, 29);
+			contentPane.add(player3name);
+
+			submitCard1 = new JLabel("New label");
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard1.setBounds(409, 163, 71, 96);
+			contentPane.add(submitCard1);
+
+			submitCard2 = new JLabel("New label");
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard2.setBounds(286, 224, 71, 96);
+			contentPane.add(submitCard2);
+
+			submitCard3 = new JLabel("New label");
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard3.setBounds(162, 163, 71, 96);
+			contentPane.add(submitCard3);
+
+			submitCard4 = new JLabel("New label");
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard4.setBounds(286, 85, 71, 96);
+			contentPane.add(submitCard4);
+		}
+
+		else if (WindowStart.infrastructure.getSeat().charAt(1) == '3') {
+
+			JLabel player3name = new JLabel("New label");
+			player3name.setBounds(558, 371, 71, 29);
+			contentPane.add(player3name);
+
+			JLabel player2name = new JLabel("New label");
+			player2name.setBounds(558, 197, 71, 29);
+			contentPane.add(player2name);
+
+			JLabel player1name = new JLabel("New label");
+			player1name.setBounds(286, 8, 71, 29);
+			contentPane.add(player1name);
+
+			JLabel player4name = new JLabel("New label");
+			player4name.setBounds(31, 197, 71, 29);
+			contentPane.add(player4name);
+
+			submitCard2 = new JLabel("New label");
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard2.setBounds(409, 163, 71, 96);
+			contentPane.add(submitCard2);
+
+			submitCard3 = new JLabel("New label");
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard3.setBounds(286, 224, 71, 96);
+			contentPane.add(submitCard3);
+
+			submitCard4 = new JLabel("New label");
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard4.setBounds(162, 163, 71, 96);
+			contentPane.add(submitCard4);
+
+			submitCard1 = new JLabel("New label");
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard1.setBounds(286, 85, 71, 96);
+			contentPane.add(submitCard1);
+		}
+
+		else if (WindowStart.infrastructure.getSeat().charAt(1) == '4') {
+
+			JLabel player4name = new JLabel("New label");
+			player4name.setBounds(558, 371, 71, 29);
+			contentPane.add(player4name);
+
+			JLabel player3name = new JLabel("New label");
+			player3name.setBounds(558, 197, 71, 29);
+			contentPane.add(player3name);
+
+			JLabel player2name = new JLabel("New label");
+			player2name.setBounds(286, 8, 71, 29);
+			contentPane.add(player2name);
+
+			JLabel player1name = new JLabel("New label");
+			player1name.setBounds(31, 197, 71, 29);
+			contentPane.add(player1name);
+
+			submitCard3 = new JLabel("New label");
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard3.setBounds(409, 163, 71, 96);
+			contentPane.add(submitCard3);
+
+			submitCard4 = new JLabel("New label");
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard4.setBounds(286, 224, 71, 96);
+			contentPane.add(submitCard4);
+
+			submitCard1 = new JLabel("New label");
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard1.setBounds(162, 163, 71, 96);
+			contentPane.add(submitCard1);
+
+			submitCard2 = new JLabel("New label");
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard2.setBounds(286, 85, 71, 96);
+			contentPane.add(submitCard2);
+		}
 	}
 
 	public void cut() {
