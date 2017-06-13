@@ -45,6 +45,7 @@ public class ConnectionServer extends Connection {
 									e.printStackTrace();
 								}
 								isTerminated = true;
+								serverSocket.close();
 								System.out.println("Stop accepting people connect to server....");
 							}
 						}
