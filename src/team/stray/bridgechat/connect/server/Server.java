@@ -88,24 +88,6 @@ public class Server {
 							isreceivefourcard +=1;
 							if(isreceivefourcard==4){
 								isreceivefourcard=0;
-							}	
-							switch (isreceivefourcard) {
-							case 1:
-								
-								break;
-							case 2:
-								
-								break;
-							case 3:
-	
-								break;
-							case 4:
-	
-								break;
-								
-
-							default:
-								break;
 							}
 							Card cardget=((TransmissibleCard) last).getTransmissibleCard();
 							if(cardget.getValue()>=1&&cardget.getValue()<= 52){
