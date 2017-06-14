@@ -17,6 +17,7 @@ public class InfrastructureImpl implements Infrastructure {
 	private Client client;
 	private Server server;
 	private int type = 0;
+	private String seat;
 
 	private String name;
 	private String connectionIP;
@@ -206,11 +207,13 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void setSeat(String seat) {
 		this.client.getGameClient().setSeat(seat);
+		this.seat = seat;
 	}
 
 	@Override
 	public String getSeat() {
-		return client.getGameClient().getSeat();
+//		return client.getGameClient().getSeat();
+		return seat;
 	}
 
 	@Override

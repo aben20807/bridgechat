@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import team.stray.bridgechat.bridge.Direction;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
+import team.stray.bridgechat.gamegui.GameWindow;
 
 import java.awt.Toolkit;
 
@@ -137,7 +138,15 @@ public class WindowSeat extends JFrame {
 				}
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
 				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+				System.out.println("@" + seatDirection + WindowStart.infrastructure.getName());
 
+				try{
+					Thread.sleep(2000);
+				}
+				catch(Exception e){
+					e.printStackTrace();
+				}
+				System.out.println(WindowStart.infrastructure.getSeat());
 			}
 		});
 		btnCheckSeat.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 12));
@@ -254,6 +263,9 @@ public class WindowSeat extends JFrame {
 									if (!lblNameEast.getText().equals(" ")) {
 										System.out.println("stop the thread");
 										doneSeat = true;
+										
+										System.out.println(WindowStart.infrastructure.getSeat());
+										GameWindow.openGameGui();
 										controlThread = false;
 									}
 								}
