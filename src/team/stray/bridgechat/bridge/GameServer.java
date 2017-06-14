@@ -43,7 +43,7 @@ public class GameServer{
 	}
 	public void remainCardiInGame(Card e) {
 		this.cardsInGame.add(e);
-		if(this.cardsInGame.size() >= 6)
+		if(this.cardsInGame.size() >= 52)
 			isGameOver = true;
 		else
 			isGameOver = false;
