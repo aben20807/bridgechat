@@ -1,6 +1,9 @@
 package team.stray.bridgechat.windowgui;
 
 import team.stray.bridgechat.*;
+import team.stray.bridgechat.bridge.Direction;
+import team.stray.bridgechat.connect.Transmissible;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 import team.stray.bridgechat.gamegui.GameWindow;
 //import team.stray.bridgechat.gamegui.GameWindowTest;
 
@@ -34,7 +37,12 @@ public class WindowStart {
 	private JFrame frame;
 	private JTextField inputIP;
 	private JTextField inputName;
-	public static Infrastructure infrastructure;
+	public static Infrastructure infrastructure = null;
+	private static String stringReceiveFromServer;
+	private static boolean isRoomFull = false;
+	private static WindowLoad windowLoad;
+	private static WindowSeat windowSeat;
+
 	/**
 	 * Launch the application.
 	 */
@@ -64,6 +72,7 @@ public class WindowStart {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("·L³n¥¿¶ÂÅé", Font.BOLD, 12));
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(WindowStart.class.getResource("/resource/chip.png")));
@@ -175,8 +184,7 @@ public class WindowStart {
 						infrastructure.openRoom();
 					}
 
-					//WindowSeat windowSeat = new WindowSeat();
-					//windowSeat.setVisible(true);
+					
 					/*GameWindow frame1 = new GameWindow();
 					 try{
 					    	Thread.sleep(10000);
@@ -196,17 +204,22 @@ public class WindowStart {
 			//	 GameWindow game = new GameWindow();
 			//	 game.openGameGui();
             *******************************************/
+				    /******************************************
+				     Test for WindowSeat
 					WindowSeat windowSeat = new WindowSeat(); // new
 					windowSeat.setVisible(true);
-					
+					 *******************************************/
 //					WindowLoad windowLoad;
-//					try {
-//						windowLoad = new WindowLoad();
-//						windowLoad.setVisible(true);
-//					} catch (MalformedURLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}			
+					try {
+						windowLoad = new WindowLoad();
+						windowLoad.setVisible(true);
+						windowLoad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}			
+//					WindowSeat windowSeat = new WindowSeat();
+//					windowSeat.setVisible(false);
 					
 					frame.setVisible(false);
 					
@@ -243,7 +256,38 @@ public class WindowStart {
 		});
 		btnStart.setBounds(233, 209, 87, 23);
 		frame.getContentPane().add(btnStart);
+		
+		Thread thread = new Thread(new Runnable() {
+			public void run() {
+//				 System.out.println("windowseeeeeeeeeeeeeeeat");
+				try {
+//					 System.out.println("windowseeeeeeeeeeeeeeeat2");
+					while ( true ) {
+//						 System.out.println("windowseeeeeeeeeeeeeeeat3");
+						System.out.flush();
+						Transmissible messageReceiveFromServer;						
+						if (infrastructure != null && infrastructure.getMessage() != null) {
+							messageReceiveFromServer = infrastructure.getMessage();
+							if (messageReceiveFromServer instanceof TransmissibleString) {
+								stringReceiveFromServer = ((TransmissibleString) messageReceiveFromServer).getTransmissibleString();
+									
+								if (stringReceiveFromServer.length() != 0 && stringReceiveFromServer.equals("ROOM_FULL")) {
+									System.out.println(stringReceiveFromServer + "test1");
+									Thread.sleep(38700);
+									windowLoad.dispose();
+									//windowSeat.setVisible(true);
+								}
+							}
+						}
 
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});// .start();
+		thread.start();
 	}
 	
 	public String getIP() {
