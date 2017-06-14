@@ -114,7 +114,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void chooseSeat() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -139,8 +138,32 @@ public class InfrastructureImpl implements Infrastructure {
 		for (int i = 0; i < 4; i++) {
 			// sort cards in hand
 			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-			// deal
-			for (Card c : this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
+		}
+		// for (int i = 0; i < 4; i++) {
+		// // sort cards in hand
+		// this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
+		// // deal
+		// for (Card c :
+		// this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+		// this.client.submitCard(i, c);
+		// // System.out.print(i + " : ");
+		// try {
+		// Thread.sleep(600);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// c.printInfo();
+		// }
+		// System.out.println(i + " point : " +
+		// this.server.getGameServer().getPlayers().get(i).getPoints());
+		// System.out.println("----");
+		// }
+		// System.out.println("deal finished");
+
+		for (int j = 0; j < 13; j++) {
+			for (int i = 0; i < 4; i++) {
+				Card c = this.server.getGameServer().getPlayers().get(i).getCardsInHand().get(j);
 				this.client.submitCard(i, c);
 				// System.out.print(i + " : ");
 				try {
@@ -150,8 +173,7 @@ public class InfrastructureImpl implements Infrastructure {
 				}
 				c.printInfo();
 			}
-			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
-			System.out.println("----");
+			System.out.println(j+"----");
 		}
 		System.out.println("deal finished");
 	}
@@ -196,6 +218,9 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public Transmissible getMessage() {
+		if(client != null){
 		return client.getMessageReceiveFromServer();
+		}
+		else return null;
 	}
 }
