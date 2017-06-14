@@ -10,7 +10,6 @@ import team.stray.bridgechat.connect.Connection;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleCard;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
-import team.stray.bridgechat.connect.Timestamp;
 
 public class Client {
 
@@ -75,7 +74,6 @@ public class Client {
 		} else {
 			System.out.println("client receive : null");
 		}
-
 	}
 
 	public void printReceiveGameClient() {

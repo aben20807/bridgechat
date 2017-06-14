@@ -2,7 +2,6 @@ package team.stray.bridgechat.bridge;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
 
 public class Dealer {
 

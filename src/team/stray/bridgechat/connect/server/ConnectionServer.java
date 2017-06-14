@@ -7,12 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.connect.Connection;
-import team.stray.bridgechat.connect.Transmissible;
 
 public class ConnectionServer extends Connection {
 

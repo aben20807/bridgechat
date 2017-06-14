@@ -2,16 +2,8 @@ package team.stray.bridgechat.connect.server;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.sun.org.apache.bcel.internal.generic.LASTORE;
-
-import team.stray.bridgechat.BridgeChat;
-import team.stray.bridgechat.InfrastructureImpl;
-import team.stray.bridgechat.InfrastructureImplTest;
-import team.stray.bridgechat.bridge.GameClient;
 import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.chat.ChatroomServer;
@@ -171,12 +163,12 @@ public class Server {
 		});
 		thread.start();
 	}
-
+	
+	/* getter and setter */
+	
 	public String getIP() {
 		return connectionServer.getIP();
 	}
-
-	/* getter and setter */
 
 	public Client getClient() {
 		return client;

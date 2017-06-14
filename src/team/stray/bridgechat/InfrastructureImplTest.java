@@ -1,7 +1,6 @@
 package team.stray.bridgechat;
 
 import java.util.List;
-import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 
@@ -21,7 +20,6 @@ public class InfrastructureImplTest {
 				try {
 					Thread.sleep(20);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.print("seat:");

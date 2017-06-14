@@ -2,8 +2,6 @@ package team.stray.bridgechat;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.connect.Transmissible;
@@ -34,11 +32,9 @@ public interface Infrastructure {
 	
 	/*Bridge*/
 	HashMap<Integer	, String> getSeatArrange();
-	void chooseSeat();
 	void shuffleCard();
 	void dealCard();
 	List<Card> getCardsInHand();
 	void cut();
 	void call();
-	void compareTrick();
 }
