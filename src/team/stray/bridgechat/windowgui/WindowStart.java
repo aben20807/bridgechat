@@ -30,6 +30,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import com.sun.prism.paint.Stop;
+
 //import .WindowSeat;
 
 public class WindowStart {
@@ -42,7 +44,7 @@ public class WindowStart {
 	private static boolean isRoomFull = false;
 	private static WindowLoad windowLoad;
 	private static WindowSeat windowSeat;
-
+	private static boolean stopThreadOfLoad = true;
 	/**
 	 * Launch the application.
 	 */
@@ -218,8 +220,6 @@ public class WindowStart {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}			
-//					WindowSeat windowSeat = new WindowSeat();
-//					windowSeat.setVisible(false);
 					
 					frame.setVisible(false);
 					
@@ -262,7 +262,7 @@ public class WindowStart {
 //				 System.out.println("windowseeeeeeeeeeeeeeeat");
 				try {
 //					 System.out.println("windowseeeeeeeeeeeeeeeat2");
-					while ( true ) {
+					while ( stopThreadOfLoad ) {
 //						 System.out.println("windowseeeeeeeeeeeeeeeat3");
 						System.out.flush();
 						Transmissible messageReceiveFromServer;						
@@ -275,7 +275,10 @@ public class WindowStart {
 									System.out.println(stringReceiveFromServer + "test1");
 									Thread.sleep(38700);
 									windowLoad.dispose();
-									//windowSeat.setVisible(true);
+									WindowSeat windowSeat = new WindowSeat();
+									windowSeat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+									windowSeat.setVisible(true);
+									stopThreadOfLoad = false;
 								}
 							}
 						}
