@@ -17,7 +17,7 @@ public class GameServer{
 
 	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
 	private List<Card> cardsInGame = new CopyOnWriteArrayList<Card>();
-	private List<Card> cardsInRound = new CopyOnWriteArrayList<Card>();
+	public List<Card> cardsInRound = new CopyOnWriteArrayList<Card>();
 	
 	public GameServer() {
 //		players.add(new GameClient("t"));//0
@@ -25,6 +25,7 @@ public class GameServer{
 //		players.add(new GameClient("t"));//2
 //		players.add(new GameClient("t"));//3
 		cardsInGame.clear();
+		cardsInRound.clear();
 		players.clear(); //initial vector
 		
 		createCards();
@@ -95,6 +96,7 @@ public class GameServer{
 	
 	public void compareTrick(){
 		Collections.sort(cardsInRound);
+		isRoundFull = false;
 	}
 	
 	/*getter and setter*/
