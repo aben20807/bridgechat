@@ -47,10 +47,10 @@ public class GameWindow extends JFrame {
 	 * static CardGUI card11; static CardGUI card12; static CardGUI card13;
 	 */
 
-	static submitCardGUI submitCard1;
-	static submitCardGUI submitCard2;
-	static submitCardGUI submitCard3;
-	static submitCardGUI submitCard4;
+	static SubmitCardGUI submitCard1;
+	static SubmitCardGUI submitCard2;
+	static SubmitCardGUI submitCard3;
+	static SubmitCardGUI submitCard4;
 	static GameWindow frame;
 	static boolean isDeck = false;
 
@@ -235,22 +235,22 @@ public class GameWindow extends JFrame {
 			player2name.setBounds(31, 197, 71, 29);
 			contentPane.add(player2name);
 
-			submitCard1 = new submitCardGUI();
+			submitCard1 = new SubmitCardGUI();
 		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard1);
 
-			submitCard2 = new submitCardGUI();
+			submitCard2 = new SubmitCardGUI();
 			//submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
 			submitCard2.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard2);
 
-			submitCard3 = new submitCardGUI();
+			submitCard3 = new SubmitCardGUI();
 			//submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
 			submitCard3.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard3);
 
-			submitCard4 = new submitCardGUI();
+			submitCard4 = new SubmitCardGUI();
 		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
 			submitCard4.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard4);
@@ -274,22 +274,22 @@ public class GameWindow extends JFrame {
 			player3name.setBounds(31, 197, 71, 29);
 			contentPane.add(player3name);
 
-			submitCard1 = new submitCardGUI();
+			submitCard1 = new SubmitCardGUI();
 		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard1);
 
-			submitCard2 = new submitCardGUI();
+			submitCard2 = new SubmitCardGUI();
 		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard2);
 
-			submitCard3 = new submitCardGUI();
+			submitCard3 = new SubmitCardGUI();
 		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard3);
 
-			submitCard4 = new submitCardGUI();
+			submitCard4 = new SubmitCardGUI();
 		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard4);
@@ -313,22 +313,22 @@ public class GameWindow extends JFrame {
 			player4name.setBounds(31, 197, 71, 29);
 			contentPane.add(player4name);
 
-			submitCard2 = new submitCardGUI();
+			submitCard2 = new SubmitCardGUI();
 		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard2);
 
-			submitCard3 = new submitCardGUI();
+			submitCard3 = new SubmitCardGUI();
 		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard3);
 
-			submitCard4 = new submitCardGUI();
+			submitCard4 = new SubmitCardGUI();
 		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard4);
 
-			submitCard1 = new submitCardGUI();
+			submitCard1 = new SubmitCardGUI();
 		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard1);
@@ -352,22 +352,22 @@ public class GameWindow extends JFrame {
 			player1name.setBounds(31, 197, 71, 29);
 			contentPane.add(player1name);
 
-			submitCard3 = new submitCardGUI();
+			submitCard3 = new SubmitCardGUI();
 		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard3);
 
-			submitCard4 = new submitCardGUI();
+			submitCard4 = new SubmitCardGUI();
 		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard4);
 
-			submitCard1 = new submitCardGUI();
+			submitCard1 = new SubmitCardGUI();
 		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard1);
 
-			submitCard2 = new submitCardGUI();
+			submitCard2 = new SubmitCardGUI();
 		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard2);

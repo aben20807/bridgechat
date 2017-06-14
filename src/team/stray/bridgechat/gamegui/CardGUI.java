@@ -13,7 +13,7 @@ import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.Suit;
 import team.stray.bridgechat.windowgui.WindowStart;
 
-public class CardGUI extends submitCardGUI {
+public class CardGUI extends SubmitCardGUI {
 	private boolean isMouseHold = false;
 	private boolean isMoveable = true;
 	int cardx;
