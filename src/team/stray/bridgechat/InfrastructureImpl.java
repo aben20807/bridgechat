@@ -7,7 +7,6 @@ import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.GameServer;
-import team.stray.bridgechat.bridge.Seat;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
@@ -19,7 +18,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	private Client client;
 	private Server server;
-	private Seat seat;
 	private int type = 0;
 	private String seat;
 
@@ -227,13 +225,6 @@ public class InfrastructureImpl implements Infrastructure {
 		}
 		else return null;
 	}
-
-	@Override
-	public int ClockWiseTurn(int direction) {
-		// TODO Auto-generated method stub
-		return this.seat.clockwiseturn(direction);
-	}
-	
 
 	@Override
 	public Map<String, Integer> getSeatArrange() {
