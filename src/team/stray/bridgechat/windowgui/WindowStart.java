@@ -77,7 +77,7 @@ public class WindowStart {
 	private void initialize() {
 
 		frame = new JFrame();
-		frame.getContentPane().setFont(new Font("·L³n¥¿¶ÂÅé", Font.BOLD, 12));
+		frame.getContentPane().setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 12));
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(WindowStart.class.getResource("/resource/chip.png")));
 		frame.setTitle("\u6A4B\u724C123");
 		frame.setForeground(Color.WHITE);
@@ -99,19 +99,19 @@ public class WindowStart {
 		inputName.setColumns(10);
 
 		JLabel labelName = new JLabel("\u60A8\u7684\u5927\u540D :");
-		labelName.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		labelName.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		labelName.setBounds(169, 147, 87, 22);
 		frame.getContentPane().add(labelName);
 
 		JLabel labelIP = new JLabel("IP\uFF1A");
-		labelIP.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		labelIP.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		labelIP.setBounds(219, 97, 35, 18);
 		frame.getContentPane().add(labelIP);
 		labelIP.setVisible(false);
 
 		JRadioButton btnEnterRoom = new JRadioButton("\u9032\u5165\u623F\u9593");
 
-		btnEnterRoom.setFont(new Font("·L³n¥¿¶ÂÅé", Font.BOLD, 14));
+		btnEnterRoom.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 14));
 		btnEnterRoom.setBounds(235, 39, 119, 35);
 		frame.getContentPane().add(btnEnterRoom);
 		// set the background transparent
@@ -121,7 +121,7 @@ public class WindowStart {
 
 		JRadioButton btnBuildRoom = new JRadioButton("\u5EFA\u7ACB\u623F\u9593");
 		btnBuildRoom.setBackground(Color.WHITE);
-		btnBuildRoom.setFont(new Font("·L³n¥¿¶ÂÅé", Font.BOLD, 14));
+		btnBuildRoom.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 14));
 		btnBuildRoom.setBounds(60, 39, 119, 35);
 		frame.getContentPane().add(btnBuildRoom);
 		// set the background transparent
@@ -161,14 +161,14 @@ public class WindowStart {
 		});
 
 		JLabel labelUserIP = new JLabel("IP :");
-		labelUserIP.setFont(new Font("·L³n¥¿¶ÂÅé Light", Font.PLAIN, 12));
+		labelUserIP.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Light", Font.PLAIN, 12));
 		labelUserIP.setBounds(10, 10, 124, 15);
 		frame.getContentPane().add(labelUserIP);
 		// System.out.println(getIP());
 		labelUserIP.setText("\u672C\u5730IP : " + getIP());
 
 		JButton btnStart = new JButton("\u958B\u59CB");
-		btnStart.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 14));
+		btnStart.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 14));
 		btnStart.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -241,7 +241,8 @@ public class WindowStart {
 					Container cp = stupid.getContentPane();
 					cp.setLayout(null);
 					// stupid.setVisible(true);
-					JOptionPane.showMessageDialog(stupid, "½Ğ¶i¤J©Ğ¶¡ ©Î«Ø¥ß©Ğ¶¡", "½E¸{´£¿ô", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(stupid, "è«‹é€²å…¥æˆ¿é–“æˆ–å»ºç«‹æˆ¿é–“", "ç˜Ÿè…¥æé†’", JOptionPane.ERROR_MESSAGE);
+
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				} else if (inputIP.getText().equals("") || !btnBuildRoom.isSelected()) { // no
 																							// input
@@ -259,7 +260,7 @@ public class WindowStart {
 					Container cp = stupid.getContentPane();
 					cp.setLayout(null);
 					// stupid.setVisible(true);
-					JOptionPane.showMessageDialog(stupid, "½Ğ¿é¤Jip\n©Î«Ø¥ß©Ğ¶¡", "½E¸{´£¿ô", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(stupid, "è«‹è¼¸å…¥ip\næˆ–å»ºç«‹æˆ¿é–“", "ç˜Ÿè…¥æé†’", JOptionPane.ERROR_MESSAGE);
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
 			}

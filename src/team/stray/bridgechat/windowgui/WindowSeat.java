@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
 
@@ -22,6 +23,8 @@ import java.util.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +33,10 @@ import java.awt.event.MouseEvent;
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class WindowSeat extends JFrame {
 
@@ -89,7 +95,7 @@ public class WindowSeat extends JFrame {
 		contentPane.setLayout(null);
 
 		JCheckBox checkBoxSouth = new JCheckBox("\u5357");
-		checkBoxSouth.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		checkBoxSouth.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		checkBoxSouth.setBounds(175, 165, 43, 23);
 		contentPane.add(checkBoxSouth);
 		checkBoxSouth.setOpaque(false);
@@ -97,7 +103,7 @@ public class WindowSeat extends JFrame {
 		checkBoxSouth.setBorderPainted(false);
 
 		JCheckBox checkBoxNorth = new JCheckBox("\u5317");
-		checkBoxNorth.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		checkBoxNorth.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		checkBoxNorth.setBounds(175, 43, 43, 23);
 		contentPane.add(checkBoxNorth);
 		checkBoxNorth.setOpaque(false);
@@ -105,7 +111,7 @@ public class WindowSeat extends JFrame {
 		checkBoxNorth.setBorderPainted(false);
 
 		JCheckBox checkBoxEast = new JCheckBox("\u6771");
-		checkBoxEast.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		checkBoxEast.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		checkBoxEast.setBounds(270, 100, 43, 23);
 		contentPane.add(checkBoxEast);
 		checkBoxEast.setOpaque(false);
@@ -113,7 +119,7 @@ public class WindowSeat extends JFrame {
 		checkBoxEast.setBorderPainted(false);
 
 		JCheckBox checkBoxWest = new JCheckBox("\u897F");
-		checkBoxWest.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 18));
+		checkBoxWest.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 18));
 		checkBoxWest.setBounds(70, 100, 43, 23);
 		contentPane.add(checkBoxWest);
 		checkBoxWest.setOpaque(false);
@@ -131,24 +137,104 @@ public class WindowSeat extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				if (checkBoxSouth.isSelected()) {
-					seatDirection = Direction.SOUTH;
-					btnCheckSeat.setEnabled(false);
+				if (!seatSouth) {
+					if (checkBoxSouth.isSelected()) {
+						seatDirection = Direction.SOUTH;
+						btnCheckSeat.setEnabled(false);
+					}
+				} else if (seatSouth && checkBoxSouth.isSelected()) {
+					checkBoxSouth.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "å—æ–¹å·²è¢«é¸èµ°å•¦", "ä½å­å·²è¢«é¸å–", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxWest.isSelected()) {
-					seatDirection = Direction.WEST;
-					btnCheckSeat.setEnabled(false);
+				if (!seatWest) {
+					if (checkBoxWest.isSelected()) {
+						seatDirection = Direction.WEST;
+						btnCheckSeat.setEnabled(false);
+					}
+				} else if (seatWest && checkBoxWest.isSelected()) {
+					checkBoxWest.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "è¥¿æ–¹å·²è¢«é¸èµ°å•¦", "ä½å­å·²è¢«é¸å–", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxNorth.isSelected()) {
-					seatDirection = Direction.NORTH;
-					btnCheckSeat.setEnabled(false);
+				if (!seatNorth) {
+					if (checkBoxNorth.isSelected()) {
+						seatDirection = Direction.NORTH;
+						btnCheckSeat.setEnabled(false);
+					}
+				} else if (seatNorth && checkBoxNorth.isSelected()) {
+					checkBoxNorth.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "åŒ—æ–¹å·²è¢«é¸èµ°å•¦", "ä½å­å·²è¢«é¸å–", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxEast.isSelected()) {
-					seatDirection = Direction.EAST;
-					btnCheckSeat.setEnabled(false);
+				if (!seatEast) {
+					if (checkBoxEast.isSelected()) {
+						seatDirection = Direction.EAST;
+						btnCheckSeat.setEnabled(false);
+					}
+				} else if (seatEast && checkBoxEast.isSelected()) {
+					checkBoxWest.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "æ±æ–¹å·²è¢«é¸èµ°å•¦", "ä½å­å·²è¢«é¸å–", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxSouth.isSelected() || checkBoxWest.isSelected() || checkBoxNorth.isSelected()
-						|| checkBoxEast.isSelected()) {
+//				if (checkBoxSouth.isSelected()) {
+//					seatDirection = Direction.SOUTH;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxWest.isSelected()) {
+//					seatDirection = Direction.WEST;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxNorth.isSelected()) {
+//					seatDirection = Direction.NORTH;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxEast.isSelected()) {
+//					seatDirection = Direction.EAST;
+//					btnCheckSeat.setEnabled(false);
+//				}
+				
+				
+				if ( (checkBoxSouth.isSelected() && !seatSouth) || 
+						(checkBoxWest.isSelected() && !seatWest) || 
+							(checkBoxNorth.isSelected() && !seatNorth) ||
+								(checkBoxEast.isSelected()) && !seatEast) {
 					checkBoxNorth.setEnabled(false);
 					checkBoxWest.setEnabled(false);
 					checkBoxEast.setEnabled(false);
@@ -160,27 +246,27 @@ public class WindowSeat extends JFrame {
 
 			}
 		});
-		btnCheckSeat.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 12));
+		btnCheckSeat.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 12));
 		btnCheckSeat.setBounds(324, 228, 87, 23);
 		contentPane.add(btnCheckSeat);
 
 		JLabel lblNameSouth = new JLabel(" ");
-		lblNameSouth.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 16));
+		lblNameSouth.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 16));
 		lblNameSouth.setBounds(175, 194, 100, 23);
 		contentPane.add(lblNameSouth);
 
 		JLabel lblNameNorth = new JLabel(" ");
-		lblNameNorth.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 16));
+		lblNameNorth.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 16));
 		lblNameNorth.setBounds(175, 71, 100, 23);
 		contentPane.add(lblNameNorth);
 
 		JLabel lblNameEast = new JLabel(" ");
-		lblNameEast.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 16));
+		lblNameEast.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 16));
 		lblNameEast.setBounds(270, 129, 100, 23);
 		contentPane.add(lblNameEast);
 
 		JLabel lblNameWest = new JLabel(" ");
-		lblNameWest.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 16));
+		lblNameWest.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
 
@@ -192,7 +278,7 @@ public class WindowSeat extends JFrame {
 				dispose();
 			}
 		});
-		btnEnterGame.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 12));
+		btnEnterGame.setFont(new Font("ï¿½Lï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.PLAIN, 12));
 		btnEnterGame.setBounds(324, 195, 87, 23);
 		contentPane.add(btnEnterGame);
 		btnEnterGame.setEnabled(false);
@@ -237,12 +323,12 @@ public class WindowSeat extends JFrame {
 					// try test timer
 					// class DateTask extends TimerTask {
 					// public void run() {
-					// System.out.println("¥ô°È®É¶¡¡G" + new Date());
+					// System.out.println("ï¿½ï¿½ï¿½È®É¶ï¿½ï¿½G" + new Date());
 					// }
 					// }
 					// Timer timer = new Timer();
 					// timer.schedule(new DateTask(),5000);
-					// System.out.println("²{¦b®É¶¡¡G" + new Date());
+					// System.out.println("ï¿½{ï¿½bï¿½É¶ï¿½ï¿½G" + new Date());
 					// try {
 					// Thread.sleep(8000);
 					// }
