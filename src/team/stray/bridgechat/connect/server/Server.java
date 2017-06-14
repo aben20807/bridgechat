@@ -99,6 +99,7 @@ public class Server {
 						
 						if (GameServer.isPlayersReachFour == true && isPrintOnce == false) {
 							System.out.println("room full");
+							client.submitString("ROOM_FULL");
 							isPrintOnce = true;
 							//isWaitClientConnect = false;
 						}
