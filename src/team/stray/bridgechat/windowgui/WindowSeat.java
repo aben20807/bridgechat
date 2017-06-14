@@ -71,6 +71,11 @@ public class WindowSeat extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowSeat() {
+		
+		// can't resize the window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		
 		setTitle("\u6A4B\u724C123");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowSeat.class.getResource("/resource/chip.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
