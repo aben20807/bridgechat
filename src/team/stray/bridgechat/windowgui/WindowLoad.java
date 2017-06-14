@@ -73,7 +73,10 @@ public class WindowLoad extends JFrame {
 			labelTextLoading.setBounds(32, 14, 106, 23);
 			contentPane.add(labelTextLoading);
 
-			ImageIcon icon = new ImageIcon(new URL("https://i.giphy.com/3o8doNAGKZXsrsgzW8.gif"));	
+			ClassLoader cldr2 = this.getClass().getClassLoader();  					// set my resource 
+			java.net.URL imageURL2 = cldr2.getResource("resource/loading.gif");
+			ImageIcon icon = new ImageIcon(imageURL2); 
+			//ImageIcon icon = new ImageIcon(new URL("https://i.giphy.com/3o8doNAGKZXsrsgzW8.gif"));	
 			JLabel labelGifBg = new JLabel(icon);
 			labelGifBg.setBounds(0, 0, 335, 390);
 			contentPane.add(labelGifBg);

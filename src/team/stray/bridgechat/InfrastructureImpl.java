@@ -19,7 +19,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	private Client client;
 	private Server server;
-	private Seat seat;
 	private int type = 0;
 	private String seat;
 
@@ -227,13 +226,6 @@ public class InfrastructureImpl implements Infrastructure {
 		}
 		else return null;
 	}
-
-	@Override
-	public int ClockWiseTurn(int direction) {
-		// TODO Auto-generated method stub
-		return this.seat.clockwiseturn(direction);
-	}
-	
 
 	@Override
 	public Map<String, Integer> getSeatArrange() {

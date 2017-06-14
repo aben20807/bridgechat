@@ -33,7 +33,6 @@ public interface Infrastructure {
 	void printMessageInfo();
 	
 	/*Bridge*/
-	int ClockWiseTurn(int direction);
 	Map<String, Integer> getSeatArrange();
 	void chooseSeat();
 	void shuffleCard();
