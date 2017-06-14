@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.javafx.scene.control.skin.TextAreaSkin;
+
 import team.stray.bridgechat.Infrastructure;
 import team.stray.bridgechat.InfrastructureImpl;
 import team.stray.bridgechat.bridge.Card;
@@ -15,6 +17,7 @@ import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.bridge.Suit;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleGameClient;
+import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -28,6 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -37,6 +41,7 @@ public class GameWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextArea textArea;
 	/**
 	 * Launch the application.
 	 */
@@ -71,14 +76,18 @@ public class GameWindow extends JFrame {
 						System.out.println(Integer.parseInt(WindowStart.infrastructure.getSeat().substring(1, 2)));
 						Thread.sleep(1000);
 					}
-					while(WindowStart.infrastructure.getSeatArrange() == null){
-						System.out.println("Seat null!!");
+					while (WindowStart.infrastructure.getSeatArrange() == null) {
+						System.out.println("Seat still null!!");
 						Thread.sleep(1000);
 					}
-					while (WindowStart.infrastructure.getSeatArrange().size() < 4){
+					while (WindowStart.infrastructure.getSeatArrange().size() < 4) {
 						System.out.println(WindowStart.infrastructure.getSeatArrange().size());
 						Thread.sleep(1000);
 					}
+					Map<Integer, String> seatToName=WindowStart.infrastructure.getSeatArrange();
+					for (Object key : seatToName.keySet()) {
+			            System.out.println(key + " : " + seatToName.get(key));
+			        }
 					System.out.println("Get Seat OK!!");
 					frame = new GameWindow();
 					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
@@ -134,8 +143,16 @@ public class GameWindow extends JFrame {
 			public void run() {
 				while (true) {
 					try {
-						// System.out.println(WindowStart.infrastructure.//get
-						// card's that submit);
+						Transmissible last = null;
+						while (true) {
+							last = WindowStart.infrastructure.getMessage();
+							if(last instanceof TransmissibleString){
+								String get = ((TransmissibleString) last).getTransmissibleString();
+								if(get.length()!=0 && get.charAt(0) == '$'){
+									frame.textArea.append(get.substring(1)+"\n");
+								}
+							}
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -163,48 +180,6 @@ public class GameWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// card
-		/*
-		 * card13 = new CardGUI(); card13.setBounds(477, 355, 71, 96);
-		 * contentPane.add(card13);
-		 * 
-		 * card12 = new CardGUI(); card12.setBounds(443, 355, 71, 96);
-		 * contentPane.add(card12);
-		 * 
-		 * card11 = new CardGUI(); card11.setBounds(409, 355, 71, 96);
-		 * contentPane.add(card11);
-		 * 
-		 * card10 = new CardGUI(); card10.setBounds(379, 355, 71, 96);
-		 * contentPane.add(card10);
-		 * 
-		 * card9 = new CardGUI(); card9.setBounds(343, 355, 71, 96);
-		 * contentPane.add(card9);
-		 * 
-		 * card8 = new CardGUI(); card8.setBounds(312, 355, 71, 96);
-		 * contentPane.add(card8);
-		 * 
-		 * card7 = new CardGUI(); card7.setBounds(273, 355, 71, 96);
-		 * contentPane.add(card7);
-		 * 
-		 * card6 = new CardGUI(); card6.setBounds(231, 355, 71, 96);
-		 * contentPane.add(card6);
-		 * 
-		 * card5 = new CardGUI(); card5.setBounds(192, 355, 71, 96);
-		 * contentPane.add(card5);
-		 * 
-		 * card4 = new CardGUI(); card4.setBounds(152, 355, 71, 96);
-		 * contentPane.add(card4);
-		 * 
-		 * card3 = new CardGUI(); card3.setBounds(111, 355, 67, 96);
-		 * contentPane.add(card3);
-		 * 
-		 * card2 = new CardGUI(); card2.setBounds(71, 355, 71, 96);
-		 * contentPane.add(card2);
-		 * 
-		 * card1 = new CardGUI(); card1.setBounds(36, 355, 71, 96);
-		 * contentPane.add(card1);
-		 */
-
 		// chat room
 		textField = new JTextField();
 		textField.setBounds(650, 422, 239, 29);
@@ -221,163 +196,195 @@ public class GameWindow extends JFrame {
 		btnSend.setBounds(887, 422, 67, 29);
 		contentPane.add(btnSend);
 
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(650, 10, 303, 423);
 		contentPane.add(textArea);
 
 		// System.out.println(WindowStart.infrastructure.getSeat().charAt(1));
 		if (WindowStart.infrastructure.getSeat().charAt(1) == '1') {
 
-			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
+			JLabel player1name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.SOUTH)));
 			player1name.setBounds(558, 371, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
+			JLabel player4name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.EAST)));
 			player4name.setBounds(558, 197, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
+			JLabel player3name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.NORTH)));
 			player3name.setBounds(286, 8, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
+			JLabel player2name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.WEST)));
 			player2name.setBounds(31, 197, 71, 29);
 			contentPane.add(player2name);
 
 			submitCard1 = new SubmitCardGUI();
-		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			// submitCard1.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard1);
 
 			submitCard2 = new SubmitCardGUI();
-			//submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			// submitCard2.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/13.png")));
 			submitCard2.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard2);
 
 			submitCard3 = new SubmitCardGUI();
-			//submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			// submitCard3.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/12.png")));
 			submitCard3.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new SubmitCardGUI();
-		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			// submitCard4.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/11.png")));
 			submitCard4.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard4);
 		}
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '2') {
 
-			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
+			JLabel player2name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.WEST)));
 			player2name.setBounds(558, 371, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
+			JLabel player1name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.SOUTH)));
 			player1name.setBounds(558, 197, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
+			JLabel player4name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.EAST)));
 			player4name.setBounds(286, 8, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
+			JLabel player3name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.NORTH)));
 			player3name.setBounds(31, 197, 71, 29);
 			contentPane.add(player3name);
 
 			submitCard1 = new SubmitCardGUI();
-		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			// submitCard1.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard1);
 
 			submitCard2 = new SubmitCardGUI();
-		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
+			// submitCard2.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard2);
 
 			submitCard3 = new SubmitCardGUI();
-		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
+			// submitCard3.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new SubmitCardGUI();
-		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
+			// submitCard4.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard4);
 		}
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '3') {
 
-			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
+			JLabel player3name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.NORTH)));
 			player3name.setBounds(558, 371, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
+			JLabel player2name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.WEST)));
 			player2name.setBounds(558, 197, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
+			JLabel player1name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.SOUTH)));
 			player1name.setBounds(286, 8, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
+			JLabel player4name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.EAST)));
 			player4name.setBounds(31, 197, 71, 29);
 			contentPane.add(player4name);
 
 			submitCard2 = new SubmitCardGUI();
-		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
+			// submitCard2.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard2);
 
 			submitCard3 = new SubmitCardGUI();
-		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
+			// submitCard3.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new SubmitCardGUI();
-		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
+			// submitCard4.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard4);
 
 			submitCard1 = new SubmitCardGUI();
-		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			// submitCard1.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard1);
 		}
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '4') {
 
-			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
+			JLabel player4name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.EAST)));
 			player4name.setBounds(558, 371, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
+			JLabel player3name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.NORTH)));
 			player3name.setBounds(558, 197, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
+			JLabel player2name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.WEST)));
 			player2name.setBounds(286, 8, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
+			JLabel player1name = new JLabel(
+					WindowStart.infrastructure.getSeatArrange().get((Integer) (Direction.SOUTH)));
 			player1name.setBounds(31, 197, 71, 29);
 			contentPane.add(player1name);
 
 			submitCard3 = new SubmitCardGUI();
-		//	submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
+			// submitCard3.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new SubmitCardGUI();
-		//	submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
+			// submitCard4.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard4);
 
 			submitCard1 = new SubmitCardGUI();
-		//	submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			// submitCard1.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard1);
 
 			submitCard2 = new SubmitCardGUI();
-		//	submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
+			// submitCard2.setIcon(new
+			// ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard2);
 		}
@@ -459,7 +466,8 @@ public class GameWindow extends JFrame {
 	}
 
 	public void sendMessage() {
-		WindowStart.infrastructure.submitString("$"+WindowStart.infrastructure.getSeat().substring(2)+":"+textField.getText());
+		WindowStart.infrastructure
+				.submitString("$" + WindowStart.infrastructure.getSeat().substring(2) + ":" + textField.getText());
 	}
 
 	public static void changeTable(Card card) {
@@ -472,4 +480,5 @@ public class GameWindow extends JFrame {
 		} else if (WindowStart.infrastructure.getSeat().charAt(1) == '4') {
 			submitCard4.printIcon(card);
 		}
-	}}
+	}
+}
