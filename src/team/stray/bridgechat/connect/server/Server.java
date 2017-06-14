@@ -84,8 +84,8 @@ public class Server {
 							if(get.length()!=0 && get.charAt(0)=='@'){
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
-								nameToSeat.put(client.getGameClient().getName(), get.charAt(1)-'0');
-								seatToName.put(get.charAt(1)-'0', client.getGameClient().getName());
+								nameToSeat.put(get.substring(2), get.charAt(1)-'0');
+								seatToName.put(get.charAt(1)-'0', get.substring(2));
 //								for (Object key : seatToName.keySet()) {
 //						            System.out.println(key + " : " + seatToName.get(key));
 //						        }
