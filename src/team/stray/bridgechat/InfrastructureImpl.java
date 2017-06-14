@@ -113,7 +113,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void chooseSeat() {
-		// TODO Auto-generated method stub
 
 	}
 
