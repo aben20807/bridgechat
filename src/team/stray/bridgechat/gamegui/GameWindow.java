@@ -71,6 +71,14 @@ public class GameWindow extends JFrame {
 						System.out.println(Integer.parseInt(WindowStart.infrastructure.getSeat().substring(1, 2)));
 						Thread.sleep(1000);
 					}
+					while(WindowStart.infrastructure.getSeatArrange() == null){
+						System.out.println("Seat null!!");
+						Thread.sleep(1000);
+					}
+					while (WindowStart.infrastructure.getSeatArrange().size() < 4){
+						System.out.println(WindowStart.infrastructure.getSeatArrange().size());
+						Thread.sleep(1000);
+					}
 					System.out.println("Get Seat OK!!");
 					frame = new GameWindow();
 					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
