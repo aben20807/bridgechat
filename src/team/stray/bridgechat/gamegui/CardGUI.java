@@ -52,7 +52,7 @@ public class CardGUI extends JLabel {
 				isMouseHold = false;
 				if (getY() < 260) {
 					setVisible(false);
-					WindowStart.infrastructure.submitCard(card);
+					WindowStart.infrastructure.submitString("%"+WindowStart.infrastructure.getSeat().substring(1,2)+card.getNumber()+card.getSuit()+card.getValue());
 				//	System.out.println(WindowStart.infrastructure.server);
 				} else {
 					setLocation(cardx, cardy);

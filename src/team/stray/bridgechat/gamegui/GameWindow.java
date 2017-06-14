@@ -274,17 +274,17 @@ public class GameWindow extends JFrame {
 			contentPane.add(submitCard1);
 
 			submitCard2 = new JLabel("New label");
-			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard2);
 
 			submitCard3 = new JLabel("New label");
-			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new JLabel("New label");
-			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard4);
 		}
@@ -308,22 +308,22 @@ public class GameWindow extends JFrame {
 			contentPane.add(player4name);
 
 			submitCard2 = new JLabel("New label");
-			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard2);
 
 			submitCard3 = new JLabel("New label");
-			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new JLabel("New label");
-			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard4);
 
 			submitCard1 = new JLabel("New label");
-			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard1);
 		}
@@ -347,22 +347,22 @@ public class GameWindow extends JFrame {
 			contentPane.add(player1name);
 
 			submitCard3 = new JLabel("New label");
-			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
+			submitCard3.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/3.png")));
 			submitCard3.setBounds(409, 163, 71, 96);
 			contentPane.add(submitCard3);
 
 			submitCard4 = new JLabel("New label");
-			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/13.png")));
+			submitCard4.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/4.png")));
 			submitCard4.setBounds(286, 224, 71, 96);
 			contentPane.add(submitCard4);
 
 			submitCard1 = new JLabel("New label");
-			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/12.png")));
+			submitCard1.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/1.png")));
 			submitCard1.setBounds(162, 163, 71, 96);
 			contentPane.add(submitCard1);
 
 			submitCard2 = new JLabel("New label");
-			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/11.png")));
+			submitCard2.setIcon(new ImageIcon(GameWindow.class.getResource("/resource/2.png")));
 			submitCard2.setBounds(286, 85, 71, 96);
 			contentPane.add(submitCard2);
 		}
