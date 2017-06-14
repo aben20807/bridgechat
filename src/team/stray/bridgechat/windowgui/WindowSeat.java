@@ -141,6 +141,11 @@ public class WindowSeat extends JFrame {
 					if (checkBoxSouth.isSelected()) {
 						seatDirection = Direction.SOUTH;
 						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 					}
 				} else if (seatSouth && checkBoxSouth.isSelected()) {
 					checkBoxSouth.setSelected(false);
@@ -160,6 +165,11 @@ public class WindowSeat extends JFrame {
 					if (checkBoxWest.isSelected()) {
 						seatDirection = Direction.WEST;
 						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 					}
 				} else if (seatWest && checkBoxWest.isSelected()) {
 					checkBoxWest.setSelected(false);
@@ -179,6 +189,11 @@ public class WindowSeat extends JFrame {
 					if (checkBoxNorth.isSelected()) {
 						seatDirection = Direction.NORTH;
 						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 					}
 				} else if (seatNorth && checkBoxNorth.isSelected()) {
 					checkBoxNorth.setSelected(false);
@@ -198,6 +213,12 @@ public class WindowSeat extends JFrame {
 					if (checkBoxEast.isSelected()) {
 						seatDirection = Direction.EAST;
 						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);
+						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 					}
 				} else if (seatEast && checkBoxEast.isSelected()) {
 					checkBoxWest.setSelected(false);
@@ -213,6 +234,19 @@ public class WindowSeat extends JFrame {
 					JOptionPane.showMessageDialog(stupid, "東方已被選走啦", "位子已被選取", JOptionPane.WARNING_MESSAGE);
 					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
+				
+				
+				
+//				if ( (checkBoxSouth.isSelected() && !seatSouth) || 
+//						(checkBoxWest.isSelected() && !seatWest) || 
+//							(checkBoxNorth.isSelected() && !seatNorth) ||
+//								(checkBoxEast.isSelected()) && !seatEast) {
+//
+//					checkBoxNorth.setEnabled(false);
+//					checkBoxWest.setEnabled(false);
+//					checkBoxEast.setEnabled(false);
+//					checkBoxSouth.setEnabled(false);
+//				}
 //				if (checkBoxSouth.isSelected()) {
 //					seatDirection = Direction.SOUTH;
 //					btnCheckSeat.setEnabled(false);
@@ -229,20 +263,12 @@ public class WindowSeat extends JFrame {
 //					seatDirection = Direction.EAST;
 //					btnCheckSeat.setEnabled(false);
 //				}
-				
-				
-				if ( (checkBoxSouth.isSelected() && !seatSouth) || 
-						(checkBoxWest.isSelected() && !seatWest) || 
-							(checkBoxNorth.isSelected() && !seatNorth) ||
-								(checkBoxEast.isSelected()) && !seatEast) {
-					checkBoxNorth.setEnabled(false);
-					checkBoxWest.setEnabled(false);
-					checkBoxEast.setEnabled(false);
-					checkBoxSouth.setEnabled(false);
-				}
+//				if (checkBoxSouth.isSelected() || checkBoxWest.isSelected() || checkBoxNorth.isSelected()
+//												|| checkBoxEast.isSelected()) {
+//				}
 
-				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
-				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+//				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+//				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 
 			}
 		});
@@ -288,18 +314,22 @@ public class WindowSeat extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (seatSouth) {
+					checkBoxSouth.setSelected(false);
 					checkBoxSouth.setEnabled(false);
-					lblNameSouth.setText(nameSouth);
+					lblNameSouth.setText(nameSouth);		
 				}
 				if (seatWest) {
+					checkBoxWest.setSelected(false);
 					checkBoxWest.setEnabled(false);
-					lblNameWest.setText(nameWest);
+					lblNameWest.setText(nameWest);				
 				}
 				if (seatNorth) {
+					checkBoxNorth.setSelected(false);
 					checkBoxNorth.setEnabled(false);
-					lblNameNorth.setText(nameNorth);
+					lblNameNorth.setText(nameNorth);		
 				}
 				if (seatEast) {
+					checkBoxEast.setSelected(false);
 					checkBoxEast.setEnabled(false);
 					lblNameEast.setText(nameEast);
 				}

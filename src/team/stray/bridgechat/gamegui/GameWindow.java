@@ -380,8 +380,8 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateDeck() {
-		// System.out.println("card in hand size = " +
-		// WindowStart.infrastructure.getCardsInHand().size());
+		 System.out.println("card in hand size = " +
+		 WindowStart.infrastructure.getCardsInHand().size());
 		if (WindowStart.infrastructure.getCardsInHand().size() == 13) {
 			List<Card> cardInHand = new CopyOnWriteArrayList<>();
 			cardInHand = WindowStart.infrastructure.getCardsInHand();
