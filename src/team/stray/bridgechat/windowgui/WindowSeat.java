@@ -17,7 +17,7 @@ import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
 
 import java.awt.Toolkit;
-
+import java.util.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -129,22 +129,30 @@ public class WindowSeat extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				checkBoxNorth.setEnabled(false);
-				checkBoxWest.setEnabled(false);
-				checkBoxEast.setEnabled(false);
-				checkBoxSouth.setEnabled(false);
 				if (checkBoxSouth.isSelected()) {
 					seatDirection = Direction.SOUTH;
+					btnCheckSeat.setEnabled(false);
 				}
 				if (checkBoxWest.isSelected()) {
 					seatDirection = Direction.WEST;
+					btnCheckSeat.setEnabled(false);
 				}
 				if (checkBoxNorth.isSelected()) {
 					seatDirection = Direction.NORTH;
+					btnCheckSeat.setEnabled(false);
 				}
 				if (checkBoxEast.isSelected()) {
 					seatDirection = Direction.EAST;
+					btnCheckSeat.setEnabled(false);
 				}
+				if ( checkBoxSouth.isSelected() ||  checkBoxWest.isSelected() ||
+						checkBoxNorth.isSelected() || checkBoxEast.isSelected() ){
+					checkBoxNorth.setEnabled(false);
+					checkBoxWest.setEnabled(false);
+					checkBoxEast.setEnabled(false);
+					checkBoxSouth.setEnabled(false);
+				}
+				
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
 				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 				
@@ -195,24 +203,39 @@ public class WindowSeat extends JFrame {
 					lblNameEast.setText(nameEast);
 				}
 //				
-//				if( seatSouth && seatWest && seatNorth && seatEast &&
-//						!lblNameSouth.getText().equals(" ") && !lblNameSouth.getText().equals(" ") 
-//							&& !lblNameWest.getText().equals(" ") && !lblNameEast.getText().equals(" ") ){
-//					
+				if( seatSouth && seatWest && seatNorth && seatEast &&
+						!lblNameSouth.getText().equals(" ") && !lblNameSouth.getText().equals(" ") 
+							&& !lblNameWest.getText().equals(" ") && !lblNameEast.getText().equals(" ") ){
+					
 //					for( int i = 0 ; i < 100000000 ; i++ ){
 //						System.out.flush();
 //					}
-////					try {
-////						Thread.sleep(3000);
-////					} catch (InterruptedException e) {
-////						// TODO Auto-generated catch block
-////						e.printStackTrace();
-////					}
-//					
-//					lblNameSouth.setText(nameSouth);
-//					dispose();
-//					
+//					try {
+//						Thread.sleep(3000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+					
+					// try test timer
+//					class DateTask extends TimerTask {
+//				    public void run() {
+//				        System.out.println("任務時間：" + new Date());
+//				    }
 //				}
+//					Timer timer = new Timer();
+//			        timer.schedule(new DateTask(),5000);
+//			        System.out.println("現在時間：" + new Date());
+//			        try {
+//			            Thread.sleep(8000);
+//			        }
+//			        catch(InterruptedException e) {
+//			        }
+//			        timer.cancel(); 
+			        
+//					dispose(); 				// close the windowSeat
+					
+				}
 //				if( seatSouth && seatWest && seatNorth && seatEast ){
 //
 //					try {
@@ -221,9 +244,9 @@ public class WindowSeat extends JFrame {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-					
+//					
 //				}
-			}
+			}	
 		});
 		button.setBounds(10, 10, 87, 23);
 		contentPane.add(button);

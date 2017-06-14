@@ -211,21 +211,18 @@ public class WindowStart {
 					 * WindowSeat(); // new windowSeat.setVisible(true);
 					 *******************************************/
 					// WindowLoad windowLoad;
-					try {
-						windowLoad = new WindowLoad();
-						windowLoad.setVisible(true);
-						windowLoad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					} catch (MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-
-					}
-					// WindowSeat windowSeat = new WindowSeat();
-					// windowSeat.setVisible(false);
-
-
-							
 					
+//					try {
+//						windowLoad = new WindowLoad();
+//						windowLoad.setVisible(true);
+//						windowLoad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//					} catch (MalformedURLException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//
+//					}
+					 WindowSeat windowSeat = new WindowSeat();
+					 windowSeat.setVisible(true);
 
 					frame.setVisible(false);
 
