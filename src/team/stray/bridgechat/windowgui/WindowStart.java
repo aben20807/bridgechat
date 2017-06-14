@@ -212,17 +212,17 @@ public class WindowStart {
 					 *******************************************/
 					// WindowLoad windowLoad;
 					
-//					try {
-//						windowLoad = new WindowLoad();
-//						windowLoad.setVisible(true);
-//						windowLoad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//					} catch (MalformedURLException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//
-//					}
-					 WindowSeat windowSeat = new WindowSeat();
-					 windowSeat.setVisible(true);
+					try {
+						windowLoad = new WindowLoad();
+						windowLoad.setVisible(true);
+						windowLoad.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					} catch (MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+
+					}
+//					 WindowSeat windowSeat = new WindowSeat();
+//					 windowSeat.setVisible(true);
 
 					frame.setVisible(false);
 
@@ -290,7 +290,7 @@ public class WindowStart {
 								if (stringReceiveFromServer.length() != 0
 										&& stringReceiveFromServer.equals("ROOM_FULL")) {
 									System.out.println(stringReceiveFromServer + "test1");
-									Thread.sleep(38700);
+									Thread.sleep(10870);
 									windowLoad.dispose();
 
 									// windowSeat.setVisible(true);

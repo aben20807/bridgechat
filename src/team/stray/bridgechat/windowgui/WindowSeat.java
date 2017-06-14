@@ -15,6 +15,7 @@ import javafx.scene.control.CheckBox;
 import team.stray.bridgechat.bridge.Direction;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
+import team.stray.bridgechat.gamegui.GameWindow;
 
 import java.awt.Toolkit;
 import java.util.*;
@@ -26,6 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -71,11 +73,11 @@ public class WindowSeat extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowSeat() {
-		
+
 		// can't resize the window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		
+
 		setTitle("\u6A4B\u724C123");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowSeat.class.getResource("/resource/chip.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -145,17 +147,17 @@ public class WindowSeat extends JFrame {
 					seatDirection = Direction.EAST;
 					btnCheckSeat.setEnabled(false);
 				}
-				if ( checkBoxSouth.isSelected() ||  checkBoxWest.isSelected() ||
-						checkBoxNorth.isSelected() || checkBoxEast.isSelected() ){
+				if (checkBoxSouth.isSelected() || checkBoxWest.isSelected() || checkBoxNorth.isSelected()
+						|| checkBoxEast.isSelected()) {
 					checkBoxNorth.setEnabled(false);
 					checkBoxWest.setEnabled(false);
 					checkBoxEast.setEnabled(false);
 					checkBoxSouth.setEnabled(false);
 				}
-				
+
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
 				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
-				
+
 			}
 		});
 		btnCheckSeat.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
@@ -182,8 +184,21 @@ public class WindowSeat extends JFrame {
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
 
-		JButton button = new JButton("\u66F4\u65B0");
-		button.addMouseListener(new MouseAdapter() {
+		JButton btnEnterGame = new JButton("\u9032\u5165\u904A\u6232");
+		btnEnterGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				GameWindow.openGameGui();
+				dispose();
+			}
+		});
+		btnEnterGame.setFont(new Font("微軟正黑體", Font.PLAIN, 12));
+		btnEnterGame.setBounds(324, 195, 87, 23);
+		contentPane.add(btnEnterGame);
+		btnEnterGame.setEnabled(false);
+
+		JButton btnRefreshSeat = new JButton("\u66F4\u65B0");
+		btnRefreshSeat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (seatSouth) {
@@ -202,71 +217,56 @@ public class WindowSeat extends JFrame {
 					checkBoxEast.setEnabled(false);
 					lblNameEast.setText(nameEast);
 				}
-//				
-				if( seatSouth && seatWest && seatNorth && seatEast &&
-						!lblNameSouth.getText().equals(" ") && !lblNameSouth.getText().equals(" ") 
-							&& !lblNameWest.getText().equals(" ") && !lblNameEast.getText().equals(" ") ){
-					
-//					for( int i = 0 ; i < 100000000 ; i++ ){
-//						System.out.flush();
-//					}
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					
-					// try test timer
-//					class DateTask extends TimerTask {
-//				    public void run() {
-//				        System.out.println("任務時間：" + new Date());
-//				    }
-//				}
-//					Timer timer = new Timer();
-//			        timer.schedule(new DateTask(),5000);
-//			        System.out.println("現在時間：" + new Date());
-//			        try {
-//			            Thread.sleep(8000);
-//			        }
-//			        catch(InterruptedException e) {
-//			        }
-//			        timer.cancel(); 
-			        
-//					dispose(); 				// close the windowSeat
-					
-				}
-//				if( seatSouth && seatWest && seatNorth && seatEast ){
-//
-//					try {
-//						Thread.sleep(3000);
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					
-//				}
-			}	
-		});
-		button.setBounds(10, 10, 87, 23);
-		contentPane.add(button);
+				//
+				if (seatSouth && seatWest && seatNorth && seatEast && !lblNameSouth.getText().equals(" ")
+						&& !lblNameSouth.getText().equals(" ") && !lblNameWest.getText().equals(" ")
+						&& !lblNameEast.getText().equals(" ")) {
+					btnEnterGame.setEnabled(true);
+					btnRefreshSeat.setEnabled(false);
 
-		// if (seatSouth) {
-		// checkBoxSouth.setEnabled(false);
-		// lblNameSouth.setText(nameSouth);
-		// }
-		// if (seatWest) {
-		// checkBoxWest.setEnabled(false);
-		// lblNameWest.setText(nameWest);
-		// }
-		// if (seatNorth) {
-		// checkBoxNorth.setEnabled(false);
-		// lblNameNorth.setText(nameNorth);
-		// }
-		// if (seatEast) {
-		// checkBoxEast.setEnabled(false);
-		// lblNameEast.setEnabled(seatEast);
-		// }
+					// for( int i = 0 ; i < 100000000 ; i++ ){
+					// System.out.flush();
+					// }
+					// try {
+					// Thread.sleep(3000);
+					// } catch (InterruptedException e) {
+					// // TODO Auto-generated catch block
+					// e.printStackTrace();
+					// }
+
+					// try test timer
+					// class DateTask extends TimerTask {
+					// public void run() {
+					// System.out.println("任務時間：" + new Date());
+					// }
+					// }
+					// Timer timer = new Timer();
+					// timer.schedule(new DateTask(),5000);
+					// System.out.println("現在時間：" + new Date());
+					// try {
+					// Thread.sleep(8000);
+					// }
+					// catch(InterruptedException e) {
+					// }
+					// timer.cancel();
+
+					// dispose(); // close the windowSeat
+
+				}
+				// if( seatSouth && seatWest && seatNorth && seatEast ){
+				//
+				// try {
+				// Thread.sleep(3000);
+				// } catch (InterruptedException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
+				//
+				// }
+			}
+		});
+		btnRefreshSeat.setBounds(10, 10, 87, 23);
+		contentPane.add(btnRefreshSeat);
 
 		// new Thread() {
 		Thread thread = new Thread(new Runnable() {
