@@ -7,7 +7,6 @@ import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.GameServer;
-import team.stray.bridgechat.bridge.Seat;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.client.Client;
 import team.stray.bridgechat.connect.server.Server;
@@ -228,9 +227,9 @@ public class InfrastructureImpl implements Infrastructure {
 	}
 
 	@Override
-	public Map<String, Integer> getSeatArrange() {
+	public Map<Integer,String> getSeatArrange() {
 		// TODO Auto-generated method stub
-		return this.server.nameToSeat;
+		return this.server.seatToName;
 	}
 	
 }
