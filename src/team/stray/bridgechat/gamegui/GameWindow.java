@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import team.stray.bridgechat.Infrastructure;
 import team.stray.bridgechat.InfrastructureImpl;
 import team.stray.bridgechat.bridge.Card;
+import team.stray.bridgechat.bridge.Direction;
 import team.stray.bridgechat.bridge.GameServer;
 import team.stray.bridgechat.bridge.Suit;
 import team.stray.bridgechat.connect.Transmissible;
@@ -219,19 +220,19 @@ public class GameWindow extends JFrame {
 		// System.out.println(WindowStart.infrastructure.getSeat().charAt(1));
 		if (WindowStart.infrastructure.getSeat().charAt(1) == '1') {
 
-			JLabel player1name = new JLabel("New label");
+			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
 			player1name.setBounds(558, 371, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel("New label");
+			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
 			player4name.setBounds(558, 197, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel("New label");
+			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
 			player3name.setBounds(286, 8, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel("New label");
+			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
 			player2name.setBounds(31, 197, 71, 29);
 			contentPane.add(player2name);
 
@@ -258,19 +259,19 @@ public class GameWindow extends JFrame {
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '2') {
 
-			JLabel player2name = new JLabel("New label");
+			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
 			player2name.setBounds(558, 371, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel("New label");
+			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
 			player1name.setBounds(558, 197, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel("New label");
+			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
 			player4name.setBounds(286, 8, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel("New label");
+			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
 			player3name.setBounds(31, 197, 71, 29);
 			contentPane.add(player3name);
 
@@ -297,19 +298,19 @@ public class GameWindow extends JFrame {
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '3') {
 
-			JLabel player3name = new JLabel("New label");
+			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
 			player3name.setBounds(558, 371, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel("New label");
+			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
 			player2name.setBounds(558, 197, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel("New label");
+			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
 			player1name.setBounds(286, 8, 71, 29);
 			contentPane.add(player1name);
 
-			JLabel player4name = new JLabel("New label");
+			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
 			player4name.setBounds(31, 197, 71, 29);
 			contentPane.add(player4name);
 
@@ -336,19 +337,19 @@ public class GameWindow extends JFrame {
 
 		else if (WindowStart.infrastructure.getSeat().charAt(1) == '4') {
 
-			JLabel player4name = new JLabel("New label");
+			JLabel player4name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.EAST)).toString());
 			player4name.setBounds(558, 371, 71, 29);
 			contentPane.add(player4name);
 
-			JLabel player3name = new JLabel("New label");
+			JLabel player3name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.NORTH)).toString());
 			player3name.setBounds(558, 197, 71, 29);
 			contentPane.add(player3name);
 
-			JLabel player2name = new JLabel("New label");
+			JLabel player2name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.WEST)).toString());
 			player2name.setBounds(286, 8, 71, 29);
 			contentPane.add(player2name);
 
-			JLabel player1name = new JLabel("New label");
+			JLabel player1name = new JLabel(WindowStart.infrastructure.getSeatArrange().get((Integer)(Direction.SOUTH)).toString());
 			player1name.setBounds(31, 197, 71, 29);
 			contentPane.add(player1name);
 
