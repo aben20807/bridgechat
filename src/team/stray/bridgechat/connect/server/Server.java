@@ -25,7 +25,7 @@ public class Server {
 	private final GameServer gameServer;
 	private final ConnectionServer connectionServer;
 	private final Client client;
-	private Map<String,Integer> nameToSeat;
+	public static Map<String,Integer> nameToSeat;
 	private Map<String,Integer> nameToTrick;
 	private Map<String,Integer> nameToCardValue;
 	
@@ -56,6 +56,8 @@ public class Server {
 
 					
 					List<TransmissibleGameClient> players = new CopyOnWriteArrayList<>();
+					List<TransmissibleCard> cardsInRound = new CopyOnWriteArrayList<>();
+					
 					System.out.println("wait connection....");
 					while (isWaitClientConnect) {
 						last = client.getMessageReceiveFromServer();
@@ -80,22 +82,47 @@ public class Server {
 							if(get.length()!=0&&get.charAt(0)=='@'&&get.substring(2).equals(client.getGameClient().getName())){
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
-								nameToSeat.put(client.getGameClient().getName(),get.charAt(1)-'0');
+								nameToSeat.put(client.getGameClient().getName(), get.charAt(1)-'0');
 								client.setMessageReceiveFromServer(last);
 							}
-						}
-						else if(last instanceof TransmissibleCard&& GameServer.isGameOver ==false){
-							isreceivefourcard +=1;
-							if(isreceivefourcard==4){
-								isreceivefourcard=0;
+							//get cards in round
+							boolean isReceiveCardInRoundFull = false;
+							for (TransmissibleCard i : cardsInRound) {
+								if (last.getTimestamp().equals(i.getTimestamp())) {
+									isReceiveCardInRoundFull = true;
+									break;
+								}
 							}
-							Card cardget=((TransmissibleCard) last).getTransmissibleCard();
-							if(cardget.getValue()>=1&&cardget.getValue()<= 52){
-								client.getGameClient().setCard(cardget);
-								nameToCardValue.put(client.getGameClient().getName(), cardget.getValue());
+							if(isReceiveCardInRoundFull == false&&get.length()!=0&&get.charAt(0)=='%'&&get.substring(1).equals(client.getGameClient().getSeat())){
+								isreceivefourcard +=1;
+								char cardNumber = get.charAt(2);
+								int cardSuit = get.charAt(3)-'0';
+								int cardValue = Integer.parseInt(get.substring(4));
+								Card cardget=new Card(cardValue,cardNumber,cardSuit);
+								//cardsInRound.add((TransmissibleCard));
+								gameServer.addCardInRound(cardget);	
+								nameToCardValue.put(client.getGameClient().getName(),cardValue);
+								if(isreceivefourcard==4){
+									gameServer.compareTrick();
+									client.setMessageReceiveFromServer(last);
+									isreceivefourcard=0;
+								}		
 							}
-		
+							
 						}
+//						else if(last instanceof TransmissibleCard&& GameServer.isGameOver ==false){
+//							isreceivefourcard +=1;
+//							if(isreceivefourcard==4){
+//								
+//								isreceivefourcard=0;
+//							}
+//							Card cardget=((TransmissibleCard) last).getTransmissibleCard();
+//							if(cardget.getValue()>=1&&cardget.getValue()<= 52){
+//								client.getGameClient().setCard(cardget);
+//								nameToCardValue.put(client.getGameClient().getName(), cardget.getValue());
+//							}
+//		
+//						}
 						
 						if (GameServer.isPlayersReachFour == true && isPrintOnce == false) {
 							System.out.println("room full");

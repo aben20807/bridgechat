@@ -11,6 +11,8 @@ public class GameServer{
 	public static List<Card> cards;
 	public static boolean isPlayersReachFour = false;
 	public static boolean isGameOver = false;
+	public static boolean isRoundFull = false;
+	
 	private Dealer dealer;
 
 	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
@@ -46,6 +48,13 @@ public class GameServer{
 			isGameOver = false;
 	}
 
+	public void addCardInRound(Card e) {
+		this.cardsInRound.add(e);
+		if(this.cardsInRound.size() >= 4)
+			isRoundFull = true;
+		else
+			isRoundFull = false;
+	}
 	/**
 	 * create cards to 52 different point and suit
 	 */
