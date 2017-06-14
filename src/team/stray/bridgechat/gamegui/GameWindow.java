@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -84,10 +85,10 @@ public class GameWindow extends JFrame {
 						System.out.println(WindowStart.infrastructure.getSeatArrange().size());
 						Thread.sleep(1000);
 					}
-					Map<Integer, String> seatToName=WindowStart.infrastructure.getSeatArrange();
+					HashMap<Integer, String> seatToName = WindowStart.infrastructure.getSeatArrange();
 					for (Object key : seatToName.keySet()) {
-			            System.out.println(key + " : " + seatToName.get(key));
-			        }
+						System.out.println(key + " : " + seatToName.get(key));
+					}
 					System.out.println("Get Seat OK!!");
 					frame = new GameWindow();
 					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
@@ -146,10 +147,10 @@ public class GameWindow extends JFrame {
 						Transmissible last = null;
 						while (true) {
 							last = WindowStart.infrastructure.getMessage();
-							if(last instanceof TransmissibleString){
+							if (last instanceof TransmissibleString) {
 								String get = ((TransmissibleString) last).getTransmissibleString();
-								if(get.length()!=0 && get.charAt(0) == '$'){
-									frame.textArea.append(get.substring(1)+"\n");
+								if (get.length() != 0 && get.charAt(0) == '$') {
+									frame.textArea.append(get.substring(1) + "\n");
 								}
 							}
 						}
