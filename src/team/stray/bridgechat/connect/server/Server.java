@@ -25,10 +25,10 @@ public class Server {
 	private final GameServer gameServer;
 	private final ConnectionServer connectionServer;
 	private final Client client;
-	public static Map<String,Integer> nameToSeat;
-	public static Map<Integer,String> seatToName;
+	public static HashMap<String,Integer> nameToSeat;
+	public static HashMap<Integer,String> seatToName;
 	//private Map<String,Integer> nameToTrick;
-	private Map<Card,String> cardToName;
+	private HashMap<Card,String> cardToName;
 	
 	private volatile boolean isWaitClientConnect;
 	
@@ -81,11 +81,14 @@ public class Server {
 							//prefix = '@' for seat;'#' for call;'%'for out of the card
 							String get= ((TransmissibleString) last).getTransmissibleString();
 							//boolean isReceiveCardInRoundFull = false;
-							if(get.length()!=0 && get.charAt(0)=='@' && get.substring(2).equals(client.getGameClient().getName())){
+							if(get.length()!=0 && get.charAt(0)=='@'){
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(), get.charAt(1)-'0');
 								seatToName.put(get.charAt(1)-'0', client.getGameClient().getName());
+//								for (Object key : seatToName.keySet()) {
+//						            System.out.println(key + " : " + seatToName.get(key));
+//						        }
 								client.setMessageReceiveFromServer(last);
 							}
 							//get card from client
