@@ -27,7 +27,7 @@ public class Seat implements Direction{
 	/**
 	 * clockwise turn
 	 */
-	public int clockwiseturn(int direction,String nameatSeat){
+	public int clockwiseturn(int direction){
 		int nextDirection;
 		if((direction+1)<=4){
 			nextDirection = direction+1;

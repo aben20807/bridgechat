@@ -26,7 +26,7 @@ public class Server {
 	private final ConnectionServer connectionServer;
 	private final Client client;
 	public static Map<String,Integer> nameToSeat;
-	private Map<String,Integer> nameToTrick;
+	//private Map<String,Integer> nameToTrick;
 	private Map<Card,String> cardToName;
 	
 	private volatile boolean isWaitClientConnect;
@@ -42,7 +42,7 @@ public class Server {
 		client.connect();
 		nameToSeat = new HashMap<String,Integer>();
 
-		nameToTrick = new HashMap<String,Integer>();//trick
+		//nameToTrick = new HashMap<String,Integer>();//trick
 		cardToName = new HashMap<Card,String>();
 
 
@@ -50,7 +50,7 @@ public class Server {
 			public void run() {
 				try {
 					boolean isPrintOnce = false;
-					int isreceivefourcard=0;
+					//int isreceivefourcard=0;
 					isWaitClientConnect = true;
 					Transmissible last = null;
 
@@ -123,7 +123,6 @@ public class Server {
 										client.setMessageReceiveFromServer(whoIsBig);
 										gameServer.cardsInRound.clear();
 										cardToName.clear();
-										isreceivefourcard=0;
 									}
 								
 								}		
