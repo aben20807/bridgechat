@@ -184,8 +184,7 @@ public class WindowStart {
 						infrastructure.openRoom();
 					}
 
-					//WindowSeat windowSeat = new WindowSeat();
-					//windowSeat.setVisible(true);
+					
 					/*GameWindow frame1 = new GameWindow();
 					 try{
 					    	Thread.sleep(10000);
@@ -219,6 +218,8 @@ public class WindowStart {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}			
+//					WindowSeat windowSeat = new WindowSeat();
+//					windowSeat.setVisible(false);
 					
 					frame.setVisible(false);
 					
@@ -272,8 +273,9 @@ public class WindowStart {
 									
 								if (stringReceiveFromServer.length() != 0 && stringReceiveFromServer.equals("ROOM_FULL")) {
 									System.out.println(stringReceiveFromServer + "test1");
+									Thread.sleep(38700);
 									windowLoad.dispose();
-									windowSeat.setVisible(true);
+									//windowSeat.setVisible(true);
 								}
 							}
 						}
