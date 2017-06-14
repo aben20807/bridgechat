@@ -215,6 +215,9 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public Transmissible getMessage() {
+		if(client != null){
 		return client.getMessageReceiveFromServer();
+		}
+		else return null;
 	}
 }
