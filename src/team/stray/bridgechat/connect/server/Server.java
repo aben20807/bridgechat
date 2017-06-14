@@ -26,6 +26,7 @@ public class Server {
 	private final ConnectionServer connectionServer;
 	private final Client client;
 	public static Map<String,Integer> nameToSeat;
+	public static Map<Integer,String> seatToName;
 	//private Map<String,Integer> nameToTrick;
 	private Map<Card,String> cardToName;
 	
@@ -41,7 +42,7 @@ public class Server {
 		client = new Client(name, "127.0.0.1");
 		client.connect();
 		nameToSeat = new HashMap<String,Integer>();
-
+		seatToName = new HashMap<Integer,String>();
 		//nameToTrick = new HashMap<String,Integer>();//trick
 		cardToName = new HashMap<Card,String>();
 
@@ -84,6 +85,7 @@ public class Server {
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(), get.charAt(1)-'0');
+								seatToName.put(get.charAt(1)-'0', client.getGameClient().getName());
 								client.setMessageReceiveFromServer(last);
 							}
 							//get card from client
@@ -97,7 +99,7 @@ public class Server {
 										break;
 									}
 								}}
-								if (last.getTimestamp()!=null&&isReceiveCardExistInRound == false && cardsInRound.size()<=4) {
+								if (last.getTimestamp()!=null && isReceiveCardExistInRound == false && cardsInRound.size()<=4) {
 									char cardNumber = get.charAt(2);
 									int cardSuit = get.charAt(3)-'0';
 									int cardValue = Integer.parseInt(get.substring(4));
@@ -108,7 +110,7 @@ public class Server {
 									TCardget.setTimestamp(last.getTimestamp());//OAO
 									cardsInRound.add(TCardget);
 									
-									//System.out.println("card number is"+cardsInRound.size());
+									System.out.println("card number is"+cardsInRound.size());
 									
 									gameServer.addCardInRound(cardget);
 									gameServer.remainCardiInGame(cardget);
@@ -119,7 +121,7 @@ public class Server {
 										TransmissibleString whoIsBig = new TransmissibleString();
 										whoIsBig.setTransmissibleString(cardToName.get(gameServer.cardsInRound.get(cardsInRound.size()-1)));	
 										//System.out.println("who is big"+whoIsBig.getTransmissibleString());
-										//System.out.println("biggest card "+gameServer.cardsInRound.get(cardsInRound.size()-1).getCardInfo());
+										System.out.println("biggest card "+gameServer.cardsInRound.get(cardsInRound.size()-1).getCardInfo());
 										client.setMessageReceiveFromServer(whoIsBig);
 										gameServer.cardsInRound.clear();
 										cardToName.clear();
