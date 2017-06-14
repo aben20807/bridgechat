@@ -6,7 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
 
+import com.sun.net.ssl.internal.www.protocol.https.Handler;
 import com.sun.xml.internal.ws.developer.StreamingAttachment;
 
 import javafx.scene.control.CheckBox;
@@ -20,8 +22,11 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.concurrent.TimeUnit;
 import java.awt.Color;
 import javax.swing.JLabel;
 
@@ -137,7 +142,7 @@ public class WindowSeat extends JFrame {
 				}
 				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
 				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
-
+				
 			}
 		});
 		btnCheckSeat.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 12));
@@ -184,6 +189,35 @@ public class WindowSeat extends JFrame {
 					checkBoxEast.setEnabled(false);
 					lblNameEast.setText(nameEast);
 				}
+//				
+//				if( seatSouth && seatWest && seatNorth && seatEast &&
+//						!lblNameSouth.getText().equals(" ") && !lblNameSouth.getText().equals(" ") 
+//							&& !lblNameWest.getText().equals(" ") && !lblNameEast.getText().equals(" ") ){
+//					
+//					for( int i = 0 ; i < 100000000 ; i++ ){
+//						System.out.flush();
+//					}
+////					try {
+////						Thread.sleep(3000);
+////					} catch (InterruptedException e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+//					
+//					lblNameSouth.setText(nameSouth);
+//					dispose();
+//					
+//				}
+//				if( seatSouth && seatWest && seatNorth && seatEast ){
+//
+//					try {
+//						Thread.sleep(3000);
+//					} catch (InterruptedException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+					
+//				}
 			}
 		});
 		button.setBounds(10, 10, 87, 23);
