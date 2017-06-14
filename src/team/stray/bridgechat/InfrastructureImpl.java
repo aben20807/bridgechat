@@ -227,7 +227,7 @@ public class InfrastructureImpl implements Infrastructure {
 	}
 
 	@Override
-	public Map<Integer,String> getSeatArrange() {
+	public HashMap<Integer,String> getSeatArrange() {
 		// TODO Auto-generated method stub
 		return this.server.seatToName;
 	}
