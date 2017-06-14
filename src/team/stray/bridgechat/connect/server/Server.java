@@ -79,43 +79,49 @@ public class Server {
 						else if(last instanceof TransmissibleString) {
 							//prefix = '@' for seat;'#' for call;'%'for out of the card
 							String get= ((TransmissibleString) last).getTransmissibleString();
-							boolean isReceiveCardInRoundFull = false;
-							if(get.length()!=0&&get.charAt(0)=='@' && get.substring(2).equals(client.getGameClient().getName())){
+							//boolean isReceiveCardInRoundFull = false;
+							if(get.length()!=0 && get.charAt(0)=='@' && get.substring(2).equals(client.getGameClient().getName())){
 								String seat =( get.substring(0, 1));
 								client.getGameClient().setSeat(seat);
 								nameToSeat.put(client.getGameClient().getName(), get.charAt(1)-'0');
 								client.setMessageReceiveFromServer(last);
 							}
 							//get card from client
-							else if(isReceiveCardInRoundFull == false && get.length()!=0&&get.charAt(0)=='%'&&get.substring(1,1).equals(client.getGameClient().getSeat())){
+							else if( get.length() != 0 && get.charAt(0) == '%'){
+								boolean isReceiveCardExistInRound = false;
+								if(cardsInRound.size()!=0){
 								for (TransmissibleCard i : cardsInRound) {
-									if (last.getTimestamp().equals(i.getTimestamp())) {
-										isReceiveCardInRoundFull = true;
+									//System.out.println(last.getTimestamp()+","+i.getTimestamp());
+									if (last.getTimestamp()!=null&&last.getTimestamp().equals(i.getTimestamp())) {
+										isReceiveCardExistInRound = true;
 										break;
 									}
-								}
-								if (isReceiveCardInRoundFull == false) {
-									isreceivefourcard +=1;
+								}}
+								if (last.getTimestamp()!=null&&isReceiveCardExistInRound == false && cardsInRound.size()<=4) {
 									char cardNumber = get.charAt(2);
 									int cardSuit = get.charAt(3)-'0';
 									int cardValue = Integer.parseInt(get.substring(4));
 									Card cardget=new Card(cardValue,cardNumber,cardSuit);
 									
-									TransmissibleCard aCard = new TransmissibleCard();
-									aCard.setTransmissibleCard(cardget);
-									cardsInRound.add(aCard);
+									TransmissibleCard TCardget = new TransmissibleCard();
+									TCardget.setTransmissibleCard(cardget);
+									TCardget.setTimestamp(last.getTimestamp());//OAO
+									cardsInRound.add(TCardget);
+									
+									//System.out.println("card number is"+cardsInRound.size());
 									
 									gameServer.addCardInRound(cardget);
 									gameServer.remainCardiInGame(cardget);
 									cardToName.put(cardget,client.getGameClient().getName());
-									//tell client which card had transmitted.
-									client.setMessageReceiveFromServer(aCard);
-									if(isreceivefourcard==4){
+									if(cardsInRound.size()==4){
 										gameServer.compareTrick();;
 										//get who is big now (name)
 										TransmissibleString whoIsBig = new TransmissibleString();
 										whoIsBig.setTransmissibleString(cardToName.get(gameServer.cardsInRound.get(cardsInRound.size()-1)));	
+										//System.out.println("who is big"+whoIsBig.getTransmissibleString());
+										//System.out.println("biggest card "+gameServer.cardsInRound.get(cardsInRound.size()-1).getCardInfo());
 										client.setMessageReceiveFromServer(whoIsBig);
+										gameServer.cardsInRound.clear();
 										cardToName.clear();
 										isreceivefourcard=0;
 									}
