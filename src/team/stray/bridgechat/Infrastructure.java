@@ -33,7 +33,7 @@ public interface Infrastructure {
 	void printMessageInfo();
 	
 	/*Bridge*/
-	Map<String, Integer> getSeatArrange();
+	Map<Integer	, String> getSeatArrange();
 	void chooseSeat();
 	void shuffleCard();
 	void dealCard();
