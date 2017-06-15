@@ -42,7 +42,7 @@ public class GameWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextArea textArea;
+	static JTextArea textArea;
 	/**
 	 * Launch the application.
 	 */
@@ -90,6 +90,7 @@ public class GameWindow extends JFrame {
 						System.out.println(key + " : " + seatToName.get(key));
 					}
 					System.out.println("Get Seat OK!!");
+					System.out.println(WindowStart.infrastructure.getSeat());
 					frame = new GameWindow();
 					if (WindowStart.infrastructure.getType() == Infrastructure.SERVER) {
 						while (!GameServer.isPlayersReachFour) {
@@ -150,7 +151,14 @@ public class GameWindow extends JFrame {
 							if (last instanceof TransmissibleString) {
 								String get = ((TransmissibleString) last).getTransmissibleString();
 								if (get.length() != 0 && get.charAt(0) == '$') {
-									frame.textArea.append(get.substring(1) + "\n");
+									textArea.append(get.substring(1) + "\n");
+									System.out.println(get.substring(1));
+									try{
+										Thread.sleep(5000);
+									}
+									catch(Exception e){
+										e.printStackTrace();
+									}
 								}
 							}
 						}
@@ -397,8 +405,8 @@ public class GameWindow extends JFrame {
 	}
 
 	public void updateDeck() {
-		// System.out.println("card in hand size = " +
-		// WindowStart.infrastructure.getCardsInHand().size());
+//		 System.out.println("card in hand size = " +
+//		 WindowStart.infrastructure.getCardsInHand().size());
 		if (WindowStart.infrastructure.getCardsInHand().size() == 13) {
 			List<Card> cardInHand = new CopyOnWriteArrayList<>();
 			cardInHand = WindowStart.infrastructure.getCardsInHand();

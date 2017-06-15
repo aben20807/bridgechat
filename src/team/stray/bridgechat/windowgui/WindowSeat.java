@@ -274,8 +274,8 @@ public class WindowSeat extends JFrame {
 		btnEnterGame.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				GameWindow.openGameGui();
-				dispose();
+			//	GameWindow.openGameGui();
+			//	dispose();
 			}
 		});
 		btnEnterGame.setFont(new Font("�L�n������", Font.PLAIN, 12));

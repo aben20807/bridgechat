@@ -31,7 +31,7 @@ public class InfrastructureImplTest {
 
 			case 2://client connect
 				infrastructure.setName("inf client");
-				infrastructure.setConnectionIP("192.168.56.1");
+				infrastructure.setConnectionIP("127.0.0.1");
 				infrastructure.connectRoom();
 				System.out.print("seat:");
 				infrastructure.setSeat("@"+(BridgeChat.scanner.nextLine()+infrastructure.getName()));

@@ -142,26 +142,26 @@ public class InfrastructureImpl implements Infrastructure {
 			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
 			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
 		}
-		// for (int i = 0; i < 4; i++) {
-		// // sort cards in hand
-		// this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-		// // deal
-		// for (Card c :
-		// this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
-		// this.client.submitCard(i, c);
-		// // System.out.print(i + " : ");
-		// try {
-		// Thread.sleep(600);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// c.printInfo();
-		// }
-		// System.out.println(i + " point : " +
-		// this.server.getGameServer().getPlayers().get(i).getPoints());
-		// System.out.println("----");
-		// }
-		// System.out.println("deal finished");
+//		 for (int i = 0; i < 4; i++) {
+//		 // sort cards in hand
+//		 this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
+//		 // deal
+//		 for (Card c :
+//		 this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+//		 this.client.submitCard(i, c);
+//		 // System.out.print(i + " : ");
+//		 try {
+//		 Thread.sleep(600);
+//		 } catch (InterruptedException e) {
+//		 e.printStackTrace();
+//		 }
+//		 c.printInfo();
+//		 }
+//		 System.out.println(i + " point : " +
+//		 this.server.getGameServer().getPlayers().get(i).getPoints());
+//		 System.out.println("----");
+//		 }
+//		 System.out.println("deal finished");
 
 		for (int j = 0; j < 13; j++) {
 			for (int i = 0; i < 4; i++) {
@@ -169,7 +169,7 @@ public class InfrastructureImpl implements Infrastructure {
 				this.client.submitCard(i, c);
 				// System.out.print(i + " : ");
 				try {
-					Thread.sleep(600);
+					Thread.sleep(400);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
