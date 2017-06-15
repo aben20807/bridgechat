@@ -31,10 +31,6 @@ public class Card implements Comparable<Card>, Suit, Serializable{
 		System.out.println(getValue()+ "\t"+getNumber()+getSuit());
 	}
 	
-	public String getCardInfo(){
-		return (""+getNumber()+getSuit()+getValue());
-	}
-	
 	/**
 	 * Used to compare card's order in Player: sortCardsInHand()
 	 */
