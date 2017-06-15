@@ -17,7 +17,6 @@ public class InfrastructureImpl implements Infrastructure {
 	private Client client;
 	private Server server;
 	private int type = 0;
-	private String seat;
 
 	private String name;
 	private String connectionIP;
@@ -112,66 +111,67 @@ public class InfrastructureImpl implements Infrastructure {
 		}
 	}
 
+
 	@Override
 	public void shuffleCard() {
 		System.out.println("shuffling....");
 		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
-		System.out.println("shuffle finished");
+ 		System.out.println("shuffle finished");
 	}
 
 	@Override
 	public void dealCard() {
-		System.out.println("dealing....");
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
-		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
-				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
-				server.getGameServer().getPlayers().get(3));
-		for (int i = 0; i < 4; i++) {
-			// sort cards in hand
-			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
-		}
-		// for (int i = 0; i < 4; i++) {
-		// // sort cards in hand
-		// this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-		// // deal
-		// for (Card c :
-		// this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
-		// this.client.submitCard(i, c);
-		// // System.out.print(i + " : ");
-		// try {
-		// Thread.sleep(600);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// c.printInfo();
-		// }
-		// System.out.println(i + " point : " +
-		// this.server.getGameServer().getPlayers().get(i).getPoints());
-		// System.out.println("----");
-		// }
-		// System.out.println("deal finished");
-
-		for (int j = 0; j < 13; j++) {
-			for (int i = 0; i < 4; i++) {
-				Card c = this.server.getGameServer().getPlayers().get(i).getCardsInHand().get(j);
-				this.client.submitCard(i, c);
-				// System.out.print(i + " : ");
-				try {
-					Thread.sleep(600);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				c.printInfo();
-			}
-			System.out.println(j+"----");
-		}
-		System.out.println("deal finished");
-	}
+ 		System.out.println("dealing....");
+ 		try {
+ 			Thread.sleep(200);
+ 		} catch (InterruptedException e1) {
+ 			e1.printStackTrace();
+ 		}
+ 		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
+ 				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
+ 				server.getGameServer().getPlayers().get(3));
+ 		for (int i = 0; i < 4; i++) {
+ 			// sort cards in hand
+ 			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
+ 			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
+ 		}
+ 		// for (int i = 0; i < 4; i++) {
+ 		// // sort cards in hand
+ 		// this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
+ 		// // deal
+ 		// for (Card c :
+ 		// this.server.getGameServer().getPlayers().get(i).getCardsInHand()) {
+ 		// this.client.submitCard(i, c);
+ 		// // System.out.print(i + " : ");
+ 		// try {
+ 		// Thread.sleep(600);
+ 		// } catch (InterruptedException e) {
+ 		// e.printStackTrace();
+ 		// }
+ 		// c.printInfo();
+ 		// }
+ 		// System.out.println(i + " point : " +
+ 		// this.server.getGameServer().getPlayers().get(i).getPoints());
+ 		// System.out.println("----");
+ 		// }
+ 		// System.out.println("deal finished");
+ 
+ 		for (int j = 0; j < 13; j++) {
+ 			for (int i = 0; i < 4; i++) {
+ 				Card c = this.server.getGameServer().getPlayers().get(i).getCardsInHand().get(j);
+ 				this.client.submitCard(i, c);
+ 				// System.out.print(i + " : ");
+ 				try {
+ 					Thread.sleep(600);
+ 				} catch (InterruptedException e) {
+ 					e.printStackTrace();
+ 				}
+ 				c.printInfo();
+ 			}
+ 			System.out.println(j+"----");
+ 		}
+ 		System.out.println("deal finished");
+ 	}
 
 	@Override
 	public List<Card> getCardsInHand() {
@@ -197,26 +197,23 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void setSeat(String seat) {
 		this.client.getGameClient().setSeat(seat);
-		this.seat = seat;
 	}
 
 	@Override
 	public String getSeat() {
-//		return client.getGameClient().getSeat();
-		return seat;
+		return client.getGameClient().getSeat();
 	}
 
 	@Override
 	public Transmissible getMessage() {
 		if(client != null){
-		return client.getMessageReceiveFromServer();
-		}
-		else return null;
+	 		return client.getMessageReceiveFromServer();
+	 		}
+	 		else return null;
 	}
 
 	@Override
 	public HashMap<Integer,String> getSeatArrange() {
 		return Client.seatToName;
 	}
-	
 }
