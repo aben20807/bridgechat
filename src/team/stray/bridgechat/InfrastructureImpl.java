@@ -122,7 +122,7 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void shuffleCard() {
 		System.out.println("shuffling....");
-		GameServer.cards = server.getGameServer().getDealer().shuffle(GameServer.cards);
+		GameServer.cards = GameServer.dealer.shuffle(GameServer.cards);
 		System.out.println("shuffle finished");
 	}
 
@@ -134,13 +134,15 @@ public class InfrastructureImpl implements Infrastructure {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		this.server.getGameServer().getDealer().deal(GameServer.cards, server.getGameServer().getPlayers().get(0),
-				server.getGameServer().getPlayers().get(1), server.getGameServer().getPlayers().get(2),
-				server.getGameServer().getPlayers().get(3));
+		GameServer.dealer.deal(GameServer.cards, 
+				GameServer.players.get(0),
+				GameServer.players.get(1),
+				GameServer.players.get(2),
+				GameServer.players.get(3));
 		for (int i = 0; i < 4; i++) {
 			// sort cards in hand
-			this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-			System.out.println(i + " point : " + this.server.getGameServer().getPlayers().get(i).getPoints());
+			GameServer.players.get(i).sortCardsInHand();
+			System.out.println(i + " point : " + GameServer.players.get(i).getPoints());
 		}
 		// for (int i = 0; i < 4; i++) {
 		// // sort cards in hand
@@ -164,9 +166,16 @@ public class InfrastructureImpl implements Infrastructure {
 		// System.out.println("deal finished");
 
 		for (int j = 0; j < 13; j++) {
+			System.out.println("----"+(j+1)+"----");
 			for (int i = 0; i < 4; i++) {
-				Card c = this.server.getGameServer().getPlayers().get(i).getCardsInHand().get(j);
-				this.client.submitCard(i, c);
+				Card c = GameServer.players.get(i).getCardsInHand().get(j);
+				if(i == 0){
+					this.server.getClient().getGameClient().addCardIntoHand(c);
+				}
+				else{
+					this.client.submitCard(i+1, c);// OAO
+					//System.out.println((i+1)+":"+c.getCardInfo());
+				}
 				// System.out.print(i + " : ");
 				try {
 					Thread.sleep(600);
@@ -175,7 +184,6 @@ public class InfrastructureImpl implements Infrastructure {
 				}
 				c.printInfo();
 			}
-			System.out.println(j+"----");
 		}
 		System.out.println("deal finished");
 	}

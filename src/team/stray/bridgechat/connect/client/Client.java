@@ -105,7 +105,7 @@ public class Client {
 //		}
 		
 		if(message instanceof TransmissibleCard &&
-				gameClient.getCardsInHand().size() < 13 &&
+				//gameClient.getCardsInHand().size() < 13 &&
 				getGameClient().getSeat().length() >= 2 &&
 				getGameClient().getSeat().substring(0,1).equals("@") &&
 				((TransmissibleCard) message).getMember() == Integer.parseInt(getGameClient().getSeat().substring(1,2))){

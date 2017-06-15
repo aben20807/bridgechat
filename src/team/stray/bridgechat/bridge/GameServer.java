@@ -13,9 +13,9 @@ public class GameServer{
 	public static boolean isGameOver = false;
 	public static boolean isRoundFull = false;
 	
-	private Dealer dealer;
+	public static Dealer dealer;
 
-	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
+	public static List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
 	private List<Card> cardsInGame = new CopyOnWriteArrayList<Card>();
 	public List<Card> cardsInRound = new CopyOnWriteArrayList<Card>();
 	
