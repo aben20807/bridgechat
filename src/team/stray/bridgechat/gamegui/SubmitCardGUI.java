@@ -13,16 +13,16 @@ import team.stray.bridgechat.bridge.Card;
 import team.stray.bridgechat.bridge.Suit;
 import team.stray.bridgechat.windowgui.WindowStart;
 
-public class submitCardGUI extends JLabel {
+public class SubmitCardGUI extends JLabel {
 	private boolean isMouseHold = false;
 	private boolean isMoveable = true;
 	int cardx;
 	int cardy;
-	submitCardGUI(){
+	SubmitCardGUI(){
 		
 	}
 	
-	submitCardGUI(Card card) {
+	SubmitCardGUI(Card card) {
 		printIcon(card);
 	}
 
