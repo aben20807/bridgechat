@@ -8,9 +8,9 @@ public class GameServer{
 
 	public static List<Card> cards;
 	public static boolean isPlayersReachFour = false;
-	private Dealer dealer;
+	public static Dealer dealer;
 
-	private List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
+	public static List<GameClient> players = new CopyOnWriteArrayList<GameClient>();
 	
 	public GameServer() {
 //		players.add(new GameClient("t"));//0
@@ -26,8 +26,8 @@ public class GameServer{
 	}
 	
 	public void addPlayer(GameClient g){
-		this.players.add(g);
-		if(this.players.size() >= 4)
+		players.add(g);
+		if(players.size() >= 4)
 			isPlayersReachFour = true;
 		else
 			isPlayersReachFour = false;
@@ -73,9 +73,9 @@ public class GameServer{
 	
 	/*getter and setter*/
 	
-	public List<GameClient> getPlayers() {
-		return players;
-	}
+//	public List<GameClient> getPlayers() {
+//		return players;
+//	}
 	
 	public Dealer getDealer() {
 		return dealer;

@@ -119,7 +119,11 @@ public class Client {
 			if(isCardExist == false){
 //				System.out.println(((TransmissibleCard) message).getMember());
 //				System.out.println(getConnectOrder());
-				gameClient.addCardIntoHand(((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard());
+				Card tmpCard = ((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard();
+				System.out.print("receive : ");
+				tmpCard.printInfo();
+				System.out.flush();
+				gameClient.addCardIntoHand(tmpCard);
 			}
 		}
 	}
