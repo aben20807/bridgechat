@@ -84,7 +84,7 @@ public class WindowSeat extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 
-		setTitle("\u6A4B\u724C123");
+		setTitle("Ｂｒｉｄｇｅ　Ｃｈａｔ");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowSeat.class.getResource("/resource/chip.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);

@@ -37,7 +37,7 @@ import com.sun.prism.paint.Stop;
 
 public class WindowStart {
 
-	private JFrame frame;
+	private JFrame frmBridgeChat;
 	private JTextField inputIP;
 	private JTextField inputName;
 	public static Infrastructure infrastructure = null;
@@ -55,7 +55,7 @@ public class WindowStart {
 			public void run() {
 				try {
 					WindowStart window = new WindowStart();
-					window.frame.setVisible(true);
+					window.frmBridgeChat.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -76,44 +76,44 @@ public class WindowStart {
 	 */
 	private void initialize() {
 
-		frame = new JFrame();
-		frame.getContentPane().setFont(new Font("�L�n������", Font.BOLD, 12));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(WindowStart.class.getResource("/resource/chip.png")));
-		frame.setTitle("\u6A4B\u724C123");
-		frame.setForeground(Color.WHITE);
-		frame.getContentPane().setBackground(new Color(255, 204, 255));
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
+		frmBridgeChat = new JFrame();
+		frmBridgeChat.getContentPane().setFont(new Font("�L�n������", Font.BOLD, 12));
+		frmBridgeChat.setIconImage(Toolkit.getDefaultToolkit().getImage(WindowStart.class.getResource("/resource/chip.png")));
+		frmBridgeChat.setTitle("Ｂｒｉｄｇｅ　Ｃｈａｔ");
+		frmBridgeChat.setForeground(Color.WHITE);
+		frmBridgeChat.getContentPane().setBackground(new Color(255, 204, 255));
+		frmBridgeChat.setBounds(100, 100, 450, 300);
+		frmBridgeChat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBridgeChat.getContentPane().setLayout(null);
+		frmBridgeChat.setResizable(false);
 
 		inputIP = new JTextField();
 		inputIP.setBounds(266, 100, 96, 21);
-		frame.getContentPane().add(inputIP);
+		frmBridgeChat.getContentPane().add(inputIP);
 		inputIP.setColumns(10);
 		inputIP.setVisible(false);
 
 		inputName = new JTextField();
 		inputName.setBounds(266, 152, 96, 21);
-		frame.getContentPane().add(inputName);
+		frmBridgeChat.getContentPane().add(inputName);
 		inputName.setColumns(10);
 
 		JLabel labelName = new JLabel("\u60A8\u7684\u5927\u540D :");
 		labelName.setFont(new Font("�L�n������", Font.PLAIN, 18));
 		labelName.setBounds(169, 147, 87, 22);
-		frame.getContentPane().add(labelName);
+		frmBridgeChat.getContentPane().add(labelName);
 
 		JLabel labelIP = new JLabel("IP\uFF1A");
 		labelIP.setFont(new Font("�L�n������", Font.PLAIN, 18));
 		labelIP.setBounds(219, 97, 35, 18);
-		frame.getContentPane().add(labelIP);
+		frmBridgeChat.getContentPane().add(labelIP);
 		labelIP.setVisible(false);
 
 		JRadioButton btnEnterRoom = new JRadioButton("\u9032\u5165\u623F\u9593");
 
 		btnEnterRoom.setFont(new Font("�L�n������", Font.BOLD, 14));
 		btnEnterRoom.setBounds(235, 39, 119, 35);
-		frame.getContentPane().add(btnEnterRoom);
+		frmBridgeChat.getContentPane().add(btnEnterRoom);
 		// set the background transparent
 		btnEnterRoom.setOpaque(false);
 		btnEnterRoom.setContentAreaFilled(false);
@@ -123,7 +123,7 @@ public class WindowStart {
 		btnBuildRoom.setBackground(Color.WHITE);
 		btnBuildRoom.setFont(new Font("�L�n������", Font.BOLD, 14));
 		btnBuildRoom.setBounds(60, 39, 119, 35);
-		frame.getContentPane().add(btnBuildRoom);
+		frmBridgeChat.getContentPane().add(btnBuildRoom);
 		// set the background transparent
 		btnBuildRoom.setOpaque(false);
 		btnBuildRoom.setContentAreaFilled(false);
@@ -163,7 +163,7 @@ public class WindowStart {
 		JLabel labelUserIP = new JLabel("IP :");
 		labelUserIP.setFont(new Font("�L�n������ Light", Font.PLAIN, 12));
 		labelUserIP.setBounds(10, 10, 124, 15);
-		frame.getContentPane().add(labelUserIP);
+		frmBridgeChat.getContentPane().add(labelUserIP);
 		// System.out.println(getIP());
 		labelUserIP.setText("\u672C\u5730IP : " + getIP());
 
@@ -224,7 +224,7 @@ public class WindowStart {
 //					 WindowSeat windowSeat = new WindowSeat();
 //					 windowSeat.setVisible(true);
 
-					frame.setVisible(false);
+					frmBridgeChat.setVisible(false);
 
 				} else if (!btnBuildRoom.isSelected() && !btnEnterRoom.isSelected()) { // no
 																						// press
@@ -270,7 +270,7 @@ public class WindowStart {
 			}
 		});
 		btnStart.setBounds(233, 209, 87, 23);
-		frame.getContentPane().add(btnStart);
+		frmBridgeChat.getContentPane().add(btnStart);
 
 		Thread thread = new Thread(new Runnable() {
 			public void run() {
