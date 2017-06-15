@@ -105,7 +105,7 @@ public class Client {
 //		}
 		
 		if(message instanceof TransmissibleCard &&
-				gameClient.getCardsInHand().size() < 13 &&
+				//gameClient.getCardsInHand().size() < 13 &&
 				getGameClient().getSeat().length() >= 2 &&
 				getGameClient().getSeat().substring(0,1).equals("@") &&
 				((TransmissibleCard) message).getMember() == Integer.parseInt(getGameClient().getSeat().substring(1,2))){
@@ -119,11 +119,7 @@ public class Client {
 			if(isCardExist == false){
 //				System.out.println(((TransmissibleCard) message).getMember());
 //				System.out.println(getConnectOrder());
-				Card tmpCard = ((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard();
-				System.out.print("receive : ");
-				tmpCard.printInfo();
-				System.out.flush();
-				gameClient.addCardIntoHand(tmpCard);
+				gameClient.addCardIntoHand(((TransmissibleCard) this.messageReceiveFromServer).getTransmissibleCard());
 			}
 		}
 	}

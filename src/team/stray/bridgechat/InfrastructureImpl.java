@@ -1,6 +1,8 @@
 package team.stray.bridgechat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -17,6 +19,7 @@ public class InfrastructureImpl implements Infrastructure {
 	private Client client;
 	private Server server;
 	private int type = 0;
+	private String seat;
 
 	private String name;
 	private String connectionIP;
@@ -113,7 +116,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void chooseSeat() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -132,21 +134,13 @@ public class InfrastructureImpl implements Infrastructure {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
-		// ***
-		// this.server.getGameServer().getDealer().deal(GameServer.cards,
-		// server.getGameServer().getPlayers().get(0),
-		// server.getGameServer().getPlayers().get(1),
-		// server.getGameServer().getPlayers().get(2),
-		// server.getGameServer().getPlayers().get(3));
-		// ***
-		GameServer.dealer.deal(GameServer.cards, GameServer.players.get(0), GameServer.players.get(1),
-				GameServer.players.get(2), GameServer.players.get(3));
+		GameServer.dealer.deal(GameServer.cards, 
+				GameServer.players.get(0),
+				GameServer.players.get(1),
+				GameServer.players.get(2),
+				GameServer.players.get(3));
 		for (int i = 0; i < 4; i++) {
 			// sort cards in hand
-			// ***
-			// this.server.getGameServer().getPlayers().get(i).sortCardsInHand();
-			// System.out.println(i + " point : " +
-			// this.server.getGameServer().getPlayers().get(i).getPoints());
 			GameServer.players.get(i).sortCardsInHand();
 			System.out.println(i + " point : " + GameServer.players.get(i).getPoints());
 		}
@@ -172,16 +166,15 @@ public class InfrastructureImpl implements Infrastructure {
 		// System.out.println("deal finished");
 
 		for (int j = 0; j < 13; j++) {
-			System.out.println("----" + (j+1) + "----");
+			System.out.println("----"+(j+1)+"----");
 			for (int i = 0; i < 4; i++) {
-				// ***
-				// Card c =
-				// this.server.getGameServer().getPlayers().get(i).getCardsInHand().get(j);
 				Card c = GameServer.players.get(i).getCardsInHand().get(j);
-				if (i == 0) {
+				if(i == 0){
 					this.server.getClient().getGameClient().addCardIntoHand(c);
-				} else {
-					this.client.submitCard(i, c);
+				}
+				else{
+					this.client.submitCard(i+1, c);// OAO
+					//System.out.println((i+1)+":"+c.getCardInfo());
 				}
 				// System.out.print(i + " : ");
 				try {
@@ -191,7 +184,6 @@ public class InfrastructureImpl implements Infrastructure {
 				}
 				c.printInfo();
 			}
-
 		}
 		System.out.println("deal finished");
 	}
@@ -225,15 +217,27 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void setSeat(String seat) {
 		this.client.getGameClient().setSeat(seat);
+		this.seat = seat;
 	}
 
 	@Override
 	public String getSeat() {
-		return client.getGameClient().getSeat();
+//		return client.getGameClient().getSeat();
+		return seat;
 	}
 
 	@Override
 	public Transmissible getMessage() {
+		if(client != null){
 		return client.getMessageReceiveFromServer();
+		}
+		else return null;
 	}
+
+	@Override
+	public HashMap<Integer,String> getSeatArrange() {
+		// TODO Auto-generated method stub
+		return this.server.seatToName;
+	}
+	
 }
