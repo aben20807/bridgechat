@@ -45,7 +45,7 @@ public class WindowLoad extends JFrame {
 	 */
 	public WindowLoad() throws MalformedURLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowLoad.class.getResource("/resource/chip.png")));
-		setTitle("\u6A4B\u724C123");
+		setTitle("Ｂｒｉｄｇｅ　Ｃｈａｔ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 331, 418);
 		contentPane = new JPanel();

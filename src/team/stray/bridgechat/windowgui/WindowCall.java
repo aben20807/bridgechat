@@ -108,7 +108,7 @@ public class WindowCall extends JFrame {
 		btnSpade.setIcon(new ImageIcon(WindowCall.class.getResource("/resource/Spade.png")));
 		btnSpade.setBounds(17, 196, 50, 50);
 		getContentPane().add(btnSpade);
-		setTitle("\u6A4B\u724C123");
+		setTitle("Ｂｒｉｄｇｅ　Ｃｈａｔ");
 		
 		JToggleButton btnPass = new JToggleButton("");
 		
@@ -137,8 +137,8 @@ public class WindowCall extends JFrame {
 		groupNumber.add(btnSix);
 		groupNumber.add(btnSeven);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(215, 27, 46, 15);
+		JLabel lblNewLabel = new JLabel("NorthName");
+		lblNewLabel.setBounds(215, 27, 62, 15);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");

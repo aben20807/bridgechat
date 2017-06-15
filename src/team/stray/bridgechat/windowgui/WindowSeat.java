@@ -5,25 +5,38 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.metal.MetalBorders.Flush3DBorder;
 
+import com.sun.net.ssl.internal.www.protocol.https.Handler;
 import com.sun.xml.internal.ws.developer.StreamingAttachment;
 
 import javafx.scene.control.CheckBox;
 import team.stray.bridgechat.bridge.Direction;
 import team.stray.bridgechat.connect.Transmissible;
 import team.stray.bridgechat.connect.transmissible.TransmissibleString;
+import team.stray.bridgechat.gamegui.GameWindow;
 
 import java.awt.Toolkit;
-
+import java.util.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.MalformedURLException;
+import java.util.concurrent.TimeUnit;
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class WindowSeat extends JFrame {
 
@@ -66,7 +79,12 @@ public class WindowSeat extends JFrame {
 	 * Create the frame.
 	 */
 	public WindowSeat() {
-		setTitle("\u6A4B\u724C123");
+
+		// can't resize the window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+
+		setTitle("Ôº¢ÔΩíÔΩâÔΩÑÔΩáÔΩÖ„ÄÄÔº£ÔΩàÔΩÅÔΩî");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowSeat.class.getResource("/resource/chip.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -77,7 +95,7 @@ public class WindowSeat extends JFrame {
 		contentPane.setLayout(null);
 
 		JCheckBox checkBoxSouth = new JCheckBox("\u5357");
-		checkBoxSouth.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 18));
+		checkBoxSouth.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 18));
 		checkBoxSouth.setBounds(175, 165, 43, 23);
 		contentPane.add(checkBoxSouth);
 		checkBoxSouth.setOpaque(false);
@@ -85,7 +103,7 @@ public class WindowSeat extends JFrame {
 		checkBoxSouth.setBorderPainted(false);
 
 		JCheckBox checkBoxNorth = new JCheckBox("\u5317");
-		checkBoxNorth.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 18));
+		checkBoxNorth.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 18));
 		checkBoxNorth.setBounds(175, 43, 43, 23);
 		contentPane.add(checkBoxNorth);
 		checkBoxNorth.setOpaque(false);
@@ -93,7 +111,7 @@ public class WindowSeat extends JFrame {
 		checkBoxNorth.setBorderPainted(false);
 
 		JCheckBox checkBoxEast = new JCheckBox("\u6771");
-		checkBoxEast.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 18));
+		checkBoxEast.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 18));
 		checkBoxEast.setBounds(270, 100, 43, 23);
 		contentPane.add(checkBoxEast);
 		checkBoxEast.setOpaque(false);
@@ -101,7 +119,7 @@ public class WindowSeat extends JFrame {
 		checkBoxEast.setBorderPainted(false);
 
 		JCheckBox checkBoxWest = new JCheckBox("\u897F");
-		checkBoxWest.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 18));
+		checkBoxWest.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 18));
 		checkBoxWest.setBounds(70, 100, 43, 23);
 		contentPane.add(checkBoxWest);
 		checkBoxWest.setOpaque(false);
@@ -119,92 +137,252 @@ public class WindowSeat extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				checkBoxNorth.setEnabled(false);
-				checkBoxWest.setEnabled(false);
-				checkBoxEast.setEnabled(false);
-				checkBoxSouth.setEnabled(false);
-				if (checkBoxSouth.isSelected()) {
-					seatDirection = Direction.SOUTH;
+				if (!seatSouth) {
+					if (checkBoxSouth.isSelected()) {
+						seatDirection = Direction.SOUTH;
+						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+					}
+				} else if (seatSouth && checkBoxSouth.isSelected()) {
+					checkBoxSouth.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "ÂçóÊñπÂ∑≤Ë¢´ÈÅ∏Ëµ∞Âï¶", "‰ΩçÂ≠êÂ∑≤Ë¢´ÈÅ∏Âèñ", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxWest.isSelected()) {
-					seatDirection = Direction.WEST;
+				if (!seatWest) {
+					if (checkBoxWest.isSelected()) {
+						seatDirection = Direction.WEST;
+						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+					}
+				} else if (seatWest && checkBoxWest.isSelected()) {
+					checkBoxWest.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "Ë•øÊñπÂ∑≤Ë¢´ÈÅ∏Ëµ∞Âï¶", "‰ΩçÂ≠êÂ∑≤Ë¢´ÈÅ∏Âèñ", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxNorth.isSelected()) {
-					seatDirection = Direction.NORTH;
+				if (!seatNorth) {
+					if (checkBoxNorth.isSelected()) {
+						seatDirection = Direction.NORTH;
+						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+					}
+				} else if (seatNorth && checkBoxNorth.isSelected()) {
+					checkBoxNorth.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "ÂåóÊñπÂ∑≤Ë¢´ÈÅ∏Ëµ∞Âï¶", "‰ΩçÂ≠êÂ∑≤Ë¢´ÈÅ∏Âèñ", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				if (checkBoxEast.isSelected()) {
-					seatDirection = Direction.EAST;
+				if (!seatEast) {
+					if (checkBoxEast.isSelected()) {
+						seatDirection = Direction.EAST;
+						btnCheckSeat.setEnabled(false);
+						checkBoxNorth.setEnabled(false);
+						checkBoxWest.setEnabled(false);
+						checkBoxEast.setEnabled(false);
+						checkBoxSouth.setEnabled(false);
+						WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+						WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+					}
+				} else if (seatEast && checkBoxEast.isSelected()) {
+					checkBoxWest.setSelected(false);
+					
+					JFrame stupid = new JFrame();
+					stupid.setSize(200, 100);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					stupid.setSize(400, 300);
+					stupid.setLocationRelativeTo(null);
+					Container cp = stupid.getContentPane();
+					cp.setLayout(null);
+					// stupid.setVisible(true);
+					JOptionPane.showMessageDialog(stupid, "Êù±ÊñπÂ∑≤Ë¢´ÈÅ∏Ëµ∞Âï¶", "‰ΩçÂ≠êÂ∑≤Ë¢´ÈÅ∏Âèñ", JOptionPane.WARNING_MESSAGE);
+					stupid.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 				}
-				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
-				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
+				
+				
+				
+//				if ( (checkBoxSouth.isSelected() && !seatSouth) || 
+//						(checkBoxWest.isSelected() && !seatWest) || 
+//							(checkBoxNorth.isSelected() && !seatNorth) ||
+//								(checkBoxEast.isSelected()) && !seatEast) {
+//
+//					checkBoxNorth.setEnabled(false);
+//					checkBoxWest.setEnabled(false);
+//					checkBoxEast.setEnabled(false);
+//					checkBoxSouth.setEnabled(false);
+//				}
+//				if (checkBoxSouth.isSelected()) {
+//					seatDirection = Direction.SOUTH;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxWest.isSelected()) {
+//					seatDirection = Direction.WEST;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxNorth.isSelected()) {
+//					seatDirection = Direction.NORTH;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxEast.isSelected()) {
+//					seatDirection = Direction.EAST;
+//					btnCheckSeat.setEnabled(false);
+//				}
+//				if (checkBoxSouth.isSelected() || checkBoxWest.isSelected() || checkBoxNorth.isSelected()
+//												|| checkBoxEast.isSelected()) {
+//				}
+
+//				WindowStart.infrastructure.submitString("@" + seatDirection + WindowStart.infrastructure.getName());
+//				WindowStart.infrastructure.setSeat("@" + seatDirection + WindowStart.infrastructure.getName());
 
 			}
 		});
-		btnCheckSeat.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 12));
+		btnCheckSeat.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 12));
 		btnCheckSeat.setBounds(324, 228, 87, 23);
 		contentPane.add(btnCheckSeat);
 
 		JLabel lblNameSouth = new JLabel(" ");
-		lblNameSouth.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 16));
+		lblNameSouth.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 16));
 		lblNameSouth.setBounds(175, 194, 100, 23);
 		contentPane.add(lblNameSouth);
 
 		JLabel lblNameNorth = new JLabel(" ");
-		lblNameNorth.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 16));
+		lblNameNorth.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 16));
 		lblNameNorth.setBounds(175, 71, 100, 23);
 		contentPane.add(lblNameNorth);
 
 		JLabel lblNameEast = new JLabel(" ");
-		lblNameEast.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 16));
+		lblNameEast.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 16));
 		lblNameEast.setBounds(270, 129, 100, 23);
 		contentPane.add(lblNameEast);
 
 		JLabel lblNameWest = new JLabel(" ");
-		lblNameWest.setFont(new Font("∑L≥n•ø∂¬≈È", Font.PLAIN, 16));
+		lblNameWest.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 16));
 		lblNameWest.setBounds(70, 129, 100, 23);
 		contentPane.add(lblNameWest);
 
-		JButton button = new JButton("\u66F4\u65B0");
-		button.addMouseListener(new MouseAdapter() {
+		JButton btnEnterGame = new JButton("\u9032\u5165\u904A\u6232");
+		btnEnterGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				GameWindow.openGameGui();
+				dispose();
+			}
+		});
+		btnEnterGame.setFont(new Font("ÔøΩLÔøΩnÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ", Font.PLAIN, 12));
+		btnEnterGame.setBounds(324, 195, 87, 23);
+		contentPane.add(btnEnterGame);
+		btnEnterGame.setEnabled(false);
+
+		JButton btnRefreshSeat = new JButton("\u66F4\u65B0");
+		btnRefreshSeat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (seatSouth) {
+					checkBoxSouth.setSelected(false);
 					checkBoxSouth.setEnabled(false);
-					lblNameSouth.setText(nameSouth);
+					lblNameSouth.setText(nameSouth);		
 				}
 				if (seatWest) {
+					checkBoxWest.setSelected(false);
 					checkBoxWest.setEnabled(false);
-					lblNameWest.setText(nameWest);
+					lblNameWest.setText(nameWest);				
 				}
 				if (seatNorth) {
+					checkBoxNorth.setSelected(false);
 					checkBoxNorth.setEnabled(false);
-					lblNameNorth.setText(nameNorth);
+					lblNameNorth.setText(nameNorth);		
 				}
 				if (seatEast) {
+					checkBoxEast.setSelected(false);
 					checkBoxEast.setEnabled(false);
 					lblNameEast.setText(nameEast);
 				}
+				//
+				if (seatSouth && seatWest && seatNorth && seatEast && !lblNameSouth.getText().equals(" ")
+						&& !lblNameSouth.getText().equals(" ") && !lblNameWest.getText().equals(" ")
+						&& !lblNameEast.getText().equals(" ")) {
+					btnEnterGame.setEnabled(true);
+					btnRefreshSeat.setEnabled(false);
+
+					// for( int i = 0 ; i < 100000000 ; i++ ){
+					// System.out.flush();
+					// }
+					// try {
+					// Thread.sleep(3000);
+					// } catch (InterruptedException e) {
+					// // TODO Auto-generated catch block
+					// e.printStackTrace();
+					// }
+
+					// try test timer
+					// class DateTask extends TimerTask {
+					// public void run() {
+					// System.out.println("ÔøΩÔøΩÔøΩ»Æ…∂ÔøΩÔøΩG" + new Date());
+					// }
+					// }
+					// Timer timer = new Timer();
+					// timer.schedule(new DateTask(),5000);
+					// System.out.println("ÔøΩ{ÔøΩbÔøΩ…∂ÔøΩÔøΩG" + new Date());
+					// try {
+					// Thread.sleep(8000);
+					// }
+					// catch(InterruptedException e) {
+					// }
+					// timer.cancel();
+
+					// dispose(); // close the windowSeat
+
+				}
+				// if( seatSouth && seatWest && seatNorth && seatEast ){
+				//
+				// try {
+				// Thread.sleep(3000);
+				// } catch (InterruptedException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
+				//
+				// }
 			}
 		});
-		button.setBounds(10, 10, 87, 23);
-		contentPane.add(button);
-
-		// if (seatSouth) {
-		// checkBoxSouth.setEnabled(false);
-		// lblNameSouth.setText(nameSouth);
-		// }
-		// if (seatWest) {
-		// checkBoxWest.setEnabled(false);
-		// lblNameWest.setText(nameWest);
-		// }
-		// if (seatNorth) {
-		// checkBoxNorth.setEnabled(false);
-		// lblNameNorth.setText(nameNorth);
-		// }
-		// if (seatEast) {
-		// checkBoxEast.setEnabled(false);
-		// lblNameEast.setEnabled(seatEast);
-		// }
+		btnRefreshSeat.setBounds(10, 10, 87, 23);
+		contentPane.add(btnRefreshSeat);
 
 		// new Thread() {
 		Thread thread = new Thread(new Runnable() {
