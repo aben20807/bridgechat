@@ -29,8 +29,8 @@ public class WindowLoad extends JFrame {
 				try {
 					WindowLoad frame = new WindowLoad();
 					frame.setVisible(true);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setResizable(false);
+//					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,10 +44,15 @@ public class WindowLoad extends JFrame {
 	 * @throws MalformedURLException
 	 */
 	public WindowLoad() throws MalformedURLException {
+
+		// can't resize the window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(WindowLoad.class.getResource("/resource/chip.png")));
 		setTitle("\u6A4B\u724C123");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 331, 418);
+		setBounds(100, 100, 331, 422);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(204, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,27 +60,33 @@ public class WindowLoad extends JFrame {
 		contentPane.setLayout(null);
 
 		try {
-			 
-			
-//			URL url = new URL("https://media.giphy.com/media/sSgvbe1m3n93G/giphy.gif");
-//			ImageIcon icon = new ImageIcon(url);
-//			ImageIcon icon = new ImageIcon("resource/ellipsis.gif","test");
-//			label1 = new JLabel("Image and Text", icon, JLabel.CENTER);
-			ClassLoader cldr = this.getClass().getClassLoader();  					// set my resource 
-			java.net.URL imageURL   = cldr.getResource("resource/ellipsis.gif");  
-			ImageIcon icon2 = new ImageIcon(imageURL); 
+
+			// URL url = new
+			// URL("https://media.giphy.com/media/sSgvbe1m3n93G/giphy.gif");
+			// ImageIcon icon = new ImageIcon(url);
+			// ImageIcon icon = new ImageIcon("resource/ellipsis.gif","test");
+			// label1 = new JLabel("Image and Text", icon, JLabel.CENTER);
+			ClassLoader cldr = this.getClass().getClassLoader(); // set my
+																	// resource
+			java.net.URL imageURL = cldr.getResource("resource/ellipsis.gif");
+			ImageIcon icon2 = new ImageIcon(imageURL);
 			JLabel labelGifLoading = new JLabel(icon2);
 			labelGifLoading.setBounds(152, 22, 145, 15);
 			contentPane.add(labelGifLoading);
-			
+
 			JLabel labelTextLoading = new JLabel("L o a d i n g ");
 			labelTextLoading.setFont(new Font("AR ESSENCE", Font.PLAIN, 18));
 			labelTextLoading.setBounds(32, 14, 106, 23);
 			contentPane.add(labelTextLoading);
 
-			ImageIcon icon = new ImageIcon(new URL("https://i.giphy.com/3o8doNAGKZXsrsgzW8.gif"));	
+			ClassLoader cldr2 = this.getClass().getClassLoader(); // set my
+																	// resource
+			java.net.URL imageURL2 = cldr2.getResource("resource/loading.gif");
+			ImageIcon icon = new ImageIcon(imageURL2);
+			// ImageIcon icon = new ImageIcon(new
+			// URL("https://i.giphy.com/3o8doNAGKZXsrsgzW8.gif"));
 			JLabel labelGifBg = new JLabel(icon);
-			labelGifBg.setBounds(0, 0, 335, 390);
+			labelGifBg.setBounds(0, 0, 335, 393);
 			contentPane.add(labelGifBg);
 		} catch (Exception e) {
 			e.printStackTrace();

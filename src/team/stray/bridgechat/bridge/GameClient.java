@@ -16,18 +16,15 @@ public class GameClient implements Serializable {
 	private List<Card> cardsInHand;
 	private int points; // used to cut
 	private String seat;
+	private Card acard;
 
 	public GameClient(String name) {
 		setName(name);
 		setCardsInHand(new CopyOnWriteArrayList<Card>());
 		setPoints(0);// initial point at object constructing
 	}
-
-	public void chooseSeat() {
-
-	}
-
-	public void printCardsInHand() {
+	
+	public void printCardsInHand(){
 		System.out.println("Points : " + getPoints());
 		for (int i = 0; i < 13; i++) {
 			cardsInHand.get(i).printInfo();
@@ -95,5 +92,13 @@ public class GameClient implements Serializable {
 
 	public void setSeat(String seat) {
 		this.seat = seat;
+	}
+	//out of card each time
+	public Card getCard(){
+		return acard;
+	}
+	
+	public void setCard(Card aCard){
+		this.acard = aCard;
 	}
 }

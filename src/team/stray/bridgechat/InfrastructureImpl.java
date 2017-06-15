@@ -1,6 +1,8 @@
 package team.stray.bridgechat;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import team.stray.bridgechat.bridge.Card;
@@ -17,6 +19,7 @@ public class InfrastructureImpl implements Infrastructure {
 	private Client client;
 	private Server server;
 	private int type = 0;
+	private String seat;
 
 	private String name;
 	private String connectionIP;
@@ -113,7 +116,6 @@ public class InfrastructureImpl implements Infrastructure {
 
 	@Override
 	public void chooseSeat() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -225,15 +227,27 @@ public class InfrastructureImpl implements Infrastructure {
 	@Override
 	public void setSeat(String seat) {
 		this.client.getGameClient().setSeat(seat);
+		this.seat = seat;
 	}
 
 	@Override
 	public String getSeat() {
-		return client.getGameClient().getSeat();
+//		return client.getGameClient().getSeat();
+		return seat;
 	}
 
 	@Override
 	public Transmissible getMessage() {
+		if(client != null){
 		return client.getMessageReceiveFromServer();
+		}
+		else return null;
 	}
+
+	@Override
+	public HashMap<Integer,String> getSeatArrange() {
+		// TODO Auto-generated method stub
+		return this.client.seatToName;
+	}
+	
 }
